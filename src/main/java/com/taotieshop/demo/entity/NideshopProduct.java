@@ -15,7 +15,7 @@ import javax.persistence.Id;
  */
 @Entity
 @Component
-public class nideshopProduct {
+public class NideshopProduct {
     @Id
     @GeneratedValue
     private int id;
@@ -25,7 +25,7 @@ public class nideshopProduct {
     private int goods_number;
     private double retail_price;
 
-    public nideshopProduct(){}
+    public NideshopProduct(){}
 
     public int getId() {
         return id;

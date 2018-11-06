@@ -1,6 +1,6 @@
 package com.taotieshop.demo.entity;
 
-public class result<T> {
+public class Result<T> {
     private String mssage;
     private int code;
     private T data;

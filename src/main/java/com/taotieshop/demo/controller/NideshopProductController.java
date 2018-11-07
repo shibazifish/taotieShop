@@ -1,9 +1,10 @@
 package com.taotieshop.demo.controller;
 
+import com.taotieshop.demo.comm.ExceptionEnum;
 import com.taotieshop.demo.comm.TSException;
 import com.taotieshop.demo.entity.NideshopProduct;
 import com.taotieshop.demo.entity.Result;
-import com.taotieshop.demo.repository.nideshopProductRepository;
+import com.taotieshop.demo.repository.NideshopProductRepository;
 import com.taotieshop.demo.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
  * 类名: nideshopProductController
  */
 @RestController
-public class nideshopProductController {
+public class NideshopProductController {
     @Autowired
-    private nideshopProductRepository nideshopProductRepository;
+    private NideshopProductRepository NideshopProductRepository;
     @GetMapping (value = "/get")
     public Result getAllNideshopProduct(){
-        return ResultUtils.success(nideshopProductRepository.findAll());
+        return ResultUtils.success(NideshopProductRepository.findAll());
     }
     @PostMapping (value = "/add")
-    public Result addNideshopProduct(NideshopProduct newNideshopProduct){
-        return ResultUtils.success(nideshopProductRepository.save(newNideshopProduct));
+    public Result addNideshopProduct(NideshopProduct nideshopProduct){
+        return ResultUtils.success(NideshopProductRepository.save(nideshopProduct));
     }
-    @PostMapping (value = "/delete")
-    public Result deleteNideshopProduct(int id){
-        throw new TSException("删除报错！",100);
+    @GetMapping (value = "/delete")
+    public Result deleteNideshopProduct(){
+        throw new TSException(ExceptionEnum.DELETE_EXCEPTION);
     }
 }

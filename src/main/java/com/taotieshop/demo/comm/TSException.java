@@ -8,9 +8,9 @@ package com.taotieshop.demo.comm;
 public class TSException extends RuntimeException {
     private int code;
 
-    public TSException(String message, int code) {
-        super(message);
-        this.code = code;
+    public TSException(ExceptionEnum exceptionEnum) {
+        super(exceptionEnum.getMessage());
+        this.code = exceptionEnum.getCode();
     }
 
     public int getCode() {

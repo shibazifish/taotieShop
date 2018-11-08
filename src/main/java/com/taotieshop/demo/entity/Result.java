@@ -1,24 +1,24 @@
 package com.taotieshop.demo.entity;
 
 public class Result<T> {
-    private String mssage;
-    private int code;
+    private String errmsg;
+    private int errno;
     private T data;
 
-    public String getMssage() {
-        return mssage;
+    public String getErrmsg() {
+        return errmsg;
     }
 
-    public void setMssage(String mssage) {
-        this.mssage = mssage;
+    public void setErrmsg(String errmsg) {
+        this.errmsg = errmsg;
     }
 
-    public int getCode() {
-        return code;
+    public int getErrno() {
+        return errno;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setErrno(int errno) {
+        this.errno = errno;
     }
 
     public T getData() {

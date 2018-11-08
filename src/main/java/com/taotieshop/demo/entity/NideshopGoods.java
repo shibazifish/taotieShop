@@ -5,15 +5,13 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
- * 任务：
- * 描述：
- * 作者：李宇
- * 时间：2018/11/815:27
- * 类名: NideshopGoodsEntity
+ * @Auther: 李宇
+ * @Date: 2018/11/8 23:17
+ * @Description:
  */
 @Entity
 @Table(name = "nideshop_goods", schema = "nideshop", catalog = "")
-public class NideshopGoodsEntity {
+public class NideshopGoods {
     private int id;
     private int categoryId;
     private String goodsSn;
@@ -23,14 +21,14 @@ public class NideshopGoodsEntity {
     private String keywords;
     private String goodsBrief;
     private String goodsDesc;
-    private byte isOnSale;
+    private String isOnSale;
     private int addTime;
     private short sortOrder;
-    private byte isDelete;
+    private String isDelete;
     private int attributeCategory;
     private BigDecimal counterPrice;
     private BigDecimal extraPrice;
-    private byte isNew;
+    private String isNew;
     private String goodsUnit;
     private String primaryPicUrl;
     private String listPicUrl;
@@ -41,12 +39,12 @@ public class NideshopGoodsEntity {
     private String promotionDesc;
     private String promotionTag;
     private BigDecimal appExclusivePrice;
-    private byte isAppExclusive;
-    private byte isLimited;
-    private byte isHot;
+    private String isAppExclusive;
+    private String isLimited;
+    private String isHot;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -56,7 +54,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "category_id", nullable = false)
+    @Column(name = "category_id")
     public int getCategoryId() {
         return categoryId;
     }
@@ -66,7 +64,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "goods_sn", nullable = false, length = 60)
+    @Column(name = "goods_sn")
     public String getGoodsSn() {
         return goodsSn;
     }
@@ -76,7 +74,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "name", nullable = false, length = 120)
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -86,7 +84,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "brand_id", nullable = false)
+    @Column(name = "brand_id")
     public int getBrandId() {
         return brandId;
     }
@@ -96,7 +94,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "goods_number", nullable = false)
+    @Column(name = "goods_number")
     public int getGoodsNumber() {
         return goodsNumber;
     }
@@ -106,7 +104,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "keywords", nullable = false, length = 255)
+    @Column(name = "keywords")
     public String getKeywords() {
         return keywords;
     }
@@ -116,7 +114,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "goods_brief", nullable = false, length = 255)
+    @Column(name = "goods_brief")
     public String getGoodsBrief() {
         return goodsBrief;
     }
@@ -126,7 +124,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "goods_desc", nullable = true, length = -1)
+    @Column(name = "goods_desc")
     public String getGoodsDesc() {
         return goodsDesc;
     }
@@ -136,17 +134,17 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "is_on_sale", nullable = false)
-    public byte getIsOnSale() {
+    @Column(name = "is_on_sale")
+    public String getIsOnSale() {
         return isOnSale;
     }
 
-    public void setIsOnSale(byte isOnSale) {
+    public void setIsOnSale(String isOnSale) {
         this.isOnSale = isOnSale;
     }
 
     @Basic
-    @Column(name = "add_time", nullable = false)
+    @Column(name = "add_time")
     public int getAddTime() {
         return addTime;
     }
@@ -156,7 +154,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "sort_order", nullable = false)
+    @Column(name = "sort_order")
     public short getSortOrder() {
         return sortOrder;
     }
@@ -166,17 +164,17 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "is_delete", nullable = false)
-    public byte getIsDelete() {
+    @Column(name = "is_delete")
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(byte isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 
     @Basic
-    @Column(name = "attribute_category", nullable = false)
+    @Column(name = "attribute_category")
     public int getAttributeCategory() {
         return attributeCategory;
     }
@@ -186,7 +184,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "counter_price", nullable = false, precision = 2)
+    @Column(name = "counter_price")
     public BigDecimal getCounterPrice() {
         return counterPrice;
     }
@@ -196,7 +194,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "extra_price", nullable = false, precision = 2)
+    @Column(name = "extra_price")
     public BigDecimal getExtraPrice() {
         return extraPrice;
     }
@@ -206,17 +204,17 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "is_new", nullable = false)
-    public byte getIsNew() {
+    @Column(name = "is_new")
+    public String getIsNew() {
         return isNew;
     }
 
-    public void setIsNew(byte isNew) {
+    public void setIsNew(String isNew) {
         this.isNew = isNew;
     }
 
     @Basic
-    @Column(name = "goods_unit", nullable = false, length = 45)
+    @Column(name = "goods_unit")
     public String getGoodsUnit() {
         return goodsUnit;
     }
@@ -226,7 +224,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "primary_pic_url", nullable = false, length = 255)
+    @Column(name = "primary_pic_url")
     public String getPrimaryPicUrl() {
         return primaryPicUrl;
     }
@@ -236,7 +234,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "list_pic_url", nullable = false, length = 255)
+    @Column(name = "list_pic_url")
     public String getListPicUrl() {
         return listPicUrl;
     }
@@ -246,7 +244,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "retail_price", nullable = false, precision = 2)
+    @Column(name = "retail_price")
     public BigDecimal getRetailPrice() {
         return retailPrice;
     }
@@ -256,7 +254,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "sell_volume", nullable = false)
+    @Column(name = "sell_volume")
     public int getSellVolume() {
         return sellVolume;
     }
@@ -266,7 +264,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "primary_product_id", nullable = false)
+    @Column(name = "primary_product_id")
     public int getPrimaryProductId() {
         return primaryProductId;
     }
@@ -276,7 +274,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "unit_price", nullable = false, precision = 2)
+    @Column(name = "unit_price")
     public BigDecimal getUnitPrice() {
         return unitPrice;
     }
@@ -286,7 +284,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "promotion_desc", nullable = false, length = 255)
+    @Column(name = "promotion_desc")
     public String getPromotionDesc() {
         return promotionDesc;
     }
@@ -296,7 +294,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "promotion_tag", nullable = false, length = 45)
+    @Column(name = "promotion_tag")
     public String getPromotionTag() {
         return promotionTag;
     }
@@ -306,7 +304,7 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "app_exclusive_price", nullable = false, precision = 2)
+    @Column(name = "app_exclusive_price")
     public BigDecimal getAppExclusivePrice() {
         return appExclusivePrice;
     }
@@ -316,32 +314,32 @@ public class NideshopGoodsEntity {
     }
 
     @Basic
-    @Column(name = "is_app_exclusive", nullable = false)
-    public byte getIsAppExclusive() {
+    @Column(name = "is_app_exclusive")
+    public String getIsAppExclusive() {
         return isAppExclusive;
     }
 
-    public void setIsAppExclusive(byte isAppExclusive) {
+    public void setIsAppExclusive(String isAppExclusive) {
         this.isAppExclusive = isAppExclusive;
     }
 
     @Basic
-    @Column(name = "is_limited", nullable = false)
-    public byte getIsLimited() {
+    @Column(name = "is_limited")
+    public String getIsLimited() {
         return isLimited;
     }
 
-    public void setIsLimited(byte isLimited) {
+    public void setIsLimited(String isLimited) {
         this.isLimited = isLimited;
     }
 
     @Basic
-    @Column(name = "is_hot", nullable = false)
-    public byte getIsHot() {
+    @Column(name = "is_hot")
+    public String getIsHot() {
         return isHot;
     }
 
-    public void setIsHot(byte isHot) {
+    public void setIsHot(String isHot) {
         this.isHot = isHot;
     }
 
@@ -349,7 +347,7 @@ public class NideshopGoodsEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        NideshopGoodsEntity that = (NideshopGoodsEntity) o;
+        NideshopGoods that = (NideshopGoods) o;
         return id == that.id &&
                 categoryId == that.categoryId &&
                 brandId == that.brandId &&

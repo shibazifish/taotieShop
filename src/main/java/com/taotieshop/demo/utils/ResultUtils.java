@@ -14,8 +14,8 @@ public class ResultUtils {
      */
     public static Result error(int errorCode, String errorMessage){
         Result result = new Result();
-        result.setCode(errorCode);
-        result.setMssage(errorMessage);
+        result.setErrno(errorCode);
+        result.setErrmsg(errorMessage);
         return result;
     }
 
@@ -26,8 +26,8 @@ public class ResultUtils {
      */
     public static Result success(Object object){
         Result result = new Result();
-        result.setCode(0);
-        result.setMssage("操作成功！");
+        result.setErrno(0);
+        result.setErrmsg("");
         result.setData(object);
         return result;
     }

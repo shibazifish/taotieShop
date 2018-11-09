@@ -1,14 +1,18 @@
 package com.taotieshop.demo.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.taotieshop.demo.dao.GoodsMapper;
+import com.taotieshop.demo.entity.Goods;
+import com.taotieshop.demo.entity.GoodsExample;
+import com.taotieshop.demo.entity.PageEntity;
 import com.taotieshop.demo.entity.Result;
-import com.taotieshop.demo.repository.NideshopGoodsRepository;
 import com.taotieshop.demo.service.GoodsService;
 import com.taotieshop.demo.utils.ResultUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Auther: 李宇
@@ -17,11 +21,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class GoodsServiceImol implements GoodsService {
-    @Autowired
-    private NideshopGoodsRepository nideshopGoodsRepository;
+    @Resource
+    private GoodsMapper goodsMapper;
     @Override
-    public Result getGoodsList(Integer page,Integer size) {
-        Pageable pageable = new PageRequest(page, size);
-        return ResultUtils.success(nideshopGoodsRepository.findAll(pageable));
+    public Result getGoodsList(Integer page, Integer size) {
+        //分页并查询
+        PageHelper.startPage(page,size);
+        Page<Goods> goodsList = goodsMapper.findAllByPage();
+        PageEntity<Goods> pageData = new PageEntity<Goods>(page,size,239);
+        pageData.setData(goodsList);
+        return ResultUtils.success(pageData);
     }
 }

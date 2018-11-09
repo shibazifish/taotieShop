@@ -1,8 +1,7 @@
 package com.taotieshop.demo.service;
 
-import com.sun.net.httpserver.Authenticator;
+
 import com.taotieshop.demo.entity.Result;
-import org.springframework.stereotype.Component;
 
 /**
  * @Auther: 李宇
@@ -10,5 +9,5 @@ import org.springframework.stereotype.Component;
  * @Description:
  */
 public interface GoodsService {
-    Result getGoodsList(Integer page,Integer size);
+    Result getGoodsList(Integer page, Integer size);
 }

@@ -6,6 +6,9 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 mybatis:
   mapper-locations: classpath:com/taotieshop/demo/mapper/*.xml
+  type-aliases-package: com.taotieshop.demo.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
 pagehelper:
     helperDialect: mysql
     reasonable: true

@@ -3,10 +3,7 @@ package com.taotieshop.demo.controller;
 import com.taotieshop.demo.entity.Result;
 import com.taotieshop.demo.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 任务：
@@ -23,7 +20,7 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
     @GetMapping(value = "/goods")
-    public Result getGoodsList(){
-        return goodsService.getGoodsList(1,10);
+    public Result getGoodsList(@RequestParam("page") int page,@RequestParam("name") String name){
+        return goodsService.getGoodsList(page,name);
     }
 }

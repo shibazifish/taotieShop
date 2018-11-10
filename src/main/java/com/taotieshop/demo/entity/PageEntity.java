@@ -27,10 +27,9 @@ public class PageEntity<T> {
         super();
     }
 
-    public PageEntity(Integer currentPage, Integer pageSize, Integer totalNum) {
+    public PageEntity(Integer currentPage, Integer totalNum) {
         super();
         this.currentPage = currentPage;
-        this.pageSize = pageSize;
         this.count = totalNum;
         this.totalPages = (this.count+this.pageSize-1)/this.pageSize;
         this.startIndex = (this.currentPage-1)*this.pageSize;

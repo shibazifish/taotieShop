@@ -24,11 +24,17 @@ public class GoodsServiceImol implements GoodsService {
     @Resource
     private GoodsMapper goodsMapper;
     @Override
-    public Result getGoodsList(Integer page, Integer size) {
+    public Result getGoodsList(Integer page, String name) {
         //分页并查询
-        PageHelper.startPage(page,size);
-        Page<Goods> goodsList = goodsMapper.findAllByPage();
-        PageEntity<Goods> pageData = new PageEntity<Goods>(page,size,239);
+        GoodsExample goodsExample = new GoodsExample();
+        GoodsExample.Criteria criteria = goodsExample.createCriteria();
+        if(!"".equals(name)){
+            criteria.andNameLike(name);
+        }
+        PageHelper.startPage(page,10);
+        Page<Goods> goodsList = goodsMapper.selectByExample(goodsExample);
+        int conutNum = goodsMapper.countByExample(goodsExample);
+        PageEntity<Goods> pageData = new PageEntity<Goods>(page,conutNum);
         pageData.setData(goodsList);
         return ResultUtils.success(pageData);
     }

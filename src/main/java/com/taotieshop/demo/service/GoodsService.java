@@ -9,5 +9,5 @@ import com.taotieshop.demo.entity.Result;
  * @Description:
  */
 public interface GoodsService {
-    Result getGoodsList(Integer page, Integer size);
+    Result getGoodsList(Integer page, String name);
 }

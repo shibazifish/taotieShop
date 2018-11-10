@@ -5,15 +5,15 @@ import java.math.BigDecimal;
 public class Order {
     private Integer id;
 
-    private String orderSn;
+    private String order_sn;
 
-    private Integer userId;
+    private Integer user_id;
 
-    private Boolean orderStatus;
+    private Boolean order_status;
 
-    private Boolean shippingStatus;
+    private Boolean shipping_status;
 
-    private Boolean payStatus;
+    private Boolean pay_status;
 
     private String consignee;
 
@@ -31,41 +31,41 @@ public class Order {
 
     private String postscript;
 
-    private Byte shippingId;
+    private Byte shipping_id;
 
-    private String shippingName;
+    private String shipping_name;
 
-    private Byte payId;
+    private Byte pay_id;
 
-    private String payName;
+    private String pay_name;
 
-    private BigDecimal shippingFee;
+    private BigDecimal shipping_fee;
 
-    private BigDecimal actualPrice;
+    private BigDecimal actual_price;
 
     private Integer integral;
 
-    private BigDecimal integralMoney;
+    private BigDecimal integral_money;
 
-    private BigDecimal orderPrice;
+    private BigDecimal order_price;
 
-    private BigDecimal goodsPrice;
+    private BigDecimal goods_price;
 
-    private Integer addTime;
+    private Integer add_time;
 
-    private Integer confirmTime;
+    private Integer confirm_time;
 
-    private Integer payTime;
+    private Integer pay_time;
 
-    private Integer freightPrice;
+    private Integer freight_price;
 
-    private Integer couponId;
+    private Integer coupon_id;
 
-    private Integer parentId;
+    private Integer parent_id;
 
-    private BigDecimal couponPrice;
+    private BigDecimal coupon_price;
 
-    private String callbackStatus;
+    private String callback_status;
 
     public Integer getId() {
         return id;
@@ -75,44 +75,44 @@ public class Order {
         this.id = id;
     }
 
-    public String getOrderSn() {
-        return orderSn;
+    public String getOrder_sn() {
+        return order_sn;
     }
 
-    public void setOrderSn(String orderSn) {
-        this.orderSn = orderSn;
+    public void setOrder_sn(String order_sn) {
+        this.order_sn = order_sn;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
-    public Boolean getOrderStatus() {
-        return orderStatus;
+    public Boolean getOrder_status() {
+        return order_status;
     }
 
-    public void setOrderStatus(Boolean orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setOrder_status(Boolean order_status) {
+        this.order_status = order_status;
     }
 
-    public Boolean getShippingStatus() {
-        return shippingStatus;
+    public Boolean getShipping_status() {
+        return shipping_status;
     }
 
-    public void setShippingStatus(Boolean shippingStatus) {
-        this.shippingStatus = shippingStatus;
+    public void setShipping_status(Boolean shipping_status) {
+        this.shipping_status = shipping_status;
     }
 
-    public Boolean getPayStatus() {
-        return payStatus;
+    public Boolean getPay_status() {
+        return pay_status;
     }
 
-    public void setPayStatus(Boolean payStatus) {
-        this.payStatus = payStatus;
+    public void setPay_status(Boolean pay_status) {
+        this.pay_status = pay_status;
     }
 
     public String getConsignee() {
@@ -179,52 +179,52 @@ public class Order {
         this.postscript = postscript;
     }
 
-    public Byte getShippingId() {
-        return shippingId;
+    public Byte getShipping_id() {
+        return shipping_id;
     }
 
-    public void setShippingId(Byte shippingId) {
-        this.shippingId = shippingId;
+    public void setShipping_id(Byte shipping_id) {
+        this.shipping_id = shipping_id;
     }
 
-    public String getShippingName() {
-        return shippingName;
+    public String getShipping_name() {
+        return shipping_name;
     }
 
-    public void setShippingName(String shippingName) {
-        this.shippingName = shippingName;
+    public void setShipping_name(String shipping_name) {
+        this.shipping_name = shipping_name;
     }
 
-    public Byte getPayId() {
-        return payId;
+    public Byte getPay_id() {
+        return pay_id;
     }
 
-    public void setPayId(Byte payId) {
-        this.payId = payId;
+    public void setPay_id(Byte pay_id) {
+        this.pay_id = pay_id;
     }
 
-    public String getPayName() {
-        return payName;
+    public String getPay_name() {
+        return pay_name;
     }
 
-    public void setPayName(String payName) {
-        this.payName = payName;
+    public void setPay_name(String pay_name) {
+        this.pay_name = pay_name;
     }
 
-    public BigDecimal getShippingFee() {
-        return shippingFee;
+    public BigDecimal getShipping_fee() {
+        return shipping_fee;
     }
 
-    public void setShippingFee(BigDecimal shippingFee) {
-        this.shippingFee = shippingFee;
+    public void setShipping_fee(BigDecimal shipping_fee) {
+        this.shipping_fee = shipping_fee;
     }
 
-    public BigDecimal getActualPrice() {
-        return actualPrice;
+    public BigDecimal getActual_price() {
+        return actual_price;
     }
 
-    public void setActualPrice(BigDecimal actualPrice) {
-        this.actualPrice = actualPrice;
+    public void setActual_price(BigDecimal actual_price) {
+        this.actual_price = actual_price;
     }
 
     public Integer getIntegral() {
@@ -235,91 +235,91 @@ public class Order {
         this.integral = integral;
     }
 
-    public BigDecimal getIntegralMoney() {
-        return integralMoney;
+    public BigDecimal getIntegral_money() {
+        return integral_money;
     }
 
-    public void setIntegralMoney(BigDecimal integralMoney) {
-        this.integralMoney = integralMoney;
+    public void setIntegral_money(BigDecimal integral_money) {
+        this.integral_money = integral_money;
     }
 
-    public BigDecimal getOrderPrice() {
-        return orderPrice;
+    public BigDecimal getOrder_price() {
+        return order_price;
     }
 
-    public void setOrderPrice(BigDecimal orderPrice) {
-        this.orderPrice = orderPrice;
+    public void setOrder_price(BigDecimal order_price) {
+        this.order_price = order_price;
     }
 
-    public BigDecimal getGoodsPrice() {
-        return goodsPrice;
+    public BigDecimal getGoods_price() {
+        return goods_price;
     }
 
-    public void setGoodsPrice(BigDecimal goodsPrice) {
-        this.goodsPrice = goodsPrice;
+    public void setGoods_price(BigDecimal goods_price) {
+        this.goods_price = goods_price;
     }
 
-    public Integer getAddTime() {
-        return addTime;
+    public Integer getAdd_time() {
+        return add_time;
     }
 
-    public void setAddTime(Integer addTime) {
-        this.addTime = addTime;
+    public void setAdd_time(Integer add_time) {
+        this.add_time = add_time;
     }
 
-    public Integer getConfirmTime() {
-        return confirmTime;
+    public Integer getConfirm_time() {
+        return confirm_time;
     }
 
-    public void setConfirmTime(Integer confirmTime) {
-        this.confirmTime = confirmTime;
+    public void setConfirm_time(Integer confirm_time) {
+        this.confirm_time = confirm_time;
     }
 
-    public Integer getPayTime() {
-        return payTime;
+    public Integer getPay_time() {
+        return pay_time;
     }
 
-    public void setPayTime(Integer payTime) {
-        this.payTime = payTime;
+    public void setPay_time(Integer pay_time) {
+        this.pay_time = pay_time;
     }
 
-    public Integer getFreightPrice() {
-        return freightPrice;
+    public Integer getFreight_price() {
+        return freight_price;
     }
 
-    public void setFreightPrice(Integer freightPrice) {
-        this.freightPrice = freightPrice;
+    public void setFreight_price(Integer freight_price) {
+        this.freight_price = freight_price;
     }
 
-    public Integer getCouponId() {
-        return couponId;
+    public Integer getCoupon_id() {
+        return coupon_id;
     }
 
-    public void setCouponId(Integer couponId) {
-        this.couponId = couponId;
+    public void setCoupon_id(Integer coupon_id) {
+        this.coupon_id = coupon_id;
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public Integer getParent_id() {
+        return parent_id;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void setParent_id(Integer parent_id) {
+        this.parent_id = parent_id;
     }
 
-    public BigDecimal getCouponPrice() {
-        return couponPrice;
+    public BigDecimal getCoupon_price() {
+        return coupon_price;
     }
 
-    public void setCouponPrice(BigDecimal couponPrice) {
-        this.couponPrice = couponPrice;
+    public void setCoupon_price(BigDecimal coupon_price) {
+        this.coupon_price = coupon_price;
     }
 
-    public String getCallbackStatus() {
-        return callbackStatus;
+    public String getCallback_status() {
+        return callback_status;
     }
 
-    public void setCallbackStatus(String callbackStatus) {
-        this.callbackStatus = callbackStatus;
+    public void setCallback_status(String callback_status) {
+        this.callback_status = callback_status;
     }
 }

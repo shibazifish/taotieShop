@@ -1,10 +1,8 @@
 package com.taotieshop.demo.dao;
 
-import java.util.List;
-
-import com.github.pagehelper.Page;
 import com.taotieshop.demo.entity.Goods;
 import com.taotieshop.demo.entity.GoodsExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface GoodsMapper {
@@ -18,9 +16,7 @@ public interface GoodsMapper {
 
     List<Goods> selectByExampleWithBLOBs(GoodsExample example);
 
-    Page<Goods> selectByExample(GoodsExample example);
-
-    Page<Goods> findAllByPage();
+    List<Goods> selectByExample(GoodsExample example);
 
     int updateByExampleSelective(@Param("record") Goods record, @Param("example") GoodsExample example);
 

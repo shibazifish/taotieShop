@@ -5,15 +5,15 @@ import java.math.BigDecimal;
 public class Product {
     private Integer id;
 
-    private Integer goodsId;
+    private Integer goods_id;
 
-    private String goodsSpecificationIds;
+    private String goods_specification_ids;
 
-    private String goodsSn;
+    private String goods_sn;
 
-    private Integer goodsNumber;
+    private Integer goods_number;
 
-    private BigDecimal retailPrice;
+    private BigDecimal retail_price;
 
     public Integer getId() {
         return id;
@@ -23,43 +23,43 @@ public class Product {
         this.id = id;
     }
 
-    public Integer getGoodsId() {
-        return goodsId;
+    public Integer getGoods_id() {
+        return goods_id;
     }
 
-    public void setGoodsId(Integer goodsId) {
-        this.goodsId = goodsId;
+    public void setGoods_id(Integer goods_id) {
+        this.goods_id = goods_id;
     }
 
-    public String getGoodsSpecificationIds() {
-        return goodsSpecificationIds;
+    public String getGoods_specification_ids() {
+        return goods_specification_ids;
     }
 
-    public void setGoodsSpecificationIds(String goodsSpecificationIds) {
-        this.goodsSpecificationIds = goodsSpecificationIds;
+    public void setGoods_specification_ids(String goods_specification_ids) {
+        this.goods_specification_ids = goods_specification_ids;
     }
 
-    public String getGoodsSn() {
-        return goodsSn;
+    public String getGoods_sn() {
+        return goods_sn;
     }
 
-    public void setGoodsSn(String goodsSn) {
-        this.goodsSn = goodsSn;
+    public void setGoods_sn(String goods_sn) {
+        this.goods_sn = goods_sn;
     }
 
-    public Integer getGoodsNumber() {
-        return goodsNumber;
+    public Integer getGoods_number() {
+        return goods_number;
     }
 
-    public void setGoodsNumber(Integer goodsNumber) {
-        this.goodsNumber = goodsNumber;
+    public void setGoods_number(Integer goods_number) {
+        this.goods_number = goods_number;
     }
 
-    public BigDecimal getRetailPrice() {
-        return retailPrice;
+    public BigDecimal getRetail_price() {
+        return retail_price;
     }
 
-    public void setRetailPrice(BigDecimal retailPrice) {
-        this.retailPrice = retailPrice;
+    public void setRetail_price(BigDecimal retail_price) {
+        this.retail_price = retail_price;
     }
 }

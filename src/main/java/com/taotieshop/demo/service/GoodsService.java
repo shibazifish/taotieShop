@@ -10,4 +10,6 @@ import com.taotieshop.demo.entity.Result;
  */
 public interface GoodsService {
     Result getGoodsList(Integer page, String name);
+    Result getGoodsById(Integer id);
+    Result deleteGoodsById(Integer id);
 }

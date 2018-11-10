@@ -40,9 +40,15 @@
         </javaClientGenerator>
 
         <!-- table表生成对应的DoaminObject -->
-        <table tableName="nideshop_product" domainObjectName="Product"></table>
-        <table tableName="nideshop_order" domainObjectName="Order"></table>
-        <table tableName="nideshop_goods" domainObjectName="Goods"></table>
+        <table tableName="nideshop_product" domainObjectName="Product">
+            <property name="useActualColumnNames" value="true" />
+        </table>
+        <table tableName="nideshop_order" domainObjectName="Order">
+            <property name="useActualColumnNames" value="true" />
+        </table>
+        <table tableName="nideshop_goods" domainObjectName="Goods">
+            <property name="useActualColumnNames" value="true" />
+        </table>
 
     </context>
 

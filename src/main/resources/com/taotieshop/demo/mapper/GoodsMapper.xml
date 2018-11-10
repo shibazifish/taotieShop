@@ -3,37 +3,38 @@
 <mapper namespace="com.taotieshop.demo.dao.GoodsMapper">
   <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Goods">
     <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
-    <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn" />
+    <result column="category_id" jdbcType="INTEGER" property="category_id" />
+    <result column="goods_sn" jdbcType="VARCHAR" property="goods_sn" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
-    <result column="goods_number" jdbcType="INTEGER" property="goodsNumber" />
+    <result column="brand_id" jdbcType="INTEGER" property="brand_id" />
+    <result column="goods_number" jdbcType="INTEGER" property="goods_number" />
     <result column="keywords" jdbcType="VARCHAR" property="keywords" />
-    <result column="goods_brief" jdbcType="VARCHAR" property="goodsBrief" />
-    <result column="is_on_sale" jdbcType="BIT" property="isOnSale" />
-    <result column="add_time" jdbcType="INTEGER" property="addTime" />
-    <result column="sort_order" jdbcType="SMALLINT" property="sortOrder" />
-    <result column="is_delete" jdbcType="BIT" property="isDelete" />
-    <result column="attribute_category" jdbcType="INTEGER" property="attributeCategory" />
-    <result column="counter_price" jdbcType="DECIMAL" property="counterPrice" />
-    <result column="extra_price" jdbcType="DECIMAL" property="extraPrice" />
-    <result column="is_new" jdbcType="BIT" property="isNew" />
-    <result column="goods_unit" jdbcType="VARCHAR" property="goodsUnit" />
-    <result column="primary_pic_url" jdbcType="VARCHAR" property="primaryPicUrl" />
-    <result column="list_pic_url" jdbcType="VARCHAR" property="listPicUrl" />
-    <result column="retail_price" jdbcType="DECIMAL" property="retailPrice" />
-    <result column="sell_volume" jdbcType="INTEGER" property="sellVolume" />
-    <result column="primary_product_id" jdbcType="INTEGER" property="primaryProductId" />
-    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
-    <result column="promotion_desc" jdbcType="VARCHAR" property="promotionDesc" />
-    <result column="promotion_tag" jdbcType="VARCHAR" property="promotionTag" />
-    <result column="app_exclusive_price" jdbcType="DECIMAL" property="appExclusivePrice" />
-    <result column="is_app_exclusive" jdbcType="BIT" property="isAppExclusive" />
-    <result column="is_limited" jdbcType="BIT" property="isLimited" />
-    <result column="is_hot" jdbcType="BIT" property="isHot" />
+    <result column="goods_brief" jdbcType="VARCHAR" property="goods_brief" />
+    <result column="is_on_sale" jdbcType="BIT" property="is_on_sale" />
+    <result column="add_time" jdbcType="INTEGER" property="add_time" />
+    <result column="sort_order" jdbcType="SMALLINT" property="sort_order" />
+    <result column="is_delete" jdbcType="BIT" property="is_delete" />
+    <result column="attribute_category" jdbcType="INTEGER" property="attribute_category" />
+    <result column="counter_price" jdbcType="DECIMAL" property="counter_price" />
+    <result column="extra_price" jdbcType="DECIMAL" property="extra_price" />
+    <result column="is_new" jdbcType="BIT" property="is_new" />
+    <result column="goods_unit" jdbcType="VARCHAR" property="goods_unit" />
+    <result column="primary_pic_url" jdbcType="VARCHAR" property="primary_pic_url" />
+    <result column="list_pic_url" jdbcType="VARCHAR" property="list_pic_url" />
+    <result column="retail_price" jdbcType="DECIMAL" property="retail_price" />
+    <result column="sell_volume" jdbcType="INTEGER" property="sell_volume" />
+    <result column="primary_product_id" jdbcType="INTEGER" property="primary_product_id" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unit_price" />
+    <result column="promotion_desc" jdbcType="VARCHAR" property="promotion_desc" />
+    <result column="promotion_tag" jdbcType="VARCHAR" property="promotion_tag" />
+    <result column="app_exclusive_price" jdbcType="DECIMAL" property="app_exclusive_price" />
+    <result column="is_app_exclusive" jdbcType="BIT" property="is_app_exclusive" />
+    <result column="is_limited" jdbcType="BIT" property="is_limited" />
+    <result column="is_hot" jdbcType="BIT" property="is_hot" />
+    <result column="category_name" jdbcType="VARCHAR" property="category_name" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.taotieshop.demo.entity.Goods">
-    <result column="goods_desc" jdbcType="LONGVARCHAR" property="goodsDesc" />
+    <result column="goods_desc" jdbcType="LONGVARCHAR" property="goods_desc" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -125,7 +126,8 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from nideshop_goods
+    ,(select t.name from nideshop_category t where t.id = g.category_id) as category_name
+    from nideshop_goods g
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -151,16 +153,16 @@
       promotion_tag, app_exclusive_price, is_app_exclusive, 
       is_limited, is_hot, goods_desc
       )
-    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{goodsSn,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, #{goodsNumber,jdbcType=INTEGER}, 
-      #{keywords,jdbcType=VARCHAR}, #{goodsBrief,jdbcType=VARCHAR}, #{isOnSale,jdbcType=BIT}, 
-      #{addTime,jdbcType=INTEGER}, #{sortOrder,jdbcType=SMALLINT}, #{isDelete,jdbcType=BIT}, 
-      #{attributeCategory,jdbcType=INTEGER}, #{counterPrice,jdbcType=DECIMAL}, #{extraPrice,jdbcType=DECIMAL}, 
-      #{isNew,jdbcType=BIT}, #{goodsUnit,jdbcType=VARCHAR}, #{primaryPicUrl,jdbcType=VARCHAR}, 
-      #{listPicUrl,jdbcType=VARCHAR}, #{retailPrice,jdbcType=DECIMAL}, #{sellVolume,jdbcType=INTEGER}, 
-      #{primaryProductId,jdbcType=INTEGER}, #{unitPrice,jdbcType=DECIMAL}, #{promotionDesc,jdbcType=VARCHAR}, 
-      #{promotionTag,jdbcType=VARCHAR}, #{appExclusivePrice,jdbcType=DECIMAL}, #{isAppExclusive,jdbcType=BIT}, 
-      #{isLimited,jdbcType=BIT}, #{isHot,jdbcType=BIT}, #{goodsDesc,jdbcType=LONGVARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{category_id,jdbcType=INTEGER}, #{goods_sn,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{brand_id,jdbcType=INTEGER}, #{goods_number,jdbcType=INTEGER}, 
+      #{keywords,jdbcType=VARCHAR}, #{goods_brief,jdbcType=VARCHAR}, #{is_on_sale,jdbcType=BIT}, 
+      #{add_time,jdbcType=INTEGER}, #{sort_order,jdbcType=SMALLINT}, #{is_delete,jdbcType=BIT}, 
+      #{attribute_category,jdbcType=INTEGER}, #{counter_price,jdbcType=DECIMAL}, #{extra_price,jdbcType=DECIMAL}, 
+      #{is_new,jdbcType=BIT}, #{goods_unit,jdbcType=VARCHAR}, #{primary_pic_url,jdbcType=VARCHAR}, 
+      #{list_pic_url,jdbcType=VARCHAR}, #{retail_price,jdbcType=DECIMAL}, #{sell_volume,jdbcType=INTEGER}, 
+      #{primary_product_id,jdbcType=INTEGER}, #{unit_price,jdbcType=DECIMAL}, #{promotion_desc,jdbcType=VARCHAR}, 
+      #{promotion_tag,jdbcType=VARCHAR}, #{app_exclusive_price,jdbcType=DECIMAL}, #{is_app_exclusive,jdbcType=BIT}, 
+      #{is_limited,jdbcType=BIT}, #{is_hot,jdbcType=BIT}, #{goods_desc,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Goods">
@@ -169,91 +171,91 @@
       <if test="id != null">
         id,
       </if>
-      <if test="categoryId != null">
+      <if test="category_id != null">
         category_id,
       </if>
-      <if test="goodsSn != null">
+      <if test="goods_sn != null">
         goods_sn,
       </if>
       <if test="name != null">
         name,
       </if>
-      <if test="brandId != null">
+      <if test="brand_id != null">
         brand_id,
       </if>
-      <if test="goodsNumber != null">
+      <if test="goods_number != null">
         goods_number,
       </if>
       <if test="keywords != null">
         keywords,
       </if>
-      <if test="goodsBrief != null">
+      <if test="goods_brief != null">
         goods_brief,
       </if>
-      <if test="isOnSale != null">
+      <if test="is_on_sale != null">
         is_on_sale,
       </if>
-      <if test="addTime != null">
+      <if test="add_time != null">
         add_time,
       </if>
-      <if test="sortOrder != null">
+      <if test="sort_order != null">
         sort_order,
       </if>
-      <if test="isDelete != null">
+      <if test="is_delete != null">
         is_delete,
       </if>
-      <if test="attributeCategory != null">
+      <if test="attribute_category != null">
         attribute_category,
       </if>
-      <if test="counterPrice != null">
+      <if test="counter_price != null">
         counter_price,
       </if>
-      <if test="extraPrice != null">
+      <if test="extra_price != null">
         extra_price,
       </if>
-      <if test="isNew != null">
+      <if test="is_new != null">
         is_new,
       </if>
-      <if test="goodsUnit != null">
+      <if test="goods_unit != null">
         goods_unit,
       </if>
-      <if test="primaryPicUrl != null">
+      <if test="primary_pic_url != null">
         primary_pic_url,
       </if>
-      <if test="listPicUrl != null">
+      <if test="list_pic_url != null">
         list_pic_url,
       </if>
-      <if test="retailPrice != null">
+      <if test="retail_price != null">
         retail_price,
       </if>
-      <if test="sellVolume != null">
+      <if test="sell_volume != null">
         sell_volume,
       </if>
-      <if test="primaryProductId != null">
+      <if test="primary_product_id != null">
         primary_product_id,
       </if>
-      <if test="unitPrice != null">
+      <if test="unit_price != null">
         unit_price,
       </if>
-      <if test="promotionDesc != null">
+      <if test="promotion_desc != null">
         promotion_desc,
       </if>
-      <if test="promotionTag != null">
+      <if test="promotion_tag != null">
         promotion_tag,
       </if>
-      <if test="appExclusivePrice != null">
+      <if test="app_exclusive_price != null">
         app_exclusive_price,
       </if>
-      <if test="isAppExclusive != null">
+      <if test="is_app_exclusive != null">
         is_app_exclusive,
       </if>
-      <if test="isLimited != null">
+      <if test="is_limited != null">
         is_limited,
       </if>
-      <if test="isHot != null">
+      <if test="is_hot != null">
         is_hot,
       </if>
-      <if test="goodsDesc != null">
+      <if test="goods_desc != null">
         goods_desc,
       </if>
     </trim>
@@ -261,92 +263,92 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="categoryId != null">
-        #{categoryId,jdbcType=INTEGER},
+      <if test="category_id != null">
+        #{category_id,jdbcType=INTEGER},
       </if>
-      <if test="goodsSn != null">
-        #{goodsSn,jdbcType=VARCHAR},
+      <if test="goods_sn != null">
+        #{goods_sn,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="brandId != null">
-        #{brandId,jdbcType=INTEGER},
+      <if test="brand_id != null">
+        #{brand_id,jdbcType=INTEGER},
       </if>
-      <if test="goodsNumber != null">
-        #{goodsNumber,jdbcType=INTEGER},
+      <if test="goods_number != null">
+        #{goods_number,jdbcType=INTEGER},
       </if>
       <if test="keywords != null">
         #{keywords,jdbcType=VARCHAR},
       </if>
-      <if test="goodsBrief != null">
-        #{goodsBrief,jdbcType=VARCHAR},
+      <if test="goods_brief != null">
+        #{goods_brief,jdbcType=VARCHAR},
       </if>
-      <if test="isOnSale != null">
-        #{isOnSale,jdbcType=BIT},
+      <if test="is_on_sale != null">
+        #{is_on_sale,jdbcType=BIT},
       </if>
-      <if test="addTime != null">
-        #{addTime,jdbcType=INTEGER},
+      <if test="add_time != null">
+        #{add_time,jdbcType=INTEGER},
       </if>
-      <if test="sortOrder != null">
-        #{sortOrder,jdbcType=SMALLINT},
+      <if test="sort_order != null">
+        #{sort_order,jdbcType=SMALLINT},
       </if>
-      <if test="isDelete != null">
-        #{isDelete,jdbcType=BIT},
+      <if test="is_delete != null">
+        #{is_delete,jdbcType=BIT},
       </if>
-      <if test="attributeCategory != null">
-        #{attributeCategory,jdbcType=INTEGER},
+      <if test="attribute_category != null">
+        #{attribute_category,jdbcType=INTEGER},
       </if>
-      <if test="counterPrice != null">
-        #{counterPrice,jdbcType=DECIMAL},
+      <if test="counter_price != null">
+        #{counter_price,jdbcType=DECIMAL},
       </if>
-      <if test="extraPrice != null">
-        #{extraPrice,jdbcType=DECIMAL},
+      <if test="extra_price != null">
+        #{extra_price,jdbcType=DECIMAL},
       </if>
-      <if test="isNew != null">
-        #{isNew,jdbcType=BIT},
+      <if test="is_new != null">
+        #{is_new,jdbcType=BIT},
       </if>
-      <if test="goodsUnit != null">
-        #{goodsUnit,jdbcType=VARCHAR},
+      <if test="goods_unit != null">
+        #{goods_unit,jdbcType=VARCHAR},
       </if>
-      <if test="primaryPicUrl != null">
-        #{primaryPicUrl,jdbcType=VARCHAR},
+      <if test="primary_pic_url != null">
+        #{primary_pic_url,jdbcType=VARCHAR},
       </if>
-      <if test="listPicUrl != null">
-        #{listPicUrl,jdbcType=VARCHAR},
+      <if test="list_pic_url != null">
+        #{list_pic_url,jdbcType=VARCHAR},
       </if>
-      <if test="retailPrice != null">
-        #{retailPrice,jdbcType=DECIMAL},
+      <if test="retail_price != null">
+        #{retail_price,jdbcType=DECIMAL},
       </if>
-      <if test="sellVolume != null">
-        #{sellVolume,jdbcType=INTEGER},
+      <if test="sell_volume != null">
+        #{sell_volume,jdbcType=INTEGER},
       </if>
-      <if test="primaryProductId != null">
-        #{primaryProductId,jdbcType=INTEGER},
+      <if test="primary_product_id != null">
+        #{primary_product_id,jdbcType=INTEGER},
       </if>
-      <if test="unitPrice != null">
-        #{unitPrice,jdbcType=DECIMAL},
+      <if test="unit_price != null">
+        #{unit_price,jdbcType=DECIMAL},
       </if>
-      <if test="promotionDesc != null">
-        #{promotionDesc,jdbcType=VARCHAR},
+      <if test="promotion_desc != null">
+        #{promotion_desc,jdbcType=VARCHAR},
       </if>
-      <if test="promotionTag != null">
-        #{promotionTag,jdbcType=VARCHAR},
+      <if test="promotion_tag != null">
+        #{promotion_tag,jdbcType=VARCHAR},
       </if>
-      <if test="appExclusivePrice != null">
-        #{appExclusivePrice,jdbcType=DECIMAL},
+      <if test="app_exclusive_price != null">
+        #{app_exclusive_price,jdbcType=DECIMAL},
       </if>
-      <if test="isAppExclusive != null">
-        #{isAppExclusive,jdbcType=BIT},
+      <if test="is_app_exclusive != null">
+        #{is_app_exclusive,jdbcType=BIT},
       </if>
-      <if test="isLimited != null">
-        #{isLimited,jdbcType=BIT},
+      <if test="is_limited != null">
+        #{is_limited,jdbcType=BIT},
       </if>
-      <if test="isHot != null">
-        #{isHot,jdbcType=BIT},
+      <if test="is_hot != null">
+        #{is_hot,jdbcType=BIT},
       </if>
-      <if test="goodsDesc != null">
-        #{goodsDesc,jdbcType=LONGVARCHAR},
+      <if test="goods_desc != null">
+        #{goods_desc,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -362,92 +364,92 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.categoryId != null">
-        category_id = #{record.categoryId,jdbcType=INTEGER},
+      <if test="record.category_id != null">
+        category_id = #{record.category_id,jdbcType=INTEGER},
       </if>
-      <if test="record.goodsSn != null">
-        goods_sn = #{record.goodsSn,jdbcType=VARCHAR},
+      <if test="record.goods_sn != null">
+        goods_sn = #{record.goods_sn,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.brandId != null">
-        brand_id = #{record.brandId,jdbcType=INTEGER},
+      <if test="record.brand_id != null">
+        brand_id = #{record.brand_id,jdbcType=INTEGER},
       </if>
-      <if test="record.goodsNumber != null">
-        goods_number = #{record.goodsNumber,jdbcType=INTEGER},
+      <if test="record.goods_number != null">
+        goods_number = #{record.goods_number,jdbcType=INTEGER},
       </if>
       <if test="record.keywords != null">
         keywords = #{record.keywords,jdbcType=VARCHAR},
       </if>
-      <if test="record.goodsBrief != null">
-        goods_brief = #{record.goodsBrief,jdbcType=VARCHAR},
+      <if test="record.goods_brief != null">
+        goods_brief = #{record.goods_brief,jdbcType=VARCHAR},
       </if>
-      <if test="record.isOnSale != null">
-        is_on_sale = #{record.isOnSale,jdbcType=BIT},
+      <if test="record.is_on_sale != null">
+        is_on_sale = #{record.is_on_sale,jdbcType=BIT},
       </if>
-      <if test="record.addTime != null">
-        add_time = #{record.addTime,jdbcType=INTEGER},
+      <if test="record.add_time != null">
+        add_time = #{record.add_time,jdbcType=INTEGER},
       </if>
-      <if test="record.sortOrder != null">
-        sort_order = #{record.sortOrder,jdbcType=SMALLINT},
+      <if test="record.sort_order != null">
+        sort_order = #{record.sort_order,jdbcType=SMALLINT},
       </if>
-      <if test="record.isDelete != null">
-        is_delete = #{record.isDelete,jdbcType=BIT},
+      <if test="record.is_delete != null">
+        is_delete = #{record.is_delete,jdbcType=BIT},
       </if>
-      <if test="record.attributeCategory != null">
-        attribute_category = #{record.attributeCategory,jdbcType=INTEGER},
+      <if test="record.attribute_category != null">
+        attribute_category = #{record.attribute_category,jdbcType=INTEGER},
       </if>
-      <if test="record.counterPrice != null">
-        counter_price = #{record.counterPrice,jdbcType=DECIMAL},
+      <if test="record.counter_price != null">
+        counter_price = #{record.counter_price,jdbcType=DECIMAL},
       </if>
-      <if test="record.extraPrice != null">
-        extra_price = #{record.extraPrice,jdbcType=DECIMAL},
+      <if test="record.extra_price != null">
+        extra_price = #{record.extra_price,jdbcType=DECIMAL},
       </if>
-      <if test="record.isNew != null">
-        is_new = #{record.isNew,jdbcType=BIT},
+      <if test="record.is_new != null">
+        is_new = #{record.is_new,jdbcType=BIT},
       </if>
-      <if test="record.goodsUnit != null">
-        goods_unit = #{record.goodsUnit,jdbcType=VARCHAR},
+      <if test="record.goods_unit != null">
+        goods_unit = #{record.goods_unit,jdbcType=VARCHAR},
       </if>
-      <if test="record.primaryPicUrl != null">
-        primary_pic_url = #{record.primaryPicUrl,jdbcType=VARCHAR},
+      <if test="record.primary_pic_url != null">
+        primary_pic_url = #{record.primary_pic_url,jdbcType=VARCHAR},
       </if>
-      <if test="record.listPicUrl != null">
-        list_pic_url = #{record.listPicUrl,jdbcType=VARCHAR},
+      <if test="record.list_pic_url != null">
+        list_pic_url = #{record.list_pic_url,jdbcType=VARCHAR},
       </if>
-      <if test="record.retailPrice != null">
-        retail_price = #{record.retailPrice,jdbcType=DECIMAL},
+      <if test="record.retail_price != null">
+        retail_price = #{record.retail_price,jdbcType=DECIMAL},
       </if>
-      <if test="record.sellVolume != null">
-        sell_volume = #{record.sellVolume,jdbcType=INTEGER},
+      <if test="record.sell_volume != null">
+        sell_volume = #{record.sell_volume,jdbcType=INTEGER},
       </if>
-      <if test="record.primaryProductId != null">
-        primary_product_id = #{record.primaryProductId,jdbcType=INTEGER},
+      <if test="record.primary_product_id != null">
+        primary_product_id = #{record.primary_product_id,jdbcType=INTEGER},
       </if>
-      <if test="record.unitPrice != null">
-        unit_price = #{record.unitPrice,jdbcType=DECIMAL},
+      <if test="record.unit_price != null">
+        unit_price = #{record.unit_price,jdbcType=DECIMAL},
       </if>
-      <if test="record.promotionDesc != null">
-        promotion_desc = #{record.promotionDesc,jdbcType=VARCHAR},
+      <if test="record.promotion_desc != null">
+        promotion_desc = #{record.promotion_desc,jdbcType=VARCHAR},
       </if>
-      <if test="record.promotionTag != null">
-        promotion_tag = #{record.promotionTag,jdbcType=VARCHAR},
+      <if test="record.promotion_tag != null">
+        promotion_tag = #{record.promotion_tag,jdbcType=VARCHAR},
       </if>
-      <if test="record.appExclusivePrice != null">
-        app_exclusive_price = #{record.appExclusivePrice,jdbcType=DECIMAL},
+      <if test="record.app_exclusive_price != null">
+        app_exclusive_price = #{record.app_exclusive_price,jdbcType=DECIMAL},
       </if>
-      <if test="record.isAppExclusive != null">
-        is_app_exclusive = #{record.isAppExclusive,jdbcType=BIT},
+      <if test="record.is_app_exclusive != null">
+        is_app_exclusive = #{record.is_app_exclusive,jdbcType=BIT},
       </if>
-      <if test="record.isLimited != null">
-        is_limited = #{record.isLimited,jdbcType=BIT},
+      <if test="record.is_limited != null">
+        is_limited = #{record.is_limited,jdbcType=BIT},
       </if>
-      <if test="record.isHot != null">
-        is_hot = #{record.isHot,jdbcType=BIT},
+      <if test="record.is_hot != null">
+        is_hot = #{record.is_hot,jdbcType=BIT},
       </if>
-      <if test="record.goodsDesc != null">
-        goods_desc = #{record.goodsDesc,jdbcType=LONGVARCHAR},
+      <if test="record.goods_desc != null">
+        goods_desc = #{record.goods_desc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -457,35 +459,35 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update nideshop_goods
     set id = #{record.id,jdbcType=INTEGER},
-      category_id = #{record.categoryId,jdbcType=INTEGER},
-      goods_sn = #{record.goodsSn,jdbcType=VARCHAR},
+      category_id = #{record.category_id,jdbcType=INTEGER},
+      goods_sn = #{record.goods_sn,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
-      brand_id = #{record.brandId,jdbcType=INTEGER},
-      goods_number = #{record.goodsNumber,jdbcType=INTEGER},
+      brand_id = #{record.brand_id,jdbcType=INTEGER},
+      goods_number = #{record.goods_number,jdbcType=INTEGER},
       keywords = #{record.keywords,jdbcType=VARCHAR},
-      goods_brief = #{record.goodsBrief,jdbcType=VARCHAR},
-      is_on_sale = #{record.isOnSale,jdbcType=BIT},
-      add_time = #{record.addTime,jdbcType=INTEGER},
-      sort_order = #{record.sortOrder,jdbcType=SMALLINT},
-      is_delete = #{record.isDelete,jdbcType=BIT},
-      attribute_category = #{record.attributeCategory,jdbcType=INTEGER},
-      counter_price = #{record.counterPrice,jdbcType=DECIMAL},
-      extra_price = #{record.extraPrice,jdbcType=DECIMAL},
-      is_new = #{record.isNew,jdbcType=BIT},
-      goods_unit = #{record.goodsUnit,jdbcType=VARCHAR},
-      primary_pic_url = #{record.primaryPicUrl,jdbcType=VARCHAR},
-      list_pic_url = #{record.listPicUrl,jdbcType=VARCHAR},
-      retail_price = #{record.retailPrice,jdbcType=DECIMAL},
-      sell_volume = #{record.sellVolume,jdbcType=INTEGER},
-      primary_product_id = #{record.primaryProductId,jdbcType=INTEGER},
-      unit_price = #{record.unitPrice,jdbcType=DECIMAL},
-      promotion_desc = #{record.promotionDesc,jdbcType=VARCHAR},
-      promotion_tag = #{record.promotionTag,jdbcType=VARCHAR},
-      app_exclusive_price = #{record.appExclusivePrice,jdbcType=DECIMAL},
-      is_app_exclusive = #{record.isAppExclusive,jdbcType=BIT},
-      is_limited = #{record.isLimited,jdbcType=BIT},
-      is_hot = #{record.isHot,jdbcType=BIT},
-      goods_desc = #{record.goodsDesc,jdbcType=LONGVARCHAR}
+      goods_brief = #{record.goods_brief,jdbcType=VARCHAR},
+      is_on_sale = #{record.is_on_sale,jdbcType=BIT},
+      add_time = #{record.add_time,jdbcType=INTEGER},
+      sort_order = #{record.sort_order,jdbcType=SMALLINT},
+      is_delete = #{record.is_delete,jdbcType=BIT},
+      attribute_category = #{record.attribute_category,jdbcType=INTEGER},
+      counter_price = #{record.counter_price,jdbcType=DECIMAL},
+      extra_price = #{record.extra_price,jdbcType=DECIMAL},
+      is_new = #{record.is_new,jdbcType=BIT},
+      goods_unit = #{record.goods_unit,jdbcType=VARCHAR},
+      primary_pic_url = #{record.primary_pic_url,jdbcType=VARCHAR},
+      list_pic_url = #{record.list_pic_url,jdbcType=VARCHAR},
+      retail_price = #{record.retail_price,jdbcType=DECIMAL},
+      sell_volume = #{record.sell_volume,jdbcType=INTEGER},
+      primary_product_id = #{record.primary_product_id,jdbcType=INTEGER},
+      unit_price = #{record.unit_price,jdbcType=DECIMAL},
+      promotion_desc = #{record.promotion_desc,jdbcType=VARCHAR},
+      promotion_tag = #{record.promotion_tag,jdbcType=VARCHAR},
+      app_exclusive_price = #{record.app_exclusive_price,jdbcType=DECIMAL},
+      is_app_exclusive = #{record.is_app_exclusive,jdbcType=BIT},
+      is_limited = #{record.is_limited,jdbcType=BIT},
+      is_hot = #{record.is_hot,jdbcType=BIT},
+      goods_desc = #{record.goods_desc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -493,41 +495,36 @@
   <update id="updateByExample" parameterType="map">
     update nideshop_goods
     set id = #{record.id,jdbcType=INTEGER},
-      category_id = #{record.categoryId,jdbcType=INTEGER},
-      goods_sn = #{record.goodsSn,jdbcType=VARCHAR},
+      category_id = #{record.category_id,jdbcType=INTEGER},
+      goods_sn = #{record.goods_sn,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
-      brand_id = #{record.brandId,jdbcType=INTEGER},
-      goods_number = #{record.goodsNumber,jdbcType=INTEGER},
+      brand_id = #{record.brand_id,jdbcType=INTEGER},
+      goods_number = #{record.goods_number,jdbcType=INTEGER},
       keywords = #{record.keywords,jdbcType=VARCHAR},
-      goods_brief = #{record.goodsBrief,jdbcType=VARCHAR},
-      is_on_sale = #{record.isOnSale,jdbcType=BIT},
-      add_time = #{record.addTime,jdbcType=INTEGER},
-      sort_order = #{record.sortOrder,jdbcType=SMALLINT},
-      is_delete = #{record.isDelete,jdbcType=BIT},
-      attribute_category = #{record.attributeCategory,jdbcType=INTEGER},
-      counter_price = #{record.counterPrice,jdbcType=DECIMAL},
-      extra_price = #{record.extraPrice,jdbcType=DECIMAL},
-      is_new = #{record.isNew,jdbcType=BIT},
-      goods_unit = #{record.goodsUnit,jdbcType=VARCHAR},
-      primary_pic_url = #{record.primaryPicUrl,jdbcType=VARCHAR},
-      list_pic_url = #{record.listPicUrl,jdbcType=VARCHAR},
-      retail_price = #{record.retailPrice,jdbcType=DECIMAL},
-      sell_volume = #{record.sellVolume,jdbcType=INTEGER},
-      primary_product_id = #{record.primaryProductId,jdbcType=INTEGER},
-      unit_price = #{record.unitPrice,jdbcType=DECIMAL},
-      promotion_desc = #{record.promotionDesc,jdbcType=VARCHAR},
-      promotion_tag = #{record.promotionTag,jdbcType=VARCHAR},
-      app_exclusive_price = #{record.appExclusivePrice,jdbcType=DECIMAL},
-      is_app_exclusive = #{record.isAppExclusive,jdbcType=BIT},
-      is_limited = #{record.isLimited,jdbcType=BIT},
-      is_hot = #{record.isHot,jdbcType=BIT}
+      goods_brief = #{record.goods_brief,jdbcType=VARCHAR},
+      is_on_sale = #{record.is_on_sale,jdbcType=BIT},
+      add_time = #{record.add_time,jdbcType=INTEGER},
+      sort_order = #{record.sort_order,jdbcType=SMALLINT},
+      is_delete = #{record.is_delete,jdbcType=BIT},
+      attribute_category = #{record.attribute_category,jdbcType=INTEGER},
+      counter_price = #{record.counter_price,jdbcType=DECIMAL},
+      extra_price = #{record.extra_price,jdbcType=DECIMAL},
+      is_new = #{record.is_new,jdbcType=BIT},
+      goods_unit = #{record.goods_unit,jdbcType=VARCHAR},
+      primary_pic_url = #{record.primary_pic_url,jdbcType=VARCHAR},
+      list_pic_url = #{record.list_pic_url,jdbcType=VARCHAR},
+      retail_price = #{record.retail_price,jdbcType=DECIMAL},
+      sell_volume = #{record.sell_volume,jdbcType=INTEGER},
+      primary_product_id = #{record.primary_product_id,jdbcType=INTEGER},
+      unit_price = #{record.unit_price,jdbcType=DECIMAL},
+      promotion_desc = #{record.promotion_desc,jdbcType=VARCHAR},
+      promotion_tag = #{record.promotion_tag,jdbcType=VARCHAR},
+      app_exclusive_price = #{record.app_exclusive_price,jdbcType=DECIMAL},
+      is_app_exclusive = #{record.is_app_exclusive,jdbcType=BIT},
+      is_limited = #{record.is_limited,jdbcType=BIT},
+      is_hot = #{record.is_hot,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <select id="findAllByPage" resultMap="BaseResultMap">
-    select
-    *
-    from nideshop_goods
-  </select>
 </mapper>

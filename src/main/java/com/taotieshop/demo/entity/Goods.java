@@ -5,63 +5,65 @@ import java.math.BigDecimal;
 public class Goods {
     private Integer id;
 
-    private Integer categoryId;
+    private Integer category_id;
 
-    private String goodsSn;
+    private String goods_sn;
 
     private String name;
 
-    private Integer brandId;
+    private Integer brand_id;
 
-    private Integer goodsNumber;
+    private Integer goods_number;
 
     private String keywords;
 
-    private String goodsBrief;
+    private String goods_brief;
 
-    private Boolean isOnSale;
+    private Boolean is_on_sale;
 
-    private Integer addTime;
+    private Integer add_time;
 
-    private Short sortOrder;
+    private Short sort_order;
 
-    private Boolean isDelete;
+    private Boolean is_delete;
 
-    private Integer attributeCategory;
+    private Integer attribute_category;
 
-    private BigDecimal counterPrice;
+    private BigDecimal counter_price;
 
-    private BigDecimal extraPrice;
+    private BigDecimal extra_price;
 
-    private Boolean isNew;
+    private Boolean is_new;
 
-    private String goodsUnit;
+    private String goods_unit;
 
-    private String primaryPicUrl;
+    private String primary_pic_url;
 
-    private String listPicUrl;
+    private String list_pic_url;
 
-    private BigDecimal retailPrice;
+    private BigDecimal retail_price;
 
-    private Integer sellVolume;
+    private Integer sell_volume;
 
-    private Integer primaryProductId;
+    private Integer primary_product_id;
 
-    private BigDecimal unitPrice;
+    private BigDecimal unit_price;
 
-    private String promotionDesc;
+    private String promotion_desc;
 
-    private String promotionTag;
+    private String promotion_tag;
 
-    private BigDecimal appExclusivePrice;
+    private BigDecimal app_exclusive_price;
 
-    private Boolean isAppExclusive;
+    private Boolean is_app_exclusive;
 
-    private Boolean isLimited;
+    private Boolean is_limited;
 
-    private Boolean isHot;
+    private Boolean is_hot;
 
-    private String goodsDesc;
+    private String goods_desc;
+
+    private String category_name;
 
     public Integer getId() {
         return id;
@@ -71,20 +73,20 @@ public class Goods {
         this.id = id;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public Integer getCategory_id() {
+        return category_id;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
     }
 
-    public String getGoodsSn() {
-        return goodsSn;
+    public String getGoods_sn() {
+        return goods_sn;
     }
 
-    public void setGoodsSn(String goodsSn) {
-        this.goodsSn = goodsSn;
+    public void setGoods_sn(String goods_sn) {
+        this.goods_sn = goods_sn;
     }
 
     public String getName() {
@@ -95,20 +97,20 @@ public class Goods {
         this.name = name;
     }
 
-    public Integer getBrandId() {
-        return brandId;
+    public Integer getBrand_id() {
+        return brand_id;
     }
 
-    public void setBrandId(Integer brandId) {
-        this.brandId = brandId;
+    public void setBrand_id(Integer brand_id) {
+        this.brand_id = brand_id;
     }
 
-    public Integer getGoodsNumber() {
-        return goodsNumber;
+    public Integer getGoods_number() {
+        return goods_number;
     }
 
-    public void setGoodsNumber(Integer goodsNumber) {
-        this.goodsNumber = goodsNumber;
+    public void setGoods_number(Integer goods_number) {
+        this.goods_number = goods_number;
     }
 
     public String getKeywords() {
@@ -119,187 +121,195 @@ public class Goods {
         this.keywords = keywords;
     }
 
-    public String getGoodsBrief() {
-        return goodsBrief;
+    public String getGoods_brief() {
+        return goods_brief;
     }
 
-    public void setGoodsBrief(String goodsBrief) {
-        this.goodsBrief = goodsBrief;
+    public void setGoods_brief(String goods_brief) {
+        this.goods_brief = goods_brief;
     }
 
-    public Boolean getIsOnSale() {
-        return isOnSale;
+    public Boolean getIs_on_sale() {
+        return is_on_sale;
     }
 
-    public void setIsOnSale(Boolean isOnSale) {
-        this.isOnSale = isOnSale;
+    public void setIs_on_sale(Boolean is_on_sale) {
+        this.is_on_sale = is_on_sale;
     }
 
-    public Integer getAddTime() {
-        return addTime;
+    public Integer getAdd_time() {
+        return add_time;
     }
 
-    public void setAddTime(Integer addTime) {
-        this.addTime = addTime;
+    public void setAdd_time(Integer add_time) {
+        this.add_time = add_time;
     }
 
-    public Short getSortOrder() {
-        return sortOrder;
+    public Short getSort_order() {
+        return sort_order;
     }
 
-    public void setSortOrder(Short sortOrder) {
-        this.sortOrder = sortOrder;
+    public void setSort_order(Short sort_order) {
+        this.sort_order = sort_order;
     }
 
-    public Boolean getIsDelete() {
-        return isDelete;
+    public Boolean getIs_delete() {
+        return is_delete;
     }
 
-    public void setIsDelete(Boolean isDelete) {
-        this.isDelete = isDelete;
+    public void setIs_delete(Boolean is_delete) {
+        this.is_delete = is_delete;
     }
 
-    public Integer getAttributeCategory() {
-        return attributeCategory;
+    public Integer getAttribute_category() {
+        return attribute_category;
     }
 
-    public void setAttributeCategory(Integer attributeCategory) {
-        this.attributeCategory = attributeCategory;
+    public void setAttribute_category(Integer attribute_category) {
+        this.attribute_category = attribute_category;
     }
 
-    public BigDecimal getCounterPrice() {
-        return counterPrice;
+    public BigDecimal getCounter_price() {
+        return counter_price;
     }
 
-    public void setCounterPrice(BigDecimal counterPrice) {
-        this.counterPrice = counterPrice;
+    public void setCounter_price(BigDecimal counter_price) {
+        this.counter_price = counter_price;
     }
 
-    public BigDecimal getExtraPrice() {
-        return extraPrice;
+    public BigDecimal getExtra_price() {
+        return extra_price;
     }
 
-    public void setExtraPrice(BigDecimal extraPrice) {
-        this.extraPrice = extraPrice;
+    public void setExtra_price(BigDecimal extra_price) {
+        this.extra_price = extra_price;
     }
 
-    public Boolean getIsNew() {
-        return isNew;
+    public Boolean getIs_new() {
+        return is_new;
     }
 
-    public void setIsNew(Boolean isNew) {
-        this.isNew = isNew;
+    public void setIs_new(Boolean is_new) {
+        this.is_new = is_new;
     }
 
-    public String getGoodsUnit() {
-        return goodsUnit;
+    public String getGoods_unit() {
+        return goods_unit;
     }
 
-    public void setGoodsUnit(String goodsUnit) {
-        this.goodsUnit = goodsUnit;
+    public void setGoods_unit(String goods_unit) {
+        this.goods_unit = goods_unit;
     }
 
-    public String getPrimaryPicUrl() {
-        return primaryPicUrl;
+    public String getPrimary_pic_url() {
+        return primary_pic_url;
     }
 
-    public void setPrimaryPicUrl(String primaryPicUrl) {
-        this.primaryPicUrl = primaryPicUrl;
+    public void setPrimary_pic_url(String primary_pic_url) {
+        this.primary_pic_url = primary_pic_url;
     }
 
-    public String getListPicUrl() {
-        return listPicUrl;
+    public String getList_pic_url() {
+        return list_pic_url;
     }
 
-    public void setListPicUrl(String listPicUrl) {
-        this.listPicUrl = listPicUrl;
+    public void setList_pic_url(String list_pic_url) {
+        this.list_pic_url = list_pic_url;
     }
 
-    public BigDecimal getRetailPrice() {
-        return retailPrice;
+    public BigDecimal getRetail_price() {
+        return retail_price;
     }
 
-    public void setRetailPrice(BigDecimal retailPrice) {
-        this.retailPrice = retailPrice;
+    public void setRetail_price(BigDecimal retail_price) {
+        this.retail_price = retail_price;
     }
 
-    public Integer getSellVolume() {
-        return sellVolume;
+    public Integer getSell_volume() {
+        return sell_volume;
     }
 
-    public void setSellVolume(Integer sellVolume) {
-        this.sellVolume = sellVolume;
+    public void setSell_volume(Integer sell_volume) {
+        this.sell_volume = sell_volume;
     }
 
-    public Integer getPrimaryProductId() {
-        return primaryProductId;
+    public Integer getPrimary_product_id() {
+        return primary_product_id;
     }
 
-    public void setPrimaryProductId(Integer primaryProductId) {
-        this.primaryProductId = primaryProductId;
+    public void setPrimary_product_id(Integer primary_product_id) {
+        this.primary_product_id = primary_product_id;
     }
 
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
+    public BigDecimal getUnit_price() {
+        return unit_price;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setUnit_price(BigDecimal unit_price) {
+        this.unit_price = unit_price;
     }
 
-    public String getPromotionDesc() {
-        return promotionDesc;
+    public String getPromotion_desc() {
+        return promotion_desc;
     }
 
-    public void setPromotionDesc(String promotionDesc) {
-        this.promotionDesc = promotionDesc;
+    public void setPromotion_desc(String promotion_desc) {
+        this.promotion_desc = promotion_desc;
     }
 
-    public String getPromotionTag() {
-        return promotionTag;
+    public String getPromotion_tag() {
+        return promotion_tag;
     }
 
-    public void setPromotionTag(String promotionTag) {
-        this.promotionTag = promotionTag;
+    public void setPromotion_tag(String promotion_tag) {
+        this.promotion_tag = promotion_tag;
     }
 
-    public BigDecimal getAppExclusivePrice() {
-        return appExclusivePrice;
+    public BigDecimal getApp_exclusive_price() {
+        return app_exclusive_price;
     }
 
-    public void setAppExclusivePrice(BigDecimal appExclusivePrice) {
-        this.appExclusivePrice = appExclusivePrice;
+    public void setApp_exclusive_price(BigDecimal app_exclusive_price) {
+        this.app_exclusive_price = app_exclusive_price;
     }
 
-    public Boolean getIsAppExclusive() {
-        return isAppExclusive;
+    public Boolean getIs_app_exclusive() {
+        return is_app_exclusive;
     }
 
-    public void setIsAppExclusive(Boolean isAppExclusive) {
-        this.isAppExclusive = isAppExclusive;
+    public void setIs_app_exclusive(Boolean is_app_exclusive) {
+        this.is_app_exclusive = is_app_exclusive;
     }
 
-    public Boolean getIsLimited() {
-        return isLimited;
+    public Boolean getIs_limited() {
+        return is_limited;
     }
 
-    public void setIsLimited(Boolean isLimited) {
-        this.isLimited = isLimited;
+    public void setIs_limited(Boolean is_limited) {
+        this.is_limited = is_limited;
     }
 
-    public Boolean getIsHot() {
-        return isHot;
+    public Boolean getIs_hot() {
+        return is_hot;
     }
 
-    public void setIsHot(Boolean isHot) {
-        this.isHot = isHot;
+    public void setIs_hot(Boolean is_hot) {
+        this.is_hot = is_hot;
     }
 
-    public String getGoodsDesc() {
-        return goodsDesc;
+    public String getGoods_desc() {
+        return goods_desc;
     }
 
-    public void setGoodsDesc(String goodsDesc) {
-        this.goodsDesc = goodsDesc;
+    public void setGoods_desc(String goods_desc) {
+        this.goods_desc = goods_desc;
+    }
+
+    public String getCategory_name() {
+        return category_name;
+    }
+
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
     }
 }

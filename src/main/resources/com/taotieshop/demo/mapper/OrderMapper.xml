@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.taotieshop.demo.dao.OrderMapper">
-  <sql id="Update_By_Example_Where_Clause">
+  <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Order">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_sn" jdbcType="VARCHAR" property="order_sn" />
+    <result column="user_id" jdbcType="INTEGER" property="user_id" />
+    <result column="order_status" jdbcType="BIT" property="order_status" />
+    <result column="shipping_status" jdbcType="BIT" property="shipping_status" />
+    <result column="pay_status" jdbcType="BIT" property="pay_status" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="country" jdbcType="SMALLINT" property="country" />
+    <result column="province" jdbcType="SMALLINT" property="province" />
+    <result column="city" jdbcType="SMALLINT" property="city" />
+    <result column="district" jdbcType="SMALLINT" property="district" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="postscript" jdbcType="VARCHAR" property="postscript" />
+    <result column="shipping_id" jdbcType="TINYINT" property="shipping_id" />
+    <result column="shipping_name" jdbcType="VARCHAR" property="shipping_name" />
+    <result column="pay_id" jdbcType="TINYINT" property="pay_id" />
+    <result column="pay_name" jdbcType="VARCHAR" property="pay_name" />
+    <result column="shipping_fee" jdbcType="DECIMAL" property="shipping_fee" />
+    <result column="actual_price" jdbcType="DECIMAL" property="actual_price" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="integral_money" jdbcType="DECIMAL" property="integral_money" />
+    <result column="order_price" jdbcType="DECIMAL" property="order_price" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goods_price" />
+    <result column="add_time" jdbcType="INTEGER" property="add_time" />
+    <result column="confirm_time" jdbcType="INTEGER" property="confirm_time" />
+    <result column="pay_time" jdbcType="INTEGER" property="pay_time" />
+    <result column="freight_price" jdbcType="INTEGER" property="freight_price" />
+    <result column="coupon_id" jdbcType="INTEGER" property="coupon_id" />
+    <result column="parent_id" jdbcType="INTEGER" property="parent_id" />
+    <result column="coupon_price" jdbcType="DECIMAL" property="coupon_price" />
+    <result column="callback_status" jdbcType="CHAR" property="callback_status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
     <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+      <foreach collection="oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
           <trim prefix="(" prefixOverrides="and" suffix=")">
             <foreach collection="criteria.criteria" item="criterion">
@@ -30,404 +64,9 @@
       </foreach>
     </where>
   </sql>
-  <select id="selectByExample" parameterType="com.taotieshop.demo.entity.OrderExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from nideshop_order
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Order">
-    insert into nideshop_order
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="orderSn != null">
-        order_sn,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="orderStatus != null">
-        order_status,
-      </if>
-      <if test="shippingStatus != null">
-        shipping_status,
-      </if>
-      <if test="payStatus != null">
-        pay_status,
-      </if>
-      <if test="consignee != null">
-        consignee,
-      </if>
-      <if test="country != null">
-        country,
-      </if>
-      <if test="province != null">
-        province,
-      </if>
-      <if test="city != null">
-        city,
-      </if>
-      <if test="district != null">
-        district,
-      </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="mobile != null">
-        mobile,
-      </if>
-      <if test="postscript != null">
-        postscript,
-      </if>
-      <if test="shippingId != null">
-        shipping_id,
-      </if>
-      <if test="shippingName != null">
-        shipping_name,
-      </if>
-      <if test="payId != null">
-        pay_id,
-      </if>
-      <if test="payName != null">
-        pay_name,
-      </if>
-      <if test="shippingFee != null">
-        shipping_fee,
-      </if>
-      <if test="actualPrice != null">
-        actual_price,
-      </if>
-      <if test="integral != null">
-        integral,
-      </if>
-      <if test="integralMoney != null">
-        integral_money,
-      </if>
-      <if test="orderPrice != null">
-        order_price,
-      </if>
-      <if test="goodsPrice != null">
-        goods_price,
-      </if>
-      <if test="addTime != null">
-        add_time,
-      </if>
-      <if test="confirmTime != null">
-        confirm_time,
-      </if>
-      <if test="payTime != null">
-        pay_time,
-      </if>
-      <if test="freightPrice != null">
-        freight_price,
-      </if>
-      <if test="couponId != null">
-        coupon_id,
-      </if>
-      <if test="parentId != null">
-        parent_id,
-      </if>
-      <if test="couponPrice != null">
-        coupon_price,
-      </if>
-      <if test="callbackStatus != null">
-        callback_status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="orderSn != null">
-        #{orderSn,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="orderStatus != null">
-        #{orderStatus,jdbcType=BIT},
-      </if>
-      <if test="shippingStatus != null">
-        #{shippingStatus,jdbcType=BIT},
-      </if>
-      <if test="payStatus != null">
-        #{payStatus,jdbcType=BIT},
-      </if>
-      <if test="consignee != null">
-        #{consignee,jdbcType=VARCHAR},
-      </if>
-      <if test="country != null">
-        #{country,jdbcType=SMALLINT},
-      </if>
-      <if test="province != null">
-        #{province,jdbcType=SMALLINT},
-      </if>
-      <if test="city != null">
-        #{city,jdbcType=SMALLINT},
-      </if>
-      <if test="district != null">
-        #{district,jdbcType=SMALLINT},
-      </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="postscript != null">
-        #{postscript,jdbcType=VARCHAR},
-      </if>
-      <if test="shippingId != null">
-        #{shippingId,jdbcType=TINYINT},
-      </if>
-      <if test="shippingName != null">
-        #{shippingName,jdbcType=VARCHAR},
-      </if>
-      <if test="payId != null">
-        #{payId,jdbcType=TINYINT},
-      </if>
-      <if test="payName != null">
-        #{payName,jdbcType=VARCHAR},
-      </if>
-      <if test="shippingFee != null">
-        #{shippingFee,jdbcType=DECIMAL},
-      </if>
-      <if test="actualPrice != null">
-        #{actualPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="integral != null">
-        #{integral,jdbcType=INTEGER},
-      </if>
-      <if test="integralMoney != null">
-        #{integralMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="orderPrice != null">
-        #{orderPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="goodsPrice != null">
-        #{goodsPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="addTime != null">
-        #{addTime,jdbcType=INTEGER},
-      </if>
-      <if test="confirmTime != null">
-        #{confirmTime,jdbcType=INTEGER},
-      </if>
-      <if test="payTime != null">
-        #{payTime,jdbcType=INTEGER},
-      </if>
-      <if test="freightPrice != null">
-        #{freightPrice,jdbcType=INTEGER},
-      </if>
-      <if test="couponId != null">
-        #{couponId,jdbcType=INTEGER},
-      </if>
-      <if test="parentId != null">
-        #{parentId,jdbcType=INTEGER},
-      </if>
-      <if test="couponPrice != null">
-        #{couponPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="callbackStatus != null">
-        #{callbackStatus,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.taotieshop.demo.entity.OrderExample" resultType="java.lang.Long">
-    select count(*) from nideshop_order
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update nideshop_order
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.orderSn != null">
-        order_sn = #{record.orderSn,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
-      </if>
-      <if test="record.orderStatus != null">
-        order_status = #{record.orderStatus,jdbcType=BIT},
-      </if>
-      <if test="record.shippingStatus != null">
-        shipping_status = #{record.shippingStatus,jdbcType=BIT},
-      </if>
-      <if test="record.payStatus != null">
-        pay_status = #{record.payStatus,jdbcType=BIT},
-      </if>
-      <if test="record.consignee != null">
-        consignee = #{record.consignee,jdbcType=VARCHAR},
-      </if>
-      <if test="record.country != null">
-        country = #{record.country,jdbcType=SMALLINT},
-      </if>
-      <if test="record.province != null">
-        province = #{record.province,jdbcType=SMALLINT},
-      </if>
-      <if test="record.city != null">
-        city = #{record.city,jdbcType=SMALLINT},
-      </if>
-      <if test="record.district != null">
-        district = #{record.district,jdbcType=SMALLINT},
-      </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
-      <if test="record.mobile != null">
-        mobile = #{record.mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="record.postscript != null">
-        postscript = #{record.postscript,jdbcType=VARCHAR},
-      </if>
-      <if test="record.shippingId != null">
-        shipping_id = #{record.shippingId,jdbcType=TINYINT},
-      </if>
-      <if test="record.shippingName != null">
-        shipping_name = #{record.shippingName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.payId != null">
-        pay_id = #{record.payId,jdbcType=TINYINT},
-      </if>
-      <if test="record.payName != null">
-        pay_name = #{record.payName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.shippingFee != null">
-        shipping_fee = #{record.shippingFee,jdbcType=DECIMAL},
-      </if>
-      <if test="record.actualPrice != null">
-        actual_price = #{record.actualPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.integral != null">
-        integral = #{record.integral,jdbcType=INTEGER},
-      </if>
-      <if test="record.integralMoney != null">
-        integral_money = #{record.integralMoney,jdbcType=DECIMAL},
-      </if>
-      <if test="record.orderPrice != null">
-        order_price = #{record.orderPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.goodsPrice != null">
-        goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.addTime != null">
-        add_time = #{record.addTime,jdbcType=INTEGER},
-      </if>
-      <if test="record.confirmTime != null">
-        confirm_time = #{record.confirmTime,jdbcType=INTEGER},
-      </if>
-      <if test="record.payTime != null">
-        pay_time = #{record.payTime,jdbcType=INTEGER},
-      </if>
-      <if test="record.freightPrice != null">
-        freight_price = #{record.freightPrice,jdbcType=INTEGER},
-      </if>
-      <if test="record.couponId != null">
-        coupon_id = #{record.couponId,jdbcType=INTEGER},
-      </if>
-      <if test="record.parentId != null">
-        parent_id = #{record.parentId,jdbcType=INTEGER},
-      </if>
-      <if test="record.couponPrice != null">
-        coupon_price = #{record.couponPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.callbackStatus != null">
-        callback_status = #{record.callbackStatus,jdbcType=CHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update nideshop_order
-    set id = #{record.id,jdbcType=INTEGER},
-      order_sn = #{record.orderSn,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      order_status = #{record.orderStatus,jdbcType=BIT},
-      shipping_status = #{record.shippingStatus,jdbcType=BIT},
-      pay_status = #{record.payStatus,jdbcType=BIT},
-      consignee = #{record.consignee,jdbcType=VARCHAR},
-      country = #{record.country,jdbcType=SMALLINT},
-      province = #{record.province,jdbcType=SMALLINT},
-      city = #{record.city,jdbcType=SMALLINT},
-      district = #{record.district,jdbcType=SMALLINT},
-      address = #{record.address,jdbcType=VARCHAR},
-      mobile = #{record.mobile,jdbcType=VARCHAR},
-      postscript = #{record.postscript,jdbcType=VARCHAR},
-      shipping_id = #{record.shippingId,jdbcType=TINYINT},
-      shipping_name = #{record.shippingName,jdbcType=VARCHAR},
-      pay_id = #{record.payId,jdbcType=TINYINT},
-      pay_name = #{record.payName,jdbcType=VARCHAR},
-      shipping_fee = #{record.shippingFee,jdbcType=DECIMAL},
-      actual_price = #{record.actualPrice,jdbcType=DECIMAL},
-      integral = #{record.integral,jdbcType=INTEGER},
-      integral_money = #{record.integralMoney,jdbcType=DECIMAL},
-      order_price = #{record.orderPrice,jdbcType=DECIMAL},
-      goods_price = #{record.goodsPrice,jdbcType=DECIMAL},
-      add_time = #{record.addTime,jdbcType=INTEGER},
-      confirm_time = #{record.confirmTime,jdbcType=INTEGER},
-      pay_time = #{record.payTime,jdbcType=INTEGER},
-      freight_price = #{record.freightPrice,jdbcType=INTEGER},
-      coupon_id = #{record.couponId,jdbcType=INTEGER},
-      parent_id = #{record.parentId,jdbcType=INTEGER},
-      coupon_price = #{record.couponPrice,jdbcType=DECIMAL},
-      callback_status = #{record.callbackStatus,jdbcType=CHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Order">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="order_sn" jdbcType="VARCHAR" property="orderSn" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="order_status" jdbcType="BIT" property="orderStatus" />
-    <result column="shipping_status" jdbcType="BIT" property="shippingStatus" />
-    <result column="pay_status" jdbcType="BIT" property="payStatus" />
-    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
-    <result column="country" jdbcType="SMALLINT" property="country" />
-    <result column="province" jdbcType="SMALLINT" property="province" />
-    <result column="city" jdbcType="SMALLINT" property="city" />
-    <result column="district" jdbcType="SMALLINT" property="district" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="postscript" jdbcType="VARCHAR" property="postscript" />
-    <result column="shipping_id" jdbcType="TINYINT" property="shippingId" />
-    <result column="shipping_name" jdbcType="VARCHAR" property="shippingName" />
-    <result column="pay_id" jdbcType="TINYINT" property="payId" />
-    <result column="pay_name" jdbcType="VARCHAR" property="payName" />
-    <result column="shipping_fee" jdbcType="DECIMAL" property="shippingFee" />
-    <result column="actual_price" jdbcType="DECIMAL" property="actualPrice" />
-    <result column="integral" jdbcType="INTEGER" property="integral" />
-    <result column="integral_money" jdbcType="DECIMAL" property="integralMoney" />
-    <result column="order_price" jdbcType="DECIMAL" property="orderPrice" />
-    <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice" />
-    <result column="add_time" jdbcType="INTEGER" property="addTime" />
-    <result column="confirm_time" jdbcType="INTEGER" property="confirmTime" />
-    <result column="pay_time" jdbcType="INTEGER" property="payTime" />
-    <result column="freight_price" jdbcType="INTEGER" property="freightPrice" />
-    <result column="coupon_id" jdbcType="INTEGER" property="couponId" />
-    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
-    <result column="coupon_price" jdbcType="DECIMAL" property="couponPrice" />
-    <result column="callback_status" jdbcType="CHAR" property="callbackStatus" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
+  <sql id="Update_By_Example_Where_Clause">
     <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
           <trim prefix="(" prefixOverrides="and" suffix=")">
             <foreach collection="criteria.criteria" item="criterion">
@@ -461,6 +100,20 @@
     goods_price, add_time, confirm_time, pay_time, freight_price, coupon_id, parent_id, 
     coupon_price, callback_status
   </sql>
+  <select id="selectByExample" parameterType="com.taotieshop.demo.entity.OrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nideshop_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <delete id="deleteByExample" parameterType="com.taotieshop.demo.entity.OrderExample">
     delete from nideshop_order
     <if test="_parameter != null">
@@ -479,16 +132,363 @@
       add_time, confirm_time, pay_time, 
       freight_price, coupon_id, parent_id, 
       coupon_price, callback_status)
-    values (#{id,jdbcType=INTEGER}, #{orderSn,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{orderStatus,jdbcType=BIT}, #{shippingStatus,jdbcType=BIT}, #{payStatus,jdbcType=BIT}, 
+    values (#{id,jdbcType=INTEGER}, #{order_sn,jdbcType=VARCHAR}, #{user_id,jdbcType=INTEGER}, 
+      #{order_status,jdbcType=BIT}, #{shipping_status,jdbcType=BIT}, #{pay_status,jdbcType=BIT}, 
       #{consignee,jdbcType=VARCHAR}, #{country,jdbcType=SMALLINT}, #{province,jdbcType=SMALLINT}, 
       #{city,jdbcType=SMALLINT}, #{district,jdbcType=SMALLINT}, #{address,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{postscript,jdbcType=VARCHAR}, #{shippingId,jdbcType=TINYINT}, 
-      #{shippingName,jdbcType=VARCHAR}, #{payId,jdbcType=TINYINT}, #{payName,jdbcType=VARCHAR}, 
-      #{shippingFee,jdbcType=DECIMAL}, #{actualPrice,jdbcType=DECIMAL}, #{integral,jdbcType=INTEGER}, 
-      #{integralMoney,jdbcType=DECIMAL}, #{orderPrice,jdbcType=DECIMAL}, #{goodsPrice,jdbcType=DECIMAL}, 
-      #{addTime,jdbcType=INTEGER}, #{confirmTime,jdbcType=INTEGER}, #{payTime,jdbcType=INTEGER}, 
-      #{freightPrice,jdbcType=INTEGER}, #{couponId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, 
-      #{couponPrice,jdbcType=DECIMAL}, #{callbackStatus,jdbcType=CHAR})
+      #{mobile,jdbcType=VARCHAR}, #{postscript,jdbcType=VARCHAR}, #{shipping_id,jdbcType=TINYINT}, 
+      #{shipping_name,jdbcType=VARCHAR}, #{pay_id,jdbcType=TINYINT}, #{pay_name,jdbcType=VARCHAR}, 
+      #{shipping_fee,jdbcType=DECIMAL}, #{actual_price,jdbcType=DECIMAL}, #{integral,jdbcType=INTEGER}, 
+      #{integral_money,jdbcType=DECIMAL}, #{order_price,jdbcType=DECIMAL}, #{goods_price,jdbcType=DECIMAL}, 
+      #{add_time,jdbcType=INTEGER}, #{confirm_time,jdbcType=INTEGER}, #{pay_time,jdbcType=INTEGER}, 
+      #{freight_price,jdbcType=INTEGER}, #{coupon_id,jdbcType=INTEGER}, #{parent_id,jdbcType=INTEGER}, 
+      #{coupon_price,jdbcType=DECIMAL}, #{callback_status,jdbcType=CHAR})
   </insert>
+  <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Order">
+    insert into nideshop_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="order_sn != null">
+        order_sn,
+      </if>
+      <if test="user_id != null">
+        user_id,
+      </if>
+      <if test="order_status != null">
+        order_status,
+      </if>
+      <if test="shipping_status != null">
+        shipping_status,
+      </if>
+      <if test="pay_status != null">
+        pay_status,
+      </if>
+      <if test="consignee != null">
+        consignee,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="postscript != null">
+        postscript,
+      </if>
+      <if test="shipping_id != null">
+        shipping_id,
+      </if>
+      <if test="shipping_name != null">
+        shipping_name,
+      </if>
+      <if test="pay_id != null">
+        pay_id,
+      </if>
+      <if test="pay_name != null">
+        pay_name,
+      </if>
+      <if test="shipping_fee != null">
+        shipping_fee,
+      </if>
+      <if test="actual_price != null">
+        actual_price,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+      <if test="integral_money != null">
+        integral_money,
+      </if>
+      <if test="order_price != null">
+        order_price,
+      </if>
+      <if test="goods_price != null">
+        goods_price,
+      </if>
+      <if test="add_time != null">
+        add_time,
+      </if>
+      <if test="confirm_time != null">
+        confirm_time,
+      </if>
+      <if test="pay_time != null">
+        pay_time,
+      </if>
+      <if test="freight_price != null">
+        freight_price,
+      </if>
+      <if test="coupon_id != null">
+        coupon_id,
+      </if>
+      <if test="parent_id != null">
+        parent_id,
+      </if>
+      <if test="coupon_price != null">
+        coupon_price,
+      </if>
+      <if test="callback_status != null">
+        callback_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="order_sn != null">
+        #{order_sn,jdbcType=VARCHAR},
+      </if>
+      <if test="user_id != null">
+        #{user_id,jdbcType=INTEGER},
+      </if>
+      <if test="order_status != null">
+        #{order_status,jdbcType=BIT},
+      </if>
+      <if test="shipping_status != null">
+        #{shipping_status,jdbcType=BIT},
+      </if>
+      <if test="pay_status != null">
+        #{pay_status,jdbcType=BIT},
+      </if>
+      <if test="consignee != null">
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=SMALLINT},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=SMALLINT},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=SMALLINT},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="postscript != null">
+        #{postscript,jdbcType=VARCHAR},
+      </if>
+      <if test="shipping_id != null">
+        #{shipping_id,jdbcType=TINYINT},
+      </if>
+      <if test="shipping_name != null">
+        #{shipping_name,jdbcType=VARCHAR},
+      </if>
+      <if test="pay_id != null">
+        #{pay_id,jdbcType=TINYINT},
+      </if>
+      <if test="pay_name != null">
+        #{pay_name,jdbcType=VARCHAR},
+      </if>
+      <if test="shipping_fee != null">
+        #{shipping_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="actual_price != null">
+        #{actual_price,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="integral_money != null">
+        #{integral_money,jdbcType=DECIMAL},
+      </if>
+      <if test="order_price != null">
+        #{order_price,jdbcType=DECIMAL},
+      </if>
+      <if test="goods_price != null">
+        #{goods_price,jdbcType=DECIMAL},
+      </if>
+      <if test="add_time != null">
+        #{add_time,jdbcType=INTEGER},
+      </if>
+      <if test="confirm_time != null">
+        #{confirm_time,jdbcType=INTEGER},
+      </if>
+      <if test="pay_time != null">
+        #{pay_time,jdbcType=INTEGER},
+      </if>
+      <if test="freight_price != null">
+        #{freight_price,jdbcType=INTEGER},
+      </if>
+      <if test="coupon_id != null">
+        #{coupon_id,jdbcType=INTEGER},
+      </if>
+      <if test="parent_id != null">
+        #{parent_id,jdbcType=INTEGER},
+      </if>
+      <if test="coupon_price != null">
+        #{coupon_price,jdbcType=DECIMAL},
+      </if>
+      <if test="callback_status != null">
+        #{callback_status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotieshop.demo.entity.OrderExample" resultType="java.lang.Long">
+    select count(*) from nideshop_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nideshop_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.order_sn != null">
+        order_sn = #{record.order_sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.user_id != null">
+        user_id = #{record.user_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.order_status != null">
+        order_status = #{record.order_status,jdbcType=BIT},
+      </if>
+      <if test="record.shipping_status != null">
+        shipping_status = #{record.shipping_status,jdbcType=BIT},
+      </if>
+      <if test="record.pay_status != null">
+        pay_status = #{record.pay_status,jdbcType=BIT},
+      </if>
+      <if test="record.consignee != null">
+        consignee = #{record.consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null">
+        country = #{record.country,jdbcType=SMALLINT},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=SMALLINT},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=SMALLINT},
+      </if>
+      <if test="record.district != null">
+        district = #{record.district,jdbcType=SMALLINT},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postscript != null">
+        postscript = #{record.postscript,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipping_id != null">
+        shipping_id = #{record.shipping_id,jdbcType=TINYINT},
+      </if>
+      <if test="record.shipping_name != null">
+        shipping_name = #{record.shipping_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pay_id != null">
+        pay_id = #{record.pay_id,jdbcType=TINYINT},
+      </if>
+      <if test="record.pay_name != null">
+        pay_name = #{record.pay_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipping_fee != null">
+        shipping_fee = #{record.shipping_fee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.actual_price != null">
+        actual_price = #{record.actual_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.integral != null">
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.integral_money != null">
+        integral_money = #{record.integral_money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.order_price != null">
+        order_price = #{record.order_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goods_price != null">
+        goods_price = #{record.goods_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.add_time != null">
+        add_time = #{record.add_time,jdbcType=INTEGER},
+      </if>
+      <if test="record.confirm_time != null">
+        confirm_time = #{record.confirm_time,jdbcType=INTEGER},
+      </if>
+      <if test="record.pay_time != null">
+        pay_time = #{record.pay_time,jdbcType=INTEGER},
+      </if>
+      <if test="record.freight_price != null">
+        freight_price = #{record.freight_price,jdbcType=INTEGER},
+      </if>
+      <if test="record.coupon_id != null">
+        coupon_id = #{record.coupon_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.parent_id != null">
+        parent_id = #{record.parent_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.coupon_price != null">
+        coupon_price = #{record.coupon_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.callback_status != null">
+        callback_status = #{record.callback_status,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nideshop_order
+    set id = #{record.id,jdbcType=INTEGER},
+      order_sn = #{record.order_sn,jdbcType=VARCHAR},
+      user_id = #{record.user_id,jdbcType=INTEGER},
+      order_status = #{record.order_status,jdbcType=BIT},
+      shipping_status = #{record.shipping_status,jdbcType=BIT},
+      pay_status = #{record.pay_status,jdbcType=BIT},
+      consignee = #{record.consignee,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=SMALLINT},
+      province = #{record.province,jdbcType=SMALLINT},
+      city = #{record.city,jdbcType=SMALLINT},
+      district = #{record.district,jdbcType=SMALLINT},
+      address = #{record.address,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      postscript = #{record.postscript,jdbcType=VARCHAR},
+      shipping_id = #{record.shipping_id,jdbcType=TINYINT},
+      shipping_name = #{record.shipping_name,jdbcType=VARCHAR},
+      pay_id = #{record.pay_id,jdbcType=TINYINT},
+      pay_name = #{record.pay_name,jdbcType=VARCHAR},
+      shipping_fee = #{record.shipping_fee,jdbcType=DECIMAL},
+      actual_price = #{record.actual_price,jdbcType=DECIMAL},
+      integral = #{record.integral,jdbcType=INTEGER},
+      integral_money = #{record.integral_money,jdbcType=DECIMAL},
+      order_price = #{record.order_price,jdbcType=DECIMAL},
+      goods_price = #{record.goods_price,jdbcType=DECIMAL},
+      add_time = #{record.add_time,jdbcType=INTEGER},
+      confirm_time = #{record.confirm_time,jdbcType=INTEGER},
+      pay_time = #{record.pay_time,jdbcType=INTEGER},
+      freight_price = #{record.freight_price,jdbcType=INTEGER},
+      coupon_id = #{record.coupon_id,jdbcType=INTEGER},
+      parent_id = #{record.parent_id,jdbcType=INTEGER},
+      coupon_price = #{record.coupon_price,jdbcType=DECIMAL},
+      callback_status = #{record.callback_status,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
 </mapper>

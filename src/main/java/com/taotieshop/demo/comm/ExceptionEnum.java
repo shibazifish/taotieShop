@@ -7,7 +7,8 @@ package com.taotieshop.demo.comm;
 */
 public enum ExceptionEnum {
     SYS_EXCEPTION(-1,"系统异常"),
-    DELETE_EXCEPTION(1,"删除报错，方法尚未实现！");
+    DELETE_EXCEPTION(1,"删除报错，方法尚未实现！"),
+    SAVE_EXCEPTION(1,"保存失败！");
     private int code;
     private String message;
 

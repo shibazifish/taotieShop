@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taotieshop.demo.dao.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Category">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="front_desc" jdbcType="VARCHAR" property="front_desc" />
+    <result column="parent_id" jdbcType="INTEGER" property="parent_id" />
+    <result column="sort_order" jdbcType="BIT" property="sort_order" />
+    <result column="show_index" jdbcType="BIT" property="show_index" />
+    <result column="is_show" jdbcType="BIT" property="is_show" />
+    <result column="banner_url" jdbcType="VARCHAR" property="banner_url" />
+    <result column="icon_url" jdbcType="VARCHAR" property="icon_url" />
+    <result column="img_url" jdbcType="VARCHAR" property="img_url" />
+    <result column="wap_banner_url" jdbcType="VARCHAR" property="wap_banner_url" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="front_name" jdbcType="VARCHAR" property="front_name" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, keywords, front_desc, parent_id, sort_order, show_index, is_show, banner_url, 
+    icon_url, img_url, wap_banner_url, level, type, front_name
+  </sql>
+  <select id="selectByExample" parameterType="com.taotieshop.demo.entity.CategoryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nideshop_category
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.taotieshop.demo.entity.CategoryExample">
+    delete from nideshop_category
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotieshop.demo.entity.Category">
+    insert into nideshop_category (id, name, keywords, 
+      front_desc, parent_id, sort_order, 
+      show_index, is_show, banner_url, 
+      icon_url, img_url, wap_banner_url, 
+      level, type, front_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
+      #{front_desc,jdbcType=VARCHAR}, #{parent_id,jdbcType=INTEGER}, #{sort_order,jdbcType=BIT}, 
+      #{show_index,jdbcType=BIT}, #{is_show,jdbcType=BIT}, #{banner_url,jdbcType=VARCHAR}, 
+      #{icon_url,jdbcType=VARCHAR}, #{img_url,jdbcType=VARCHAR}, #{wap_banner_url,jdbcType=VARCHAR}, 
+      #{level,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{front_name,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Category">
+    insert into nideshop_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="keywords != null">
+        keywords,
+      </if>
+      <if test="front_desc != null">
+        front_desc,
+      </if>
+      <if test="parent_id != null">
+        parent_id,
+      </if>
+      <if test="sort_order != null">
+        sort_order,
+      </if>
+      <if test="show_index != null">
+        show_index,
+      </if>
+      <if test="is_show != null">
+        is_show,
+      </if>
+      <if test="banner_url != null">
+        banner_url,
+      </if>
+      <if test="icon_url != null">
+        icon_url,
+      </if>
+      <if test="img_url != null">
+        img_url,
+      </if>
+      <if test="wap_banner_url != null">
+        wap_banner_url,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="front_name != null">
+        front_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="front_desc != null">
+        #{front_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="parent_id != null">
+        #{parent_id,jdbcType=INTEGER},
+      </if>
+      <if test="sort_order != null">
+        #{sort_order,jdbcType=BIT},
+      </if>
+      <if test="show_index != null">
+        #{show_index,jdbcType=BIT},
+      </if>
+      <if test="is_show != null">
+        #{is_show,jdbcType=BIT},
+      </if>
+      <if test="banner_url != null">
+        #{banner_url,jdbcType=VARCHAR},
+      </if>
+      <if test="icon_url != null">
+        #{icon_url,jdbcType=VARCHAR},
+      </if>
+      <if test="img_url != null">
+        #{img_url,jdbcType=VARCHAR},
+      </if>
+      <if test="wap_banner_url != null">
+        #{wap_banner_url,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="front_name != null">
+        #{front_name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotieshop.demo.entity.CategoryExample" resultType="java.lang.Long">
+    select count(*) from nideshop_category
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nideshop_category
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keywords != null">
+        keywords = #{record.keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.front_desc != null">
+        front_desc = #{record.front_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parent_id != null">
+        parent_id = #{record.parent_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sort_order != null">
+        sort_order = #{record.sort_order,jdbcType=BIT},
+      </if>
+      <if test="record.show_index != null">
+        show_index = #{record.show_index,jdbcType=BIT},
+      </if>
+      <if test="record.is_show != null">
+        is_show = #{record.is_show,jdbcType=BIT},
+      </if>
+      <if test="record.banner_url != null">
+        banner_url = #{record.banner_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.icon_url != null">
+        icon_url = #{record.icon_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.img_url != null">
+        img_url = #{record.img_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wap_banner_url != null">
+        wap_banner_url = #{record.wap_banner_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.front_name != null">
+        front_name = #{record.front_name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nideshop_category
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      keywords = #{record.keywords,jdbcType=VARCHAR},
+      front_desc = #{record.front_desc,jdbcType=VARCHAR},
+      parent_id = #{record.parent_id,jdbcType=INTEGER},
+      sort_order = #{record.sort_order,jdbcType=BIT},
+      show_index = #{record.show_index,jdbcType=BIT},
+      is_show = #{record.is_show,jdbcType=BIT},
+      banner_url = #{record.banner_url,jdbcType=VARCHAR},
+      icon_url = #{record.icon_url,jdbcType=VARCHAR},
+      img_url = #{record.img_url,jdbcType=VARCHAR},
+      wap_banner_url = #{record.wap_banner_url,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      front_name = #{record.front_name,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -3,9 +3,10 @@ package com.taotieshop.demo.entity;
 import java.math.BigDecimal;
 
 public class Goods {
+
     private Integer id;
 
-    private Integer category_id;
+    private String category_id;
 
     private String goods_sn;
 
@@ -19,7 +20,7 @@ public class Goods {
 
     private String goods_brief;
 
-    private Boolean is_on_sale;
+    private int is_on_sale;
 
     private Integer add_time;
 
@@ -73,11 +74,11 @@ public class Goods {
         this.id = id;
     }
 
-    public Integer getCategory_id() {
+    public String getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(Integer category_id) {
+    public void setCategory_id(String category_id) {
         this.category_id = category_id;
     }
 
@@ -129,11 +130,11 @@ public class Goods {
         this.goods_brief = goods_brief;
     }
 
-    public Boolean getIs_on_sale() {
+    public int getIs_on_sale() {
         return is_on_sale;
     }
 
-    public void setIs_on_sale(Boolean is_on_sale) {
+    public void setIs_on_sale(int is_on_sale) {
         this.is_on_sale = is_on_sale;
     }
 

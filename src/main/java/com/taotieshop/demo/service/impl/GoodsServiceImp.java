@@ -22,7 +22,7 @@ import java.util.Map;
  * @Description:
  */
 @Component
-public class GoodsServiceImol implements GoodsService {
+public class GoodsServiceImp implements GoodsService {
     @Resource
     private GoodsMapper goodsMapper;
     @Resource

@@ -21,7 +21,7 @@ public class UploadController {
     @Autowired
     private UploadService uploadService;
     @PostMapping(value = "brandPic")
-    public Result uploadBrandPic(@RequestParam("filename") MultipartFile file, Map<String, Object> map){
+    public Result uploadBrandPic(@RequestParam("brand_pic") MultipartFile file, Map<String, Object> map){
         return uploadService.uploadBrandPic(file,map);
     }
 }

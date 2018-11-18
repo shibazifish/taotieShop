@@ -1,9 +1,11 @@
 spring:
   profiles:
-    active: prod
+    active: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+  resources:
+    static-locations: classpath:static/
 mybatis:
   mapper-locations: classpath:com/taotieshop/demo/mapper/*.xml
   type-aliases-package: com.taotieshop.demo.entity
@@ -14,5 +16,4 @@ pagehelper:
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
-
 

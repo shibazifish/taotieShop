@@ -1,14 +1,14 @@
 package com.taotieshop.demo.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.taotieshop.demo.comm.ExceptionEnum;
-import com.taotieshop.demo.comm.TSException;
+import com.taotieshop.comm.ExceptionEnum;
+import com.taotieshop.comm.TSException;
 import com.taotieshop.demo.dao.CategoryMapper;
 import com.taotieshop.demo.dao.GoodsMapper;
 import com.taotieshop.demo.entity.*;
 import com.taotieshop.demo.service.GoodsService;
-import com.taotieshop.demo.utils.ResultUtils;
-import com.taotieshop.demo.utils.SqlUtil;
+import com.taotieshop.utils.ResultUtils;
+import com.taotieshop.utils.SqlUtil;
 import org.apache.ibatis.annotations.Options;
 import org.springframework.stereotype.Component;
 
@@ -100,7 +100,7 @@ public class GoodsServiceImp implements GoodsService {
             goods.setBrand_id(0);
             goods.setKeywords(goods.getName());
             goods.setAdd_time(0);
-            goods.setIs_delete(false);
+            goods.setIs_delete("0");
             goods.setAttribute_category(0);
             goods.setCounter_price(goods.getRetail_price());
             goods.setExtra_price(goods.getRetail_price());

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taotieshop.demo.dao.BrandMapper">
+  <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Brand">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="list_pic_url" jdbcType="VARCHAR" property="list_pic_url" />
+    <result column="simple_desc" jdbcType="VARCHAR" property="simple_desc" />
+    <result column="pic_url" jdbcType="VARCHAR" property="pic_url" />
+    <result column="sort_order" jdbcType="TINYINT" property="sort_order" />
+    <result column="is_show" jdbcType="BIT" property="is_show" />
+    <result column="floor_price" jdbcType="DECIMAL" property="floor_price" />
+    <result column="app_list_pic_url" jdbcType="VARCHAR" property="app_list_pic_url" />
+    <result column="is_new" jdbcType="BIT" property="is_new" />
+    <result column="new_pic_url" jdbcType="VARCHAR" property="new_pic_url" />
+    <result column="new_sort_order" jdbcType="TINYINT" property="new_sort_order" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, list_pic_url, simple_desc, pic_url, sort_order, is_show, floor_price, app_list_pic_url, 
+    is_new, new_pic_url, new_sort_order
+  </sql>
+  <select id="selectByExample" parameterType="com.taotieshop.demo.entity.BrandExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nideshop_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.taotieshop.demo.entity.BrandExample">
+    delete from nideshop_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotieshop.demo.entity.Brand">
+    insert into nideshop_brand (id, name, list_pic_url, 
+      simple_desc, pic_url, sort_order, 
+      is_show, floor_price, app_list_pic_url, 
+      is_new, new_pic_url, new_sort_order
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{list_pic_url,jdbcType=VARCHAR}, 
+      #{simple_desc,jdbcType=VARCHAR}, #{pic_url,jdbcType=VARCHAR}, #{sort_order,jdbcType=TINYINT}, 
+      #{is_show,jdbcType=BIT}, #{floor_price,jdbcType=DECIMAL}, #{app_list_pic_url,jdbcType=VARCHAR}, 
+      #{is_new,jdbcType=BIT}, #{new_pic_url,jdbcType=VARCHAR}, #{new_sort_order,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Brand">
+    insert into nideshop_brand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="list_pic_url != null">
+        list_pic_url,
+      </if>
+      <if test="simple_desc != null">
+        simple_desc,
+      </if>
+      <if test="pic_url != null">
+        pic_url,
+      </if>
+      <if test="sort_order != null">
+        sort_order,
+      </if>
+      <if test="is_show != null">
+        is_show,
+      </if>
+      <if test="floor_price != null">
+        floor_price,
+      </if>
+      <if test="app_list_pic_url != null">
+        app_list_pic_url,
+      </if>
+      <if test="is_new != null">
+        is_new,
+      </if>
+      <if test="new_pic_url != null">
+        new_pic_url,
+      </if>
+      <if test="new_sort_order != null">
+        new_sort_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="list_pic_url != null">
+        #{list_pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="simple_desc != null">
+        #{simple_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="pic_url != null">
+        #{pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="sort_order != null">
+        #{sort_order,jdbcType=TINYINT},
+      </if>
+      <if test="is_show != null">
+        #{is_show,jdbcType=BIT},
+      </if>
+      <if test="floor_price != null">
+        #{floor_price,jdbcType=DECIMAL},
+      </if>
+      <if test="app_list_pic_url != null">
+        #{app_list_pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="is_new != null">
+        #{is_new,jdbcType=BIT},
+      </if>
+      <if test="new_pic_url != null">
+        #{new_pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="new_sort_order != null">
+        #{new_sort_order,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotieshop.demo.entity.BrandExample" resultType="java.lang.Long">
+    select count(*) from nideshop_brand
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nideshop_brand
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.list_pic_url != null">
+        list_pic_url = #{record.list_pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.simple_desc != null">
+        simple_desc = #{record.simple_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic_url != null">
+        pic_url = #{record.pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort_order != null">
+        sort_order = #{record.sort_order,jdbcType=TINYINT},
+      </if>
+      <if test="record.is_show != null">
+        is_show = #{record.is_show,jdbcType=BIT},
+      </if>
+      <if test="record.floor_price != null">
+        floor_price = #{record.floor_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.app_list_pic_url != null">
+        app_list_pic_url = #{record.app_list_pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.is_new != null">
+        is_new = #{record.is_new,jdbcType=BIT},
+      </if>
+      <if test="record.new_pic_url != null">
+        new_pic_url = #{record.new_pic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.new_sort_order != null">
+        new_sort_order = #{record.new_sort_order,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nideshop_brand
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      list_pic_url = #{record.list_pic_url,jdbcType=VARCHAR},
+      simple_desc = #{record.simple_desc,jdbcType=VARCHAR},
+      pic_url = #{record.pic_url,jdbcType=VARCHAR},
+      sort_order = #{record.sort_order,jdbcType=TINYINT},
+      is_show = #{record.is_show,jdbcType=BIT},
+      floor_price = #{record.floor_price,jdbcType=DECIMAL},
+      app_list_pic_url = #{record.app_list_pic_url,jdbcType=VARCHAR},
+      is_new = #{record.is_new,jdbcType=BIT},
+      new_pic_url = #{record.new_pic_url,jdbcType=VARCHAR},
+      new_sort_order = #{record.new_sort_order,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

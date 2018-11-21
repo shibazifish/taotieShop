@@ -2,7 +2,7 @@ package com.taotieshop.demo.service.impl;
 
 import com.taotieshop.demo.entity.Result;
 import com.taotieshop.demo.service.UploadService;
-import com.taotieshop.demo.utils.FileUtils;
+import com.taotieshop.utils.FileUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 

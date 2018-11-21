@@ -1,4 +1,4 @@
-package com.taotieshop.demo.utils;
+package com.taotieshop.utils;
 
 import com.taotieshop.demo.entity.Result;
 

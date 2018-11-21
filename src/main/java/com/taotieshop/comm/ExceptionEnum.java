@@ -1,4 +1,4 @@
-package com.taotieshop.demo.comm;
+package com.taotieshop.comm;
 /**
  * 任务：
  * 描述：返回值使用到的枚举

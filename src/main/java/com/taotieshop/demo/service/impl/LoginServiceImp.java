@@ -2,7 +2,7 @@ package com.taotieshop.demo.service.impl;
 
 import com.taotieshop.demo.entity.Result;
 import com.taotieshop.demo.service.LoginService;
-import com.taotieshop.demo.utils.ResultUtils;
+import com.taotieshop.utils.ResultUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;

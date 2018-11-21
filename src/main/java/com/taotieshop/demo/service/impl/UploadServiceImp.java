@@ -1,7 +1,7 @@
 package com.taotieshop.demo.service.impl;
 
-import com.taotieshop.demo.comm.ExceptionEnum;
-import com.taotieshop.demo.comm.TSException;
+import com.taotieshop.comm.ExceptionEnum;
+import com.taotieshop.comm.TSException;
 import com.taotieshop.demo.entity.Result;
 import com.taotieshop.demo.service.UploadService;
 import com.taotieshop.utils.FileUtils;

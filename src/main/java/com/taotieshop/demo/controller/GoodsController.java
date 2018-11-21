@@ -17,7 +17,6 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping(value = "/admin/goods")
-@CrossOrigin
 public class GoodsController {
 
     @Autowired

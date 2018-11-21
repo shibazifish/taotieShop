@@ -1,9 +1,12 @@
 package com.taotieshop.utils;
 
+import com.taotieshop.demo.entity.Result;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -47,13 +50,12 @@ public class FileUtils {
      * 作者：李宇 
      * 时间：2018/11/12 8:59
     */
-    public static boolean upload(MultipartFile file, String path, String fileName){
+    public static Result upload(String uploadType,MultipartFile file, String path, String fileName){
 
         // 生成新的文件名
-        //String realPath = path + "/" + FileNameUtils.getFileName(fileName);
-
+        String realPath = path + "/" + FileUtils.getFileName(fileName);
         //使用原文件名
-        String realPath = path + "/" + fileName;
+        //String realPath = path + "/" + fileName;
 
         File dest = new File(realPath);
 
@@ -61,19 +63,21 @@ public class FileUtils {
         if(!dest.getParentFile().exists()){
             dest.getParentFile().mkdir();
         }
-
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("name", uploadType);
+        resultMap.put("fileUrl", realPath);
         try {
             //保存文件
             file.transferTo(dest);
-            return true;
+            return ResultUtils.success(resultMap);
         } catch (IllegalStateException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            return false;
+            return ResultUtils.error(0, e.getMessage());
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            return false;
+            return ResultUtils.error(0, e.getMessage());
         }
 
     }

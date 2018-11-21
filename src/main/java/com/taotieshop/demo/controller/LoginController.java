@@ -13,15 +13,13 @@ import java.util.Map;
  * @Description:
  */
 @RestController
-@RequestMapping(value = "auth")
-@CrossOrigin
+@RequestMapping(value = "/admin/auth")
 public class LoginController {
 
     @Autowired
     private LoginService loginService;
 
-    @GetMapping (value = "login")
-    @CrossOrigin
+    @PostMapping (value = "/login")
     public Result login(@RequestBody Map<String,Object> requstMap){
         return loginService.login(requstMap);
     }

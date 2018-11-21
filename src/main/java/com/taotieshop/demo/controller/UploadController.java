@@ -16,12 +16,12 @@ import java.util.Map;
  * 类名: UploadController
  */
 @RestController
-@RequestMapping(value = "upload")
+@RequestMapping(value = "/admin/upload")
 public class UploadController {
     @Autowired
     private UploadService uploadService;
-    @PostMapping(value = "brandPic")
-    public Result uploadBrandPic(@RequestParam("filename") MultipartFile file, Map<String, Object> map){
+    @PostMapping(value = "/brandPic")
+    public Result uploadBrandPic(@RequestParam("brand_pic") MultipartFile file, Map<String, Object> map){
         return uploadService.uploadBrandPic(file,map);
     }
 }

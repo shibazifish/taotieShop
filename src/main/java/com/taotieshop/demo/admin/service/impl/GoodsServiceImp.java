@@ -1,12 +1,12 @@
-package com.taotieshop.demo.service.impl;
+package com.taotieshop.demo.admin.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.taotieshop.demo.admin.service.GoodsService;
 import com.taotieshop.demo.comm.ExceptionEnum;
 import com.taotieshop.demo.comm.TSException;
 import com.taotieshop.demo.dao.CategoryMapper;
 import com.taotieshop.demo.dao.GoodsMapper;
 import com.taotieshop.demo.entity.*;
-import com.taotieshop.demo.service.GoodsService;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.utils.SqlUtil;
 import org.apache.ibatis.annotations.Options;

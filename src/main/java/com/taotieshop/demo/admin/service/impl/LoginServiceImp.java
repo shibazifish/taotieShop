@@ -1,10 +1,10 @@
-package com.taotieshop.demo.service.impl;
+package com.taotieshop.demo.admin.service.impl;
 
+import com.taotieshop.demo.admin.service.LoginService;
 import com.taotieshop.demo.dao.AdminMapper;
 import com.taotieshop.demo.entity.Admin;
 import com.taotieshop.demo.entity.AdminExample;
 import com.taotieshop.demo.entity.Result;
-import com.taotieshop.demo.service.LoginService;
 import com.taotieshop.demo.utils.ResultUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;

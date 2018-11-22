@@ -1,7 +1,7 @@
-package com.taotieshop.demo.controller;
+package com.taotieshop.demo.admin.controller;
 
+import com.taotieshop.demo.admin.service.LoginService;
 import com.taotieshop.demo.entity.Result;
-import com.taotieshop.demo.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

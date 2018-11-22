@@ -1,9 +1,9 @@
 package com.taotieshop.demo.service.impl;
 
+import com.taotieshop.demo.admin.service.UploadService;
 import com.taotieshop.demo.comm.ExceptionEnum;
 import com.taotieshop.demo.comm.TSException;
 import com.taotieshop.demo.entity.Result;
-import com.taotieshop.demo.service.UploadService;
 import com.taotieshop.demo.utils.FileUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;

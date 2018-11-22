@@ -1,4 +1,4 @@
-package com.taotieshop.demo.service;
+package com.taotieshop.demo.mini.service;
 
 
 import com.taotieshop.demo.entity.Goods;
@@ -12,7 +12,7 @@ import java.util.Map;
  * @Date: 2018/11/8 22:33
  * @Description:
  */
-public interface GoodsService {
+public interface MiniGoodsService {
     /**
      * 分页查询所有商品列表
      * @param page

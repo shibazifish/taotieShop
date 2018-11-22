@@ -1,7 +1,7 @@
-package com.taotieshop.demo.controller;
+package com.taotieshop.demo.mini.controller;
 
 import com.taotieshop.demo.entity.Result;
-import com.taotieshop.demo.service.IndexService;
+import com.taotieshop.demo.mini.service.MiniIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/mini/index")
 @CrossOrigin
-public class IndexController {
+public class MiniIndexController {
     @Autowired
-    private IndexService indexService;
+    private MiniIndexService miniIndexService;
     @GetMapping(value = "/index")
     public Result index(){
-        return  indexService.index();
+        return  miniIndexService.index();
     }
 }

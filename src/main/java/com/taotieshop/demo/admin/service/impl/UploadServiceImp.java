@@ -1,10 +1,10 @@
-package com.taotieshop.demo.service.impl;
+package com.taotieshop.demo.admin.service.impl;
 
-import com.taotieshop.comm.ExceptionEnum;
-import com.taotieshop.comm.TSException;
+import com.taotieshop.demo.admin.service.UploadService;
+import com.taotieshop.demo.comm.ExceptionEnum;
+import com.taotieshop.demo.comm.TSException;
 import com.taotieshop.demo.entity.Result;
-import com.taotieshop.demo.service.UploadService;
-import com.taotieshop.utils.FileUtils;
+import com.taotieshop.demo.utils.FileUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,4 +1,4 @@
-package com.taotieshop.demo.service;
+package com.taotieshop.demo.mini.service;
 
 import com.taotieshop.demo.entity.Result;
 
@@ -7,6 +7,6 @@ import com.taotieshop.demo.entity.Result;
  * @Date: 2018/11/21 23:18
  * @Description:
  */
-public interface IndexService {
+public interface MiniIndexService {
     Result index();
 }

@@ -1,4 +1,4 @@
-package com.taotieshop.utils;
+package com.taotieshop.demo.utils;
 
 import com.taotieshop.demo.entity.Result;
 import org.springframework.web.multipart.MultipartFile;

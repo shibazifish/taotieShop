@@ -1,10 +1,10 @@
-package com.taotieshop.demo.service.impl;
+package com.taotieshop.demo.mini.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.taotieshop.demo.dao.*;
 import com.taotieshop.demo.entity.*;
-import com.taotieshop.demo.service.IndexService;
-import com.taotieshop.utils.ResultUtils;
+import com.taotieshop.demo.mini.service.MiniIndexService;
+import com.taotieshop.demo.utils.ResultUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @Description:
  */
 @Component
-public class IndexServiceImpl implements IndexService {
+public class MiniIndexServiceImpl implements MiniIndexService {
     @Resource
     private GoodsMapper goodsMapper;
     @Resource

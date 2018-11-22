@@ -1,7 +1,7 @@
-package com.taotieshop.comm;
+package com.taotieshop.demo.comm;
 
 import com.taotieshop.demo.entity.Result;
-import com.taotieshop.utils.ResultUtils;
+import com.taotieshop.demo.utils.ResultUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

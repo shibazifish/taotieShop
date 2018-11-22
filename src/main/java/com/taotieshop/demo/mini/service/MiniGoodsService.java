@@ -2,7 +2,6 @@ package com.taotieshop.demo.mini.service;
 
 
 import com.taotieshop.demo.entity.Goods;
-import com.taotieshop.demo.entity.GoodsExample;
 import com.taotieshop.demo.entity.Result;
 
 import java.util.Map;
@@ -14,18 +13,20 @@ import java.util.Map;
  */
 public interface MiniGoodsService {
     /**
-     * 分页查询所有商品列表
-     * @param page
-     * @param name
+     * 查询所有商品列表
      * @return
      */
-    Result getGoodsList(Integer page, String name);
+    Result getGoodsList();
     /**
-     * 通过id查询具体商品信息
-     * @param id
+     * 查询商品总数
      * @return
      */
-    Result getGoodsById(Integer id);
+    Result getGoodsCount();
+    /**
+     * 查询分类信息
+     * @return
+     */
+    Result getCategoryInfo(int id);
     /**
      * 通过id删除商品
      * @param requstMap

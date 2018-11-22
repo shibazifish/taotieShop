@@ -20,29 +20,35 @@ import java.util.Map;
 public class MiniGoodsController {
 
     @Autowired
-    private MiniGoodsService goodsService;
+    private MiniGoodsService miniGoodsService;
 
     /**
-     * 按条件分页查询
-     * @param page
-     * @param name
+     * 查询所有商品信息
      * @return
      */
-    @GetMapping()
-    public Result getGoodsList(@RequestParam("page") int page,@RequestParam("name") String name){
-        return goodsService.getGoodsList(page,name);
+    @GetMapping(value = "/index")
+    public Result getGoodsList(){
+        return miniGoodsService.getGoodsList();
+    }
+    /**
+     * 查询商品总数
+     * @return
+     */
+    @GetMapping("/count")
+    public Result getGoodsCount(){
+        return miniGoodsService.getGoodsCount();
     }
 
     /**
-     * 通过id查询具体商品信息
-     * @param id
-     * @return
-     */
-    @GetMapping("/info")
-    public Result getGoodsById(@RequestParam("id") int id){
-        return goodsService.getGoodsById(id);
+     * 任务：
+     * 描述：获取分类数据
+     * 作者：李宇 
+     * 时间：2018/11/22 11:52
+    */
+    @GetMapping(value = "/category")
+    public Result getCategoryInfo(@RequestParam("id") int id){
+        return miniGoodsService.getCategoryInfo(id);
     }
-
     /**
      * 通过id删除对应商品信息
      * @param requestMap
@@ -50,7 +56,7 @@ public class MiniGoodsController {
      */
     @PostMapping("/destory")
     public Result deletGoodsById(@RequestBody Map<String,Object> requestMap){
-        return goodsService.deleteGoodsById(requestMap);
+        return miniGoodsService.deleteGoodsById(requestMap);
     }
 
     /**
@@ -59,7 +65,7 @@ public class MiniGoodsController {
      */
     @GetMapping("/getAllCategory")
     public Result getAllCategory(){
-        return goodsService.getAllCategory();
+        return miniGoodsService.getAllCategory();
     }
 
     /**
@@ -69,6 +75,6 @@ public class MiniGoodsController {
      */
     @PostMapping("/store")
     public Result updateGoodsInfo(@RequestBody Goods goods){
-        return goodsService.updateGoodsInfo(goods);
+        return miniGoodsService.updateGoodsInfo(goods);
     }
 }

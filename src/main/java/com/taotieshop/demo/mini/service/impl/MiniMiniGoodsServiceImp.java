@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Options;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,39 +29,53 @@ public class MiniMiniGoodsServiceImp implements MiniGoodsService {
     @Resource
     private CategoryMapper categoryMapper;
     /**
-     * 分页查询所有商品列表
-     * @param page
-     * @param name
+     * 查询所有商品列表
      * @return
      */
     @Override
-    public Result getGoodsList(Integer page, String name) {
-        GoodsExample goodsExample = new GoodsExample();
-        GoodsExample.Criteria criteria = goodsExample.createCriteria();
-        //分页并查询
-        if(!"".equals(name)){
-            criteria.andNameLike(SqlUtil.allLike(name));
-        }
-        PageHelper.startPage(page,10);
-        List<Goods> goodsList = goodsMapper.selectByExample(goodsExample);
-        int conutNum = goodsMapper.countByExample(goodsExample);
-        PageEntity<Goods> pageData = new PageEntity<Goods>(page,conutNum);
-        pageData.setData(goodsList);
-        return ResultUtils.success(pageData);
+    public Result getGoodsList() {
+        List<Goods> goodsList = goodsMapper.selectByExample(null);
+        return ResultUtils.success(goodsList);
     }
 
     /**
-     * 通过id查询特定商品
-     * @param id
+     * 查询商品总数
      * @return
      */
     @Override
-    public Result getGoodsById(Integer id) {
-        GoodsExample goodsExample = new GoodsExample();
-        GoodsExample.Criteria criteria = goodsExample.createCriteria();
+    public Result getGoodsCount() {
+        int goodsCount = goodsMapper.countByExample(null);
+        return ResultUtils.success(goodsCount);
+    }
+
+    /**
+     * 任务：
+     * 描述：获取分类数据
+     * 作者：李宇
+     * 时间：2018/11/22 11:53
+    */
+    @Override
+    public Result getCategoryInfo(int id) {
+        Map<String,Object> resultMap = new HashMap<>();
+        CategoryExample categoryExample = new CategoryExample();
+        CategoryExample.Criteria criteria = categoryExample.createCriteria();
         criteria.andIdEqualTo(id);
-        List<Goods> goodsList = goodsMapper.selectByExample(goodsExample);
-        return ResultUtils.success(goodsList.get(0));
+        List<Category> categoryList = categoryMapper.selectByExample(categoryExample);
+
+        CategoryExample parentCategoryExample = new CategoryExample();
+        CategoryExample.Criteria parentCriteria = parentCategoryExample.createCriteria();
+        parentCriteria.andIdEqualTo(categoryList.get(0).getId());
+        List<Category> parentCategory = categoryMapper.selectByExample(parentCategoryExample);
+
+        CategoryExample brotherCategoryExample = new CategoryExample();
+        CategoryExample.Criteria brotherCriteria = brotherCategoryExample.createCriteria();
+        brotherCriteria.andParent_idEqualTo(categoryList.get(0).getParent_id());
+        List<Category> brotherCategory = categoryMapper.selectByExample(brotherCategoryExample);
+
+        resultMap.put("currentCategory", categoryList.get(0));
+        resultMap.put("parentCategory", parentCategory.get(0));
+        resultMap.put("brotherCategory",brotherCategory.get(0));
+        return ResultUtils.success(resultMap);
     }
 
     /**

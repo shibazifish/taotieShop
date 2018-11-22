@@ -77,8 +77,19 @@ public class MiniIndexServiceImpl implements MiniIndexService {
         List<Map<String,Object>> newCategoryList = new ArrayList<>();
         for (Category categoryItem:categoryList) {
             Map<String,Object> newCategoryListItem = new HashMap<>();
+            PageHelper.startPage(1,100);
+            List<Integer> childCategoryIds = categoryMapper.selectIdList(categoryItem.getParent_id());
+
+            //查询热销goods
+            GoodsExample cateGoodsExample = new GoodsExample();
+            GoodsExample.Criteria cateGoodsCriteria = cateGoodsExample.createCriteria();
+            cateGoodsCriteria.andCategory_idIn(childCategoryIds);
+            PageHelper.startPage(1,7);
+            List<Goods> cateGoodsList = goodsMapper.selectByExample(cateGoodsExample);
+
             newCategoryListItem.put("id",categoryItem.getId());
             newCategoryListItem.put("name",categoryItem.getName());
+            newCategoryListItem.put("goodsList",cateGoodsList);
             newCategoryList.add(newCategoryListItem);
         }
         resultMap.put("banner",adList);

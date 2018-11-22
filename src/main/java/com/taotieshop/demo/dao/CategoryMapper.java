@@ -19,4 +19,6 @@ public interface CategoryMapper {
     int updateByExampleSelective(@Param("record") Category record, @Param("example") CategoryExample example);
 
     int updateByExample(@Param("record") Category record, @Param("example") CategoryExample example);
+
+    List<Integer> selectIdList(@Param("parent_id") int parent_id);
 }

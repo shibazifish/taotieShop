@@ -4,4 +4,5 @@ import com.taotieshop.demo.entity.Result;
 
 public interface ActivityService {
     Result getActivityInfo();
+    Result getActivityById(int activityId);
 }

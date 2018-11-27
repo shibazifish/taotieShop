@@ -5,6 +5,7 @@ import com.taotieshop.demo.wechat.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,5 +23,9 @@ public class ActivityController {
     @GetMapping(value = "/info")
     public Result getActivityInfo(){
         return activityService.getActivityInfo();
+    }
+    @GetMapping(value = "/query")
+    public Result getActivityById(@RequestParam("id") int id){
+        return activityService.getActivityById(id);
     }
 }

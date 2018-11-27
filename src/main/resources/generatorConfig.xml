@@ -40,13 +40,7 @@
         </javaClientGenerator>
 
         <!-- table表生成对应的DoaminObject -->
-        <table tableName="nideshop_enter" domainObjectName="Enter">
-            <property name="useActualColumnNames" value="true" />
-        </table>
-        <table tableName="nideshop_activity" domainObjectName="Activity">
-            <property name="useActualColumnNames" value="true" />
-        </table>
-        <table tableName="nideshop_clock" domainObjectName="Clock">
+        <table tableName="nideshop_wechat_user" domainObjectName="WechatUser">
             <property name="useActualColumnNames" value="true" />
         </table>
 

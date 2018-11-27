@@ -1,5 +1,7 @@
 package com.taotieshop.demo.wechat.controller;
 
+import com.taotieshop.demo.entity.Result;
+import com.taotieshop.demo.entity.WechatUser;
 import com.taotieshop.demo.wechat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +16,16 @@ import java.util.Map;
  * 类名: UserController
  */
 @RestController
-@RequestMapping(value = "/wechat")
+@RequestMapping(value = "/wechat/user")
 public class UserController {
     @Autowired
     private UserService userService;
     @GetMapping ()
     public Object checkToken(@RequestParam Map<String,Object> requstMap){
         return userService.checkToken(requstMap);
+    }
+    @PostMapping(value = "/add")
+    public Result addUser(@RequestBody WechatUser wechatUser){
+        return userService.addUser(wechatUser);
     }
 }

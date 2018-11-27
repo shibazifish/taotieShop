@@ -2,6 +2,7 @@ package com.taotieshop.demo.wechat.service.impl;
 
 import com.taotieshop.demo.dao.ActivityMapper;
 import com.taotieshop.demo.entity.Activity;
+import com.taotieshop.demo.entity.ActivityExample;
 import com.taotieshop.demo.entity.Result;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.wechat.service.ActivityService;
@@ -26,5 +27,14 @@ public class ActivityServiceImpl implements ActivityService{
     public Result getActivityInfo() {
         List<Activity> activityList = activityMapper.selectByExample(null);
         return ResultUtils.success(activityList);
+    }
+
+    @Override
+    public Result getActivityById(int activityId) {
+        ActivityExample activityExample = new ActivityExample();
+        ActivityExample.Criteria criteria = activityExample.createCriteria();
+        criteria.andActivity_idEqualTo(activityId);
+        List<Activity> activityList = activityMapper.selectByExample(activityExample);
+        return ResultUtils.success(activityList.get(0));
     }
 }

@@ -1,8 +1,14 @@
 package com.taotieshop.demo.wechat.service.impl;
 
+import com.taotieshop.demo.dao.WechatUserMapper;
+import com.taotieshop.demo.entity.Result;
+import com.taotieshop.demo.entity.WechatUser;
+import com.taotieshop.demo.utils.ResultUtils;
+import com.taotieshop.demo.utils.WechatUtil;
 import com.taotieshop.demo.wechat.service.UserService;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -14,6 +20,8 @@ import java.util.Map;
  */
 @Component
 public class UserServiceImpl implements UserService {
+    @Resource
+    private WechatUserMapper wechatUserMapper;
     @Override
     public Object checkToken(Map<String, Object> requestMap) {
         // 微信加密签名
@@ -31,5 +39,11 @@ public class UserServiceImpl implements UserService {
 //            print.flush();
 //        }
         return echostr;
+    }
+
+    @Override
+    public Result addUser(WechatUser wechatUser) {
+        int intVal = wechatUserMapper.insert(wechatUser);
+        return ResultUtils.success(wechatUser);
     }
 }

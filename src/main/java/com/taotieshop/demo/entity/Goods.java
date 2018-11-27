@@ -26,7 +26,7 @@ public class Goods {
 
     private Short sort_order;
 
-    private Boolean is_delete;
+    private String is_delete;
 
     private Integer attribute_category;
 
@@ -34,7 +34,7 @@ public class Goods {
 
     private BigDecimal extra_price;
 
-    private Boolean is_new;
+    private String is_new;
 
     private String goods_unit;
 
@@ -56,11 +56,11 @@ public class Goods {
 
     private BigDecimal app_exclusive_price;
 
-    private Boolean is_app_exclusive;
+    private String is_app_exclusive;
 
-    private Boolean is_limited;
+    private String is_limited;
 
-    private Boolean is_hot;
+    private String is_hot;
 
     private String goods_desc;
 
@@ -154,11 +154,11 @@ public class Goods {
         this.sort_order = sort_order;
     }
 
-    public Boolean getIs_delete() {
+    public String getIs_delete() {
         return is_delete;
     }
 
-    public void setIs_delete(Boolean is_delete) {
+    public void setIs_delete(String is_delete) {
         this.is_delete = is_delete;
     }
 
@@ -186,11 +186,11 @@ public class Goods {
         this.extra_price = extra_price;
     }
 
-    public Boolean getIs_new() {
+    public String getIs_new() {
         return is_new;
     }
 
-    public void setIs_new(Boolean is_new) {
+    public void setIs_new(String is_new) {
         this.is_new = is_new;
     }
 
@@ -274,27 +274,27 @@ public class Goods {
         this.app_exclusive_price = app_exclusive_price;
     }
 
-    public Boolean getIs_app_exclusive() {
+    public String getIs_app_exclusive() {
         return is_app_exclusive;
     }
 
-    public void setIs_app_exclusive(Boolean is_app_exclusive) {
+    public void setIs_app_exclusive(String is_app_exclusive) {
         this.is_app_exclusive = is_app_exclusive;
     }
 
-    public Boolean getIs_limited() {
+    public String getIs_limited() {
         return is_limited;
     }
 
-    public void setIs_limited(Boolean is_limited) {
+    public void setIs_limited(String is_limited) {
         this.is_limited = is_limited;
     }
 
-    public Boolean getIs_hot() {
+    public String getIs_hot() {
         return is_hot;
     }
 
-    public void setIs_hot(Boolean is_hot) {
+    public void setIs_hot(String is_hot) {
         this.is_hot = is_hot;
     }
 

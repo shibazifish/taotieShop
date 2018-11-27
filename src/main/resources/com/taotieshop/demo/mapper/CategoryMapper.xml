@@ -291,4 +291,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <select id="selectIdList" parameterType="int" resultType="java.lang.Integer">
+    SELECT t.id FROM nideshop_category t WHERE t.parent_id = #{parent_id,jdbcType=INTEGER}
+  </select>
 </mapper>

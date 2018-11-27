@@ -1,5 +1,7 @@
 package com.taotieshop.demo.entity;
 
+import java.util.List;
+
 public class Category {
     private Integer id;
 
@@ -30,6 +32,16 @@ public class Category {
     private Integer type;
 
     private String front_name;
+
+    public List<Category> getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(List<Category> subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    private List<Category> subCategory;
 
     public Integer getId() {
         return id;

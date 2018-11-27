@@ -100,7 +100,7 @@ public class GoodsServiceImp implements GoodsService {
             goods.setBrand_id(0);
             goods.setKeywords(goods.getName());
             goods.setAdd_time(0);
-            goods.setIs_delete(false);
+            goods.setIs_delete("0");
             goods.setAttribute_category(0);
             goods.setCounter_price(goods.getRetail_price());
             goods.setExtra_price(goods.getRetail_price());

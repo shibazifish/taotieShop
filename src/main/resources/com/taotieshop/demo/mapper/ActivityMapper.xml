@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taotieshop.demo.dao.ActivityMapper">
+  <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Activity">
+    <result column="activity_id" jdbcType="INTEGER" property="activity_id" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activity_name" />
+    <result column="activity_prize" jdbcType="VARCHAR" property="activity_prize" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.taotieshop.demo.entity.Activity">
+    <result column="activity_desc" jdbcType="LONGVARCHAR" property="activity_desc" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    activity_id, activity_name, activity_prize, create_time,activity_desc
+  </sql>
+  <sql id="Blob_Column_List">
+    activity_desc
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.taotieshop.demo.entity.ActivityExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from nideshop_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.taotieshop.demo.entity.ActivityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nideshop_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.taotieshop.demo.entity.ActivityExample">
+    delete from nideshop_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotieshop.demo.entity.Activity">
+    insert into nideshop_activity (activity_id, activity_name, activity_prize, 
+      create_time, activity_desc)
+    values (#{activity_id,jdbcType=INTEGER}, #{activity_name,jdbcType=VARCHAR}, #{activity_prize,jdbcType=VARCHAR}, 
+      #{create_time,jdbcType=TIMESTAMP}, #{activity_desc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Activity">
+    insert into nideshop_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activity_id != null">
+        activity_id,
+      </if>
+      <if test="activity_name != null">
+        activity_name,
+      </if>
+      <if test="activity_prize != null">
+        activity_prize,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="activity_desc != null">
+        activity_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activity_id != null">
+        #{activity_id,jdbcType=INTEGER},
+      </if>
+      <if test="activity_name != null">
+        #{activity_name,jdbcType=VARCHAR},
+      </if>
+      <if test="activity_prize != null">
+        #{activity_prize,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activity_desc != null">
+        #{activity_desc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotieshop.demo.entity.ActivityExample" resultType="java.lang.Long">
+    select count(*) from nideshop_activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nideshop_activity
+    <set>
+      <if test="record.activity_id != null">
+        activity_id = #{record.activity_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.activity_name != null">
+        activity_name = #{record.activity_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activity_prize != null">
+        activity_prize = #{record.activity_prize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.create_time != null">
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.activity_desc != null">
+        activity_desc = #{record.activity_desc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update nideshop_activity
+    set activity_id = #{record.activity_id,jdbcType=INTEGER},
+      activity_name = #{record.activity_name,jdbcType=VARCHAR},
+      activity_prize = #{record.activity_prize,jdbcType=VARCHAR},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      activity_desc = #{record.activity_desc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nideshop_activity
+    set activity_id = #{record.activity_id,jdbcType=INTEGER},
+      activity_name = #{record.activity_name,jdbcType=VARCHAR},
+      activity_prize = #{record.activity_prize,jdbcType=VARCHAR},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -57,14 +57,19 @@ public class FileUtils {
         //使用原文件名
         //String realPath = path + "/" + fileName;
 
+        File localFile = new File(path);
+        //判断文件父目录是否存在
+        if(!localFile .exists()) {
+            localFile.mkdirs();
+        }
+
         File dest = new File(realPath);
 
-        //判断文件父目录是否存在
-        if(!dest.getParentFile().exists()){
-            dest.getParentFile().mkdir();
-        }
         Map<String,Object> resultMap = new HashMap<>();
-        resultMap.put("name", uploadType);
+        String[] pathArr = realPath.split("/");
+        String imageNewName = pathArr[pathArr.length-1];
+        resultMap.put("fileType", uploadType);
+        resultMap.put("fileShowUrl", uploadType+"/"+imageNewName);
         resultMap.put("fileUrl", realPath);
         try {
             //保存文件

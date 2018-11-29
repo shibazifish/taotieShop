@@ -3,6 +3,7 @@ package com.taotieshop.demo.wechat.service.impl;
 import com.taotieshop.demo.dao.EnterMapper;
 import com.taotieshop.demo.entity.Enter;
 import com.taotieshop.demo.entity.Result;
+import com.taotieshop.demo.utils.IFUtil;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.wechat.service.EnterService;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,7 @@ public class EnterServiceImpl implements EnterService{
     private EnterMapper enterMapper;
     @Override
     public Result addEnter(Enter enter) {
+        enter.setCreate_date(IFUtil.CurrentDate());
         int intVal = enterMapper.insert(enter);
         return ResultUtils.success(intVal);
     }

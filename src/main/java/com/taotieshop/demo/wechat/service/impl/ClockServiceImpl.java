@@ -3,6 +3,7 @@ package com.taotieshop.demo.wechat.service.impl;
 import com.taotieshop.demo.dao.ClockMapper;
 import com.taotieshop.demo.entity.Clock;
 import com.taotieshop.demo.entity.Result;
+import com.taotieshop.demo.utils.IFUtil;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.wechat.service.ClockService;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,7 @@ public class ClockServiceImpl implements ClockService{
     private ClockMapper clockMapper;
     @Override
     public Result addClockInfo(Clock clock) {
+        clock.setCreate_time(IFUtil.CurrentDate());
         int intVal = clockMapper.insert(clock);
         return ResultUtils.success(intVal);
     }

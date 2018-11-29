@@ -4,10 +4,7 @@ import com.taotieshop.demo.entity.Enter;
 import com.taotieshop.demo.entity.Result;
 import com.taotieshop.demo.wechat.service.EnterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 任务：
@@ -22,7 +19,7 @@ public class EnterController {
     @Autowired
     private EnterService enterService;
     @PostMapping(value = "/add")
-    public Result addEnterInfo(@RequestParam Enter enter){
+    public Result addEnterInfo(@RequestBody Enter enter){
         return enterService.addEnter(enter);
     }
 }

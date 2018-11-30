@@ -5,4 +5,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ImageService {
     Result uploadImage(MultipartFile file);
+    Result getImageInfoByBaidu();
 }

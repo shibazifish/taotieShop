@@ -3,10 +3,7 @@ package com.taotieshop.demo.wechat.controller;
 import com.taotieshop.demo.entity.Result;
 import com.taotieshop.demo.wechat.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -24,5 +21,9 @@ public class ImageController {
     @PostMapping(value = "/upload")
     public Result uploadImage(@RequestParam("uploadfile_ant") MultipartFile file){
         return imageService.uploadImage(file);
+    }
+    @GetMapping(value = "/getImageInfo")
+    public Result getImageInfoByAi(){
+        return imageService.getImageInfoByBaidu();
     }
 }

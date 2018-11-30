@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 
 /**
  * 任务：
- * 描述：
+ * 描述：报名参加活动
  * 作者：李宇
  * 时间：2018/11/2715:36
  * 类名: EnterServiceImpl
@@ -24,6 +24,7 @@ public class EnterServiceImpl implements EnterService{
     @Override
     public Result addEnter(Enter enter) {
         enter.setCreate_date(IFUtil.CurrentDate());
+        //查询是否已经报名
         int intVal = enterMapper.insert(enter);
         return ResultUtils.success(intVal);
     }

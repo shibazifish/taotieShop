@@ -55,12 +55,25 @@ public class ImageServiceImpl implements ImageService{
         options.put("detect_language", "true");
         options.put("probability", "true");
 
-        String path = "F:\\微信图片_20181130103608.jpg";
+        String path = "F:\\微信图片_20181130085603.jpg";
         JSONObject res = aipOcr.basicGeneral(path,options);
         JSONArray wordsArray = res.getJSONArray("words_result");
+        String wordsArrayStr = wordsArray.toString();
         String pattern = "^第\\d+名$";
+        String resultStr = "";
+        if (wordsArrayStr.contains("占领了封面")){
+            resultStr = getWeiXinImageInfo(wordsArray,pattern);
+        }else if (wordsArrayStr.contains("悦动圈跑步")){
+            resultStr = "";
+        }
+
+        return ResultUtils.success(resultStr);
+    }
+
+    private String getWeiXinImageInfo(JSONArray wordsArray,String pattern){
         int resultIndex = -1;
         String resultStr = "";
+        String userName = "";//获取当前人姓名
         for(int i=0;i<wordsArray.length();i++){
             JSONObject wordMap = (JSONObject)wordsArray.get(i);
             String word = wordMap.getString("words").toString();
@@ -72,7 +85,10 @@ public class ImageServiceImpl implements ImageService{
                 resultStr = word;
                 break;
             }
+            if(!isMatch){
+                userName = word;
+            }
         }
-        return ResultUtils.success(resultStr);
+        return userName+":"+resultStr;
     }
 }

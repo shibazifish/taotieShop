@@ -172,4 +172,16 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <update id="updateByDay" parameterType="map">
+    update nideshop_clock
+    set user_id = #{record.user_id,jdbcType=VARCHAR},
+    clock_image_url = #{record.clock_image_url,jdbcType=VARCHAR},
+    create_time = #{record.create_time,jdbcType=TIMESTAMP}
+    WHERE  user_id = #{record.user_id,jdbcType=VARCHAR}
+    AND to_days(create_time) = to_days(#{record.create_time,jdbcType=TIMESTAMP})
+  </update>
+  <select id="countOneDayRecord" parameterType="map" resultType="java.lang.Integer">
+    SELECT count(1) FROM nideshop_clock WHERE user_id = #{record.user_id,jdbcType=VARCHAR}
+    AND to_days(create_time) = to_days(#{record.create_time,jdbcType=TIMESTAMP})
+  </select>
 </mapper>

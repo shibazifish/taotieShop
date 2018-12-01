@@ -19,4 +19,8 @@ public interface ClockMapper {
     int updateByExampleSelective(@Param("record") Clock record, @Param("example") ClockExample example);
 
     int updateByExample(@Param("record") Clock record, @Param("example") ClockExample example);
+
+    int updateByDay(@Param("record") Clock record);
+
+    int countOneDayRecord(@Param("record") Clock record);
 }

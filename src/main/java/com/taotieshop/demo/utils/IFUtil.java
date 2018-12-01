@@ -1,5 +1,6 @@
 package com.taotieshop.demo.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,9 +12,21 @@ import java.util.Date;
  * 类名: IFUtil
  */
 public class IFUtil {
+    /**
+     * 获取系统当前时间
+     * @return
+     */
     public static Date CurrentDate(){
         Date d = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
         return d;
+    }
+    /*
+     * 将时间戳转换为时间
+     */
+    public static Date stampToDate(String s) throws ParseException {
+        Date res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        res = simpleDateFormat.parse(s);
+        return res;
     }
 }

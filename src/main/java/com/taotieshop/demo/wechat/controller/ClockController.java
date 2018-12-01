@@ -4,9 +4,9 @@ import com.taotieshop.demo.entity.Clock;
 import com.taotieshop.demo.entity.Result;
 import com.taotieshop.demo.wechat.service.ClockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * 任务：
@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClockController {
     @Autowired
     private ClockService clockService;
-    public Result addClockInfo(@RequestParam Clock clock){
-        return clockService.addClockInfo(clock);
+    @PostMapping(value = "/add")
+    public Result addClockInfo(@RequestBody Map<String,String> requestMap){
+        return clockService.addClockInfo(requestMap);
     }
 }

@@ -9,7 +9,8 @@ public enum ExceptionEnum {
     SYS_EXCEPTION(-1,"系统异常"),
     DELETE_EXCEPTION(1,"删除报错，方法尚未实现！"),
     SAVE_EXCEPTION(2,"保存失败！"),
-    FILE_NOT_FUND_EXCEPTION(3,"获取文件路径失败！");
+    FILE_NOT_FUND_EXCEPTION(3,"获取文件路径失败！"),
+    DATE_TO_STRING_EXCEPTION(4,"日期转换异常！");
     private int code;
     private String message;
 

@@ -20,7 +20,12 @@ public interface ClockMapper {
 
     int updateByExample(@Param("record") Clock record, @Param("example") ClockExample example);
 
-    int updateByDay(@Param("record") Clock record);
+    int countOneDayRecord(Clock record);
 
-    int countOneDayRecord(@Param("record") Clock record);
+    int updateByDay(Clock record);
+    //打卡表清零
+    int updateClearIce(Clock record);
+    //打卡表清零
+    int updateInviterIce(Clock record);
+
 }

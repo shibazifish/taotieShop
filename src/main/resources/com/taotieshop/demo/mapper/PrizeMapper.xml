@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taotieshop.demo.dao.PrizeMapper">
+  <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Prize">
+    <result column="goods_id" jdbcType="INTEGER" property="goods_id" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goods_name" />
+    <result column="goods_desc" jdbcType="VARCHAR" property="goods_desc" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="goods_url" jdbcType="VARCHAR" property="goods_url" />
+    <result column="goods_ice" jdbcType="INTEGER" property="goods_ice" />
+    <result column="goods_price" jdbcType="DECIMAL" property="goods_price" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.taotieshop.demo.entity.Prize">
+    <result column="goods_detail" jdbcType="LONGVARCHAR" property="goods_detail" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    goods_id, goods_name, goods_desc, create_time, goods_url, goods_ice, goods_price
+  </sql>
+  <sql id="Blob_Column_List">
+    goods_detail
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.taotieshop.demo.entity.PrizeExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ice_prize
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.taotieshop.demo.entity.PrizeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ice_prize
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.taotieshop.demo.entity.PrizeExample">
+    delete from ice_prize
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotieshop.demo.entity.Prize">
+    insert into ice_prize (goods_id, goods_name, goods_desc, 
+      create_time, goods_url, goods_ice, 
+      goods_price, goods_detail)
+    values (#{goods_id,jdbcType=INTEGER}, #{goods_name,jdbcType=VARCHAR}, #{goods_desc,jdbcType=VARCHAR}, 
+      #{create_time,jdbcType=TIMESTAMP}, #{goods_url,jdbcType=VARCHAR}, #{goods_ice,jdbcType=INTEGER}, 
+      #{goods_price,jdbcType=DECIMAL}, #{goods_detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Prize">
+    insert into ice_prize
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goods_id != null">
+        goods_id,
+      </if>
+      <if test="goods_name != null">
+        goods_name,
+      </if>
+      <if test="goods_desc != null">
+        goods_desc,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="goods_url != null">
+        goods_url,
+      </if>
+      <if test="goods_ice != null">
+        goods_ice,
+      </if>
+      <if test="goods_price != null">
+        goods_price,
+      </if>
+      <if test="goods_detail != null">
+        goods_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goods_id != null">
+        #{goods_id,jdbcType=INTEGER},
+      </if>
+      <if test="goods_name != null">
+        #{goods_name,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_desc != null">
+        #{goods_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goods_url != null">
+        #{goods_url,jdbcType=VARCHAR},
+      </if>
+      <if test="goods_ice != null">
+        #{goods_ice,jdbcType=INTEGER},
+      </if>
+      <if test="goods_price != null">
+        #{goods_price,jdbcType=DECIMAL},
+      </if>
+      <if test="goods_detail != null">
+        #{goods_detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotieshop.demo.entity.PrizeExample" resultType="java.lang.Long">
+    select count(*) from ice_prize
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ice_prize
+    <set>
+      <if test="record.goods_id != null">
+        goods_id = #{record.goods_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_name != null">
+        goods_name = #{record.goods_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goods_desc != null">
+        goods_desc = #{record.goods_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.create_time != null">
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goods_url != null">
+        goods_url = #{record.goods_url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goods_ice != null">
+        goods_ice = #{record.goods_ice,jdbcType=INTEGER},
+      </if>
+      <if test="record.goods_price != null">
+        goods_price = #{record.goods_price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.goods_detail != null">
+        goods_detail = #{record.goods_detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update ice_prize
+    set goods_id = #{record.goods_id,jdbcType=INTEGER},
+      goods_name = #{record.goods_name,jdbcType=VARCHAR},
+      goods_desc = #{record.goods_desc,jdbcType=VARCHAR},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      goods_url = #{record.goods_url,jdbcType=VARCHAR},
+      goods_ice = #{record.goods_ice,jdbcType=INTEGER},
+      goods_price = #{record.goods_price,jdbcType=DECIMAL},
+      goods_detail = #{record.goods_detail,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ice_prize
+    set goods_id = #{record.goods_id,jdbcType=INTEGER},
+      goods_name = #{record.goods_name,jdbcType=VARCHAR},
+      goods_desc = #{record.goods_desc,jdbcType=VARCHAR},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      goods_url = #{record.goods_url,jdbcType=VARCHAR},
+      goods_ice = #{record.goods_ice,jdbcType=INTEGER},
+      goods_price = #{record.goods_price,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

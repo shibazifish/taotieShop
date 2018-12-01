@@ -11,6 +11,9 @@
     <result column="country" jdbcType="VARCHAR" property="country" />
     <result column="avatarUrl" jdbcType="VARCHAR" property="avatarUrl" />
     <result column="unionId" jdbcType="VARCHAR" property="unionId" />
+    <result column="countRunData" jdbcType="INTEGER" property="countRunData" />
+    <result column="iceData" jdbcType="INTEGER" property="iceData" />
+    <result column="inviter" jdbcType="VARCHAR" property="inviter" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    userId, openId, nickName, gender, city, province, country, avatarUrl, unionId
+    userId, openId, nickName, gender, city, province, country, avatarUrl, unionId, countRunData, 
+    iceData, inviter
   </sql>
   <select id="selectByExample" parameterType="com.taotieshop.demo.entity.WechatUserExample" resultMap="BaseResultMap">
     select
@@ -96,11 +100,13 @@
   <insert id="insert" parameterType="com.taotieshop.demo.entity.WechatUser">
     insert into nideshop_wechat_user (userId, openId, nickName, 
       gender, city, province, 
-      country, avatarUrl, unionId
+      country, avatarUrl, unionId, 
+      countRunData, iceData, inviter
       )
     values (#{userId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
       #{gender,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
-      #{country,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, #{unionId,jdbcType=VARCHAR}
+      #{country,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, #{unionId,jdbcType=VARCHAR}, 
+      #{countRunData,jdbcType=INTEGER}, #{iceData,jdbcType=INTEGER}, #{inviter,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.WechatUser">
@@ -133,6 +139,15 @@
       <if test="unionId != null">
         unionId,
       </if>
+      <if test="countRunData != null">
+        countRunData,
+      </if>
+      <if test="iceData != null">
+        iceData,
+      </if>
+      <if test="inviter != null">
+        inviter,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -161,6 +176,15 @@
       </if>
       <if test="unionId != null">
         #{unionId,jdbcType=VARCHAR},
+      </if>
+      <if test="countRunData != null">
+        #{countRunData,jdbcType=INTEGER},
+      </if>
+      <if test="iceData != null">
+        #{iceData,jdbcType=INTEGER},
+      </if>
+      <if test="inviter != null">
+        #{inviter,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -200,6 +224,15 @@
       <if test="record.unionId != null">
         unionId = #{record.unionId,jdbcType=VARCHAR},
       </if>
+      <if test="record.countRunData != null">
+        countRunData = #{record.countRunData,jdbcType=INTEGER},
+      </if>
+      <if test="record.iceData != null">
+        iceData = #{record.iceData,jdbcType=INTEGER},
+      </if>
+      <if test="record.inviter != null">
+        inviter = #{record.inviter,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -215,9 +248,18 @@
       province = #{record.province,jdbcType=VARCHAR},
       country = #{record.country,jdbcType=VARCHAR},
       avatarUrl = #{record.avatarUrl,jdbcType=VARCHAR},
-      unionId = #{record.unionId,jdbcType=VARCHAR}
+      unionId = #{record.unionId,jdbcType=VARCHAR},
+      countRunData = #{record.countRunData,jdbcType=INTEGER},
+      iceData = #{record.iceData,jdbcType=INTEGER},
+      inviter = #{record.inviter,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateRunData" parameterType="com.taotieshop.demo.entity.WechatUser">
+    update nideshop_wechat_user
+    set countRunData = (SELECT IFNULL(sum(run_data),0) FROM  ice_clock WHERE open_id = #{openId,jdbcType=VARCHAR} AND to_days(create_time) &lt; to_days(NOW())),
+    iceData = (SELECT IFNULL(sum(ice_data),0) FROM  ice_clock WHERE open_id = #{openId,jdbcType=VARCHAR} AND to_days(create_time) &lt; to_days(NOW()))
+    WHERE openId = #{openId,jdbcType=VARCHAR}
   </update>
 </mapper>

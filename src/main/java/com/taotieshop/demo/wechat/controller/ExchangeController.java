@@ -1,25 +1,25 @@
 package com.taotieshop.demo.wechat.controller;
 
-import com.taotieshop.demo.entity.Enter;
+import com.taotieshop.demo.entity.Exchange;
 import com.taotieshop.demo.entity.Result;
-import com.taotieshop.demo.wechat.service.EnterService;
+import com.taotieshop.demo.wechat.service.ExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * 任务：
- * 描述：
+ * 描述：兑换奖励
  * 作者：李宇
  * 时间：2018/11/2715:39
  * 类名: EnterController
  */
 @RestController
-@RequestMapping(value = "/wechat/enter")
-public class EnterController {
+@RequestMapping(value = "/wechat/exchange")
+public class ExchangeController {
     @Autowired
-    private EnterService enterService;
+    private ExchangeService exchangeService;
     @PostMapping(value = "/add")
-    public Result addEnterInfo(@RequestBody Enter enter){
-        return enterService.addEnter(enter);
+    public Result addEnterInfo(@RequestBody Exchange exchange){
+        return exchangeService.addExchange(exchange);
     }
 }

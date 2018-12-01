@@ -723,6 +723,196 @@ public class WechatUserExample {
             addCriterion("unionId not between", value1, value2, "unionId");
             return (Criteria) this;
         }
+
+        public Criteria andCountRunDataIsNull() {
+            addCriterion("countRunData is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataIsNotNull() {
+            addCriterion("countRunData is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataEqualTo(Integer value) {
+            addCriterion("countRunData =", value, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataNotEqualTo(Integer value) {
+            addCriterion("countRunData <>", value, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataGreaterThan(Integer value) {
+            addCriterion("countRunData >", value, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataGreaterThanOrEqualTo(Integer value) {
+            addCriterion("countRunData >=", value, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataLessThan(Integer value) {
+            addCriterion("countRunData <", value, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataLessThanOrEqualTo(Integer value) {
+            addCriterion("countRunData <=", value, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataIn(List<Integer> values) {
+            addCriterion("countRunData in", values, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataNotIn(List<Integer> values) {
+            addCriterion("countRunData not in", values, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataBetween(Integer value1, Integer value2) {
+            addCriterion("countRunData between", value1, value2, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andCountRunDataNotBetween(Integer value1, Integer value2) {
+            addCriterion("countRunData not between", value1, value2, "countRunData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataIsNull() {
+            addCriterion("iceData is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataIsNotNull() {
+            addCriterion("iceData is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataEqualTo(Integer value) {
+            addCriterion("iceData =", value, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataNotEqualTo(Integer value) {
+            addCriterion("iceData <>", value, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataGreaterThan(Integer value) {
+            addCriterion("iceData >", value, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataGreaterThanOrEqualTo(Integer value) {
+            addCriterion("iceData >=", value, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataLessThan(Integer value) {
+            addCriterion("iceData <", value, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataLessThanOrEqualTo(Integer value) {
+            addCriterion("iceData <=", value, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataIn(List<Integer> values) {
+            addCriterion("iceData in", values, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataNotIn(List<Integer> values) {
+            addCriterion("iceData not in", values, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataBetween(Integer value1, Integer value2) {
+            addCriterion("iceData between", value1, value2, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andIceDataNotBetween(Integer value1, Integer value2) {
+            addCriterion("iceData not between", value1, value2, "iceData");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterIsNull() {
+            addCriterion("inviter is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterIsNotNull() {
+            addCriterion("inviter is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterEqualTo(String value) {
+            addCriterion("inviter =", value, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterNotEqualTo(String value) {
+            addCriterion("inviter <>", value, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterGreaterThan(String value) {
+            addCriterion("inviter >", value, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterGreaterThanOrEqualTo(String value) {
+            addCriterion("inviter >=", value, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterLessThan(String value) {
+            addCriterion("inviter <", value, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterLessThanOrEqualTo(String value) {
+            addCriterion("inviter <=", value, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterLike(String value) {
+            addCriterion("inviter like", value, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterNotLike(String value) {
+            addCriterion("inviter not like", value, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterIn(List<String> values) {
+            addCriterion("inviter in", values, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterNotIn(List<String> values) {
+            addCriterion("inviter not in", values, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterBetween(String value1, String value2) {
+            addCriterion("inviter between", value1, value2, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andInviterNotBetween(String value1, String value2) {
+            addCriterion("inviter not between", value1, value2, "inviter");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

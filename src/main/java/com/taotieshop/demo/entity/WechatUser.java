@@ -19,6 +19,12 @@ public class WechatUser {
 
     private String unionId;
 
+    private Integer countRunData;
+
+    private Integer iceData;
+
+    private String inviter;
+
     public Integer getUserId() {
         return userId;
     }
@@ -89,5 +95,29 @@ public class WechatUser {
 
     public void setUnionId(String unionId) {
         this.unionId = unionId;
+    }
+
+    public Integer getCountRunData() {
+        return countRunData;
+    }
+
+    public void setCountRunData(Integer countRunData) {
+        this.countRunData = countRunData;
+    }
+
+    public Integer getIceData() {
+        return iceData;
+    }
+
+    public void setIceData(Integer iceData) {
+        this.iceData = iceData;
+    }
+
+    public String getInviter() {
+        return inviter;
+    }
+
+    public void setInviter(String inviter) {
+        this.inviter = inviter;
     }
 }

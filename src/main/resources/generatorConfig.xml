@@ -18,7 +18,7 @@
         </commentGenerator>
         <!-- 配置数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/nideshop?serverTimezone=GMT%2B8"
+                        connectionURL="jdbc:mysql://127.0.0.1:3307/nideshop?serverTimezone=GMT%2B8"
                         userId="root"
                         password="123456" />
 

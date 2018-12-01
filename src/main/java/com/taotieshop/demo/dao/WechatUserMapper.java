@@ -19,4 +19,7 @@ public interface WechatUserMapper {
     int updateByExampleSelective(@Param("record") WechatUser record, @Param("example") WechatUserExample example);
 
     int updateByExample(@Param("record") WechatUser record, @Param("example") WechatUserExample example);
+
+    int updateRunData(WechatUser record);
+
 }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.taotieshop.demo.dao.EnterMapper">
-  <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Enter">
-    <result column="enter_id" jdbcType="INTEGER" property="enter_id" />
-    <result column="user_id" jdbcType="VARCHAR" property="user_id" />
-    <result column="user_name" jdbcType="VARCHAR" property="user_name" />
-    <result column="activity_id" jdbcType="INTEGER" property="activity_id" />
+<mapper namespace="com.taotieshop.demo.dao.ExchangeMapper">
+  <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Exchange">
+    <result column="record_id" jdbcType="INTEGER" property="record_id" />
+    <result column="open_id" jdbcType="VARCHAR" property="open_id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goods_id" />
     <result column="create_date" jdbcType="TIMESTAMP" property="create_date" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    enter_id, user_id, user_name, activity_id, create_date
+    record_id, open_id, goods_id, create_date
   </sql>
-  <select id="selectByExample" parameterType="com.taotieshop.demo.entity.EnterExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.taotieshop.demo.entity.ExchangeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from nideshop_enter
+    from ice_exchange
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,75 +82,66 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.taotieshop.demo.entity.EnterExample">
-    delete from nideshop_enter
+  <delete id="deleteByExample" parameterType="com.taotieshop.demo.entity.ExchangeExample">
+    delete from ice_exchange
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.taotieshop.demo.entity.Enter">
-    insert into nideshop_enter (enter_id, user_id, user_name, 
-      activity_id, create_date)
-    values (#{enter_id,jdbcType=INTEGER}, #{user_id,jdbcType=VARCHAR}, #{user_name,jdbcType=VARCHAR}, 
-      #{activity_id,jdbcType=INTEGER}, #{create_date,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.taotieshop.demo.entity.Exchange">
+    insert into ice_exchange (record_id, open_id, goods_id, 
+      create_date)
+    values (#{record_id,jdbcType=INTEGER}, #{open_id,jdbcType=VARCHAR}, #{goods_id,jdbcType=INTEGER}, 
+      #{create_date,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Enter">
-    insert into nideshop_enter
+  <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Exchange">
+    insert into ice_exchange
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="enter_id != null">
-        enter_id,
+      <if test="record_id != null">
+        record_id,
       </if>
-      <if test="user_id != null">
-        user_id,
+      <if test="open_id != null">
+        open_id,
       </if>
-      <if test="user_name != null">
-        user_name,
-      </if>
-      <if test="activity_id != null">
-        activity_id,
+      <if test="goods_id != null">
+        goods_id,
       </if>
       <if test="create_date != null">
         create_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="enter_id != null">
-        #{enter_id,jdbcType=INTEGER},
+      <if test="record_id != null">
+        #{record_id,jdbcType=INTEGER},
       </if>
-      <if test="user_id != null">
-        #{user_id,jdbcType=VARCHAR},
+      <if test="open_id != null">
+        #{open_id,jdbcType=VARCHAR},
       </if>
-      <if test="user_name != null">
-        #{user_name,jdbcType=VARCHAR},
-      </if>
-      <if test="activity_id != null">
-        #{activity_id,jdbcType=INTEGER},
+      <if test="goods_id != null">
+        #{goods_id,jdbcType=INTEGER},
       </if>
       <if test="create_date != null">
         #{create_date,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.taotieshop.demo.entity.EnterExample" resultType="java.lang.Long">
-    select count(*) from nideshop_enter
+  <select id="countByExample" parameterType="com.taotieshop.demo.entity.ExchangeExample" resultType="java.lang.Long">
+    select count(*) from ice_exchange
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update nideshop_enter
+    update ice_exchange
     <set>
-      <if test="record.enter_id != null">
-        enter_id = #{record.enter_id,jdbcType=INTEGER},
+      <if test="record.record_id != null">
+        record_id = #{record.record_id,jdbcType=INTEGER},
       </if>
-      <if test="record.user_id != null">
-        user_id = #{record.user_id,jdbcType=VARCHAR},
+      <if test="record.open_id != null">
+        open_id = #{record.open_id,jdbcType=VARCHAR},
       </if>
-      <if test="record.user_name != null">
-        user_name = #{record.user_name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.activity_id != null">
-        activity_id = #{record.activity_id,jdbcType=INTEGER},
+      <if test="record.goods_id != null">
+        goods_id = #{record.goods_id,jdbcType=INTEGER},
       </if>
       <if test="record.create_date != null">
         create_date = #{record.create_date,jdbcType=TIMESTAMP},
@@ -162,11 +152,10 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update nideshop_enter
-    set enter_id = #{record.enter_id,jdbcType=INTEGER},
-      user_id = #{record.user_id,jdbcType=VARCHAR},
-      user_name = #{record.user_name,jdbcType=VARCHAR},
-      activity_id = #{record.activity_id,jdbcType=INTEGER},
+    update ice_exchange
+    set record_id = #{record.record_id,jdbcType=INTEGER},
+      open_id = #{record.open_id,jdbcType=VARCHAR},
+      goods_id = #{record.goods_id,jdbcType=INTEGER},
       create_date = #{record.create_date,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />

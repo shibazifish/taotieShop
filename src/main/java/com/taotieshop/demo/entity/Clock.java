@@ -5,11 +5,11 @@ import java.util.Date;
 public class Clock {
     private Integer clock_id;
 
-    private String user_id;
+    private String open_id;
 
-    private Integer activity_id;
+    private Integer run_data;
 
-    private String clock_image_url;
+    private Integer ice_data;
 
     private Date create_time;
 
@@ -21,28 +21,28 @@ public class Clock {
         this.clock_id = clock_id;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getOpen_id() {
+        return open_id;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setOpen_id(String open_id) {
+        this.open_id = open_id;
     }
 
-    public Integer getActivity_id() {
-        return activity_id;
+    public Integer getRun_data() {
+        return run_data;
     }
 
-    public void setActivity_id(Integer activity_id) {
-        this.activity_id = activity_id;
+    public void setRun_data(Integer run_data) {
+        this.run_data = run_data;
     }
 
-    public String getClock_image_url() {
-        return clock_image_url;
+    public Integer getIce_data() {
+        return ice_data;
     }
 
-    public void setClock_image_url(String clock_image_url) {
-        this.clock_image_url = clock_image_url;
+    public void setIce_data(Integer ice_data) {
+        this.ice_data = ice_data;
     }
 
     public Date getCreate_time() {

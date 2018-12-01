@@ -1,9 +1,11 @@
 package com.taotieshop.demo.wechat.service.impl;
 
 import com.taotieshop.demo.dao.ClockMapper;
+import com.taotieshop.demo.dao.WechatUserMapper;
 import com.taotieshop.demo.entity.Clock;
 import com.taotieshop.demo.entity.ClockExample;
 import com.taotieshop.demo.entity.Result;
+import com.taotieshop.demo.entity.WechatUser;
 import com.taotieshop.demo.utils.IFUtil;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.utils.WechatUtil;
@@ -26,6 +28,8 @@ import java.util.Map;
 public class ClockServiceImpl implements ClockService{
     @Resource
     private ClockMapper clockMapper;
+    @Resource
+    private WechatUserMapper wechatUserMapper;
     @Override
     public Result addClockInfo(Map<String,String> requestMap) {
         String encryptedData = requestMap.getOrDefault("encryptedData","");
@@ -40,9 +44,10 @@ public class ClockServiceImpl implements ClockService{
         Map<String,Object> map = resultArr.get(resultArr.size()-1);
         String step = map.getOrDefault("step","").toString();
         Clock clock = new Clock();
-        clock.setClock_image_url(step);
+        clock.setRun_data(Integer.parseInt(step));
+        clock.setIce_data(Integer.parseInt(step)/1000);
         clock.setCreate_time(IFUtil.CurrentDate());
-        clock.setUser_id(open_id);
+        clock.setOpen_id(open_id);
 
 
         int intVal = clockMapper.countOneDayRecord(clock);
@@ -51,6 +56,10 @@ public class ClockServiceImpl implements ClockService{
         }else {
             intVal = clockMapper.insert(clock);
         }
+        //更新用户累计步数和用户累计冰块数
+        WechatUser wechatUser = new WechatUser();
+        wechatUser.setOpenId(open_id);
+        wechatUserMapper.updateRunData(wechatUser);
         return ResultUtils.success(clock);
     }
 }

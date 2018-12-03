@@ -4,9 +4,13 @@ import com.taotieshop.demo.dao.ClockMapper;
 import com.taotieshop.demo.dao.WechatUserMapper;
 import com.taotieshop.demo.entity.*;
 import com.taotieshop.demo.utils.ResultUtils;
-import com.taotieshop.demo.utils.WechatUtil;
 import com.taotieshop.demo.wechat.service.UserService;
+import net.sf.json.JSONObject;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
@@ -80,5 +84,31 @@ public class UserServiceImpl implements UserService {
         clockMapper.insert(clock);
         int intVal = wechatUserMapper.insert(wechatUser);
         return ResultUtils.success(wechatUser);
+    }
+
+    @Override
+    public Result userLogin(Map<String, String> requestMap) {
+       String wx_url_1 = "https://api.weixin.qq.com/sns/jscode2session?appid=wx4375865120f60592&secret=bdf2056097e96b3124ac43399fa2fdd2&js_code=";
+       String wx_url_2 = "&grant_type=authorization_code";
+       String code = requestMap.get("code");
+
+        RestTemplate restTemplate = new RestTemplate();
+        //进行网络请求,访问url接口
+        ResponseEntity<String> responseEntity = restTemplate.exchange(wx_url_1 +code +wx_url_2, HttpMethod.GET, null, String.class);
+        //根据返回值进行后续操作
+        JSONObject weChatSession = null;
+        if(responseEntity != null && responseEntity.getStatusCode() == HttpStatus.OK)
+        {
+            String sessionData = responseEntity.getBody();
+            //解析从微信服务器获得的openid和session_key;
+            weChatSession = JSONObject.fromObject(sessionData);
+            //获取用户的唯一标识
+//            String openid = weChatSession.getString("");
+            //获取会话秘钥
+//            String session_key = weChatSession.getString("");
+            //下面就可以写自己的业务代码了
+            //最后要返回一个自定义的登录态,用来做后续数据传输的验证
+        }
+        return ResultUtils.success(weChatSession);
     }
 }

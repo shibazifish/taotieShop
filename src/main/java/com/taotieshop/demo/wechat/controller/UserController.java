@@ -28,4 +28,8 @@ public class UserController {
     public Result addUser(@RequestBody WechatUser wechatUser){
         return userService.addUser(wechatUser);
     }
+    @GetMapping(value = "/login")
+    public Result userLogin(@RequestParam Map<String,String> requestMap){
+        return userService.userLogin(requestMap);
+    }
 }

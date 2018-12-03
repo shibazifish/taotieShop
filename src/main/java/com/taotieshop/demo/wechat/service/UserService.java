@@ -8,4 +8,5 @@ import java.util.Map;
 public interface UserService {
     Object checkToken(Map<String,Object> requestMap);
     Result addUser(WechatUser wechatUser);
+    Result userLogin(Map<String,String> requestMap);
 }

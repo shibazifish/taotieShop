@@ -24,4 +24,8 @@ public class ClockController {
     public Result addClockInfo(@RequestBody Map<String,String> requestMap){
         return clockService.addClockInfo(requestMap);
     }
+    @GetMapping(value = "/info")
+    public Result getClockInfo(@RequestParam(name = "open_id") String open_id){
+        return clockService.getClockInfo(open_id);
+    }
 }

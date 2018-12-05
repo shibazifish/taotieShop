@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    goods_id, goods_name, goods_desc, create_time, goods_url, goods_ice, goods_price
+    goods_id, goods_name, goods_desc, create_time, goods_url, goods_ice,goods_num, goods_price
   </sql>
   <sql id="Blob_Column_List">
     goods_detail
@@ -116,11 +116,11 @@
   </delete>
   <insert id="insert" parameterType="com.taotieshop.demo.entity.Prize">
     insert into ice_prize (goods_id, goods_name, goods_desc, 
-      create_time, goods_url, goods_ice, 
+      create_time, goods_url, goods_ice, goods_num,
       goods_price, goods_detail)
     values (#{goods_id,jdbcType=INTEGER}, #{goods_name,jdbcType=VARCHAR}, #{goods_desc,jdbcType=VARCHAR}, 
       #{create_time,jdbcType=TIMESTAMP}, #{goods_url,jdbcType=VARCHAR}, #{goods_ice,jdbcType=INTEGER}, 
-      #{goods_price,jdbcType=DECIMAL}, #{goods_detail,jdbcType=LONGVARCHAR})
+      #{goods_num,jdbcType=INTEGER},#{goods_price,jdbcType=DECIMAL}, #{goods_detail,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Prize">
     insert into ice_prize

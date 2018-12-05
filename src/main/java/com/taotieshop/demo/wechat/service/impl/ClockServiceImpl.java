@@ -64,4 +64,20 @@ public class ClockServiceImpl implements ClockService{
         wechatUserMapper.updateRunData(wechatUser);
         return ResultUtils.success(clock);
     }
+
+    /**
+     * 获取用户的所有打卡记录
+     * @param open_id
+     * @return
+     */
+    @Override
+    public Result getClockInfo(String open_id) {
+        ClockExample clockExample = new ClockExample();
+        clockExample.setOrderByClause("create_time desc");
+        ClockExample.Criteria criteria = clockExample.createCriteria();
+        criteria.andOpen_idEqualTo(open_id);
+        criteria.andRun_dataIsNotNull();
+        List<Clock> clockList = clockMapper.selectByExample(clockExample);
+        return ResultUtils.success(clockList);
+    }
 }

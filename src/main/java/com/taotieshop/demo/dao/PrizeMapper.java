@@ -23,4 +23,6 @@ public interface PrizeMapper {
     int updateByExampleWithBLOBs(@Param("record") Prize record, @Param("example") PrizeExample example);
 
     int updateByExample(@Param("record") Prize record, @Param("example") PrizeExample example);
+
+    int updateGoodsNum(@Param("record") Prize record);
 }

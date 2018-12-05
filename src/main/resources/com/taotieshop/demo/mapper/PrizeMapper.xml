@@ -8,6 +8,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
     <result column="goods_url" jdbcType="VARCHAR" property="goods_url" />
     <result column="goods_ice" jdbcType="INTEGER" property="goods_ice" />
+    <result column="goods_num" jdbcType="INTEGER" property="goods_num" />
     <result column="goods_price" jdbcType="DECIMAL" property="goods_price" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.taotieshop.demo.entity.Prize">
@@ -240,5 +241,10 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateGoodsNum" parameterType="map">
+    update ice_prize
+    set goods_num = #{record.goods_num,jdbcType=INTEGER}
+    WHERE goods_id = #{record.goods_id,jdbcType=INTEGER}
   </update>
 </mapper>

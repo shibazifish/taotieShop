@@ -19,6 +19,16 @@ public class Prize {
 
     private String goods_detail;
 
+    private Integer goods_num;//奖品数量
+
+    public Integer getGoods_num() {
+        return goods_num;
+    }
+
+    public void setGoods_num(Integer goods_num) {
+        this.goods_num = goods_num;
+    }
+
     public Integer getGoods_id() {
         return goods_id;
     }

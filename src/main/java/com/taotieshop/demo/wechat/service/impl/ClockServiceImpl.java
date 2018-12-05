@@ -12,6 +12,7 @@ import com.taotieshop.demo.utils.WechatUtil;
 import com.taotieshop.demo.wechat.service.ClockService;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,6 +32,7 @@ public class ClockServiceImpl implements ClockService{
     @Resource
     private WechatUserMapper wechatUserMapper;
     @Override
+    @Transactional
     public Result addClockInfo(Map<String,String> requestMap) {
         String encryptedData = requestMap.getOrDefault("encryptedData","");
         String iv = requestMap.getOrDefault("iv","");

@@ -9,6 +9,7 @@ import com.taotieshop.demo.utils.IFUtil;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.wechat.service.ExchangeService;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,6 +32,7 @@ public class ExchangeServiceImpl implements ExchangeService{
     @Resource
     private ClockMapper clockMapper;
     @Override
+    @Transactional
     public Result addExchange(Exchange exchange) {
         //通过奖品id和用户id查询能否兑换奖品
         WechatUserExample wechatUserExample = new WechatUserExample();
@@ -45,6 +47,9 @@ public class ExchangeServiceImpl implements ExchangeService{
         Prize prize = prizeMapper.selectByExample(prizeExample).get(0);
 
         int intVal = 0;
+        if(prize.getGoods_num() <= 0){//库存不足
+            return ResultUtils.success(-1);
+        }
         if (wechatUsers.getIceData() > prize.getGoods_ice()){
             exchange.setCreate_date(IFUtil.CurrentDate());
             //新增领奖记录
@@ -57,6 +62,9 @@ public class ExchangeServiceImpl implements ExchangeService{
             clock.setOpen_id(exchange.getOpen_id());
             clock.setCreate_time(IFUtil.CurrentDate());
             clockMapper.updateClearIce(clock);
+            //奖品数量减一
+            prize.setGoods_num(prize.getGoods_num()-1);
+            prizeMapper.updateGoodsNum(prize);
         }
         return ResultUtils.success(intVal);
     }

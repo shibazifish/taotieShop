@@ -16,4 +16,5 @@ public interface UserService {
      * 时间：2018/12/6 16:30
     */
     int updateRunData(String opentId);
+    WechatUser getUserInfo(String opentId);
 }

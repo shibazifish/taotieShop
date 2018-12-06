@@ -2,6 +2,7 @@ package com.taotieshop.demo.wechat.controller;
 
 import com.taotieshop.demo.entity.Result;
 import com.taotieshop.demo.entity.WechatUser;
+import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.wechat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +32,10 @@ public class UserController {
     @GetMapping(value = "/login")
     public Result userLogin(@RequestParam Map<String,String> requestMap){
         return userService.userLogin(requestMap);
+    }
+
+    @GetMapping(value = "/get")
+    public Result getUserInfo(@RequestParam(name = "openId") String openId){
+        return ResultUtils.success(userService.getUserInfo(openId));
     }
 }

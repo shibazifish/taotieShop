@@ -127,4 +127,13 @@ public class UserServiceImpl implements UserService {
         int intVal =wechatUserMapper.updateRunData(wechatUser);
         return intVal;
     }
+
+    @Override
+    public WechatUser getUserInfo(String opentId) {
+        WechatUserExample wechatUserExample = new WechatUserExample();
+        WechatUserExample.Criteria criteria = wechatUserExample.createCriteria();
+        criteria.andOpenIdEqualTo(opentId);
+        List<WechatUser> wechatUsers = wechatUserMapper.selectByExample(wechatUserExample);
+        return wechatUsers.get(0);
+    }
 }

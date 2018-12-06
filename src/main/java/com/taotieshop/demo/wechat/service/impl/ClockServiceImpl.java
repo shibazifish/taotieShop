@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -81,6 +82,11 @@ public class ClockServiceImpl implements ClockService{
         criteria.andOpen_idEqualTo(open_id);
         criteria.andRun_dataIsNotNull();
         List<Clock> clockList = clockMapper.selectByExample(clockExample);
-        return ResultUtils.success(clockList);
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("clock",clockList);
+        //查询用户信息
+        WechatUser wechatUser = userService.getUserInfo(open_id);
+        resultMap.put("wechatUser",wechatUser);
+        return ResultUtils.success(resultMap);
     }
 }

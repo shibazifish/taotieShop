@@ -9,8 +9,6 @@ spring:
 mybatis:
   mapper-locations: classpath:com/taotieshop/demo/mapper/*.xml
   type-aliases-package: com.taotieshop.demo.entity
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 pagehelper:
     helperDialect: mysql
     reasonable: true

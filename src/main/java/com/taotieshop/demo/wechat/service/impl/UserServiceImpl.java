@@ -113,4 +113,18 @@ public class UserServiceImpl implements UserService {
         }
         return ResultUtils.success(weChatSession);
     }
+    /**
+     * 任务：
+     * 描述：通过用户openId更新用户步数和冰块数
+     * 作者：李宇
+     * 时间：2018/12/6 16:28
+    */
+    @Override
+    public int updateRunData(String openId){
+        //更新用户累计步数和用户累计冰块数
+        WechatUser wechatUser = new WechatUser();
+        wechatUser.setOpenId(openId);
+        int intVal =wechatUserMapper.updateRunData(wechatUser);
+        return intVal;
+    }
 }

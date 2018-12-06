@@ -8,6 +8,8 @@ import com.taotieshop.demo.entity.*;
 import com.taotieshop.demo.utils.IFUtil;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.wechat.service.ExchangeService;
+import com.taotieshop.demo.wechat.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,9 +33,13 @@ public class ExchangeServiceImpl implements ExchangeService{
     private PrizeMapper prizeMapper;
     @Resource
     private ClockMapper clockMapper;
+    @Autowired
+    private UserService userService;
     @Override
     @Transactional
     public Result addExchange(Exchange exchange) {
+        //更新用户运动步数和冰块数
+        userService.updateRunData(exchange.getOpen_id());
         //通过奖品id和用户id查询能否兑换奖品
         WechatUserExample wechatUserExample = new WechatUserExample();
         WechatUserExample.Criteria criteria = wechatUserExample.createCriteria();

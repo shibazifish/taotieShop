@@ -10,7 +10,9 @@ import com.taotieshop.demo.utils.IFUtil;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.utils.WechatUtil;
 import com.taotieshop.demo.wechat.service.ClockService;
+import com.taotieshop.demo.wechat.service.UserService;
 import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,9 @@ public class ClockServiceImpl implements ClockService{
     private ClockMapper clockMapper;
     @Resource
     private WechatUserMapper wechatUserMapper;
+    @Autowired
+    private UserService userService;
+
     @Override
     @Transactional
     public Result addClockInfo(Map<String,String> requestMap) {
@@ -59,9 +64,7 @@ public class ClockServiceImpl implements ClockService{
             intVal = clockMapper.insert(clock);
         }
         //更新用户累计步数和用户累计冰块数
-        WechatUser wechatUser = new WechatUser();
-        wechatUser.setOpenId(open_id);
-        wechatUserMapper.updateRunData(wechatUser);
+        userService.updateRunData(open_id);
         return ResultUtils.success(clock);
     }
 

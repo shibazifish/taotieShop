@@ -17,4 +17,10 @@ public interface UserService {
     */
     int updateRunData(String opentId);
     WechatUser getUserInfo(String opentId);
+
+    /**
+     * 获取排行榜信息
+     * @return
+     */
+    Result getRankInfo();
 }

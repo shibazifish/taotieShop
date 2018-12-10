@@ -17,6 +17,7 @@ import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -135,5 +136,17 @@ public class UserServiceImpl implements UserService {
         criteria.andOpenIdEqualTo(opentId);
         List<WechatUser> wechatUsers = wechatUserMapper.selectByExample(wechatUserExample);
         return wechatUsers.get(0);
+    }
+
+    @Override
+    public Result getRankInfo() {
+        List<Map<String,Object>> nowRanks = wechatUserMapper.getNowRankInfo();
+        List<Map<String,Object>> yesterdayRanks = wechatUserMapper.getYesterdayRankInfo();
+        List<Map<String,Object>> allRanks = wechatUserMapper.getAllRankInfo();
+        Map<String,Object> ranks = new HashMap<>();
+        ranks.put("nowRanks",nowRanks);
+        ranks.put("yesterdayRanks",yesterdayRanks);
+        ranks.put("allRanks",allRanks);
+        return ResultUtils.success(ranks);
     }
 }

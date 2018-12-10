@@ -38,4 +38,8 @@ public class UserController {
     public Result getUserInfo(@RequestParam(name = "openId") String openId){
         return ResultUtils.success(userService.getUserInfo(openId));
     }
+    @GetMapping(value = "/rank")
+    public Result getRankInfo(){
+        return ResultUtils.success(userService.getRankInfo());
+    }
 }

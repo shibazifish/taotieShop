@@ -3,6 +3,8 @@ package com.taotieshop.demo.dao;
 import com.taotieshop.demo.entity.WechatUser;
 import com.taotieshop.demo.entity.WechatUserExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface WechatUserMapper {
@@ -22,4 +24,21 @@ public interface WechatUserMapper {
 
     int updateRunData(WechatUser record);
 
+    /**
+     * 今日排行榜
+     * @return
+     */
+    List<Map<String,Object>> getNowRankInfo();
+
+    /**
+     * 昨日排行榜
+     * @return
+     */
+    List<Map<String,Object>> getYesterdayRankInfo();
+
+    /**
+     * 总排行榜
+     * @return
+     */
+    List<Map<String,Object>> getAllRankInfo();
 }

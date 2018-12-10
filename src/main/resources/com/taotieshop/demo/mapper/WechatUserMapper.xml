@@ -262,4 +262,21 @@
     iceData = (SELECT IFNULL(sum(ice_data),0) FROM  ice_clock WHERE open_id = #{openId,jdbcType=VARCHAR} AND to_days(create_time) &lt; to_days(NOW()))
     WHERE openId = #{openId,jdbcType=VARCHAR}
   </update>
+  <select id="getNowRankInfo" resultType="java.util.HashMap">
+    SELECT u.nickName,c.run_data,c.ice_data,u.avatarUrl,c.create_time,u.openId FROM nideshop_wechat_user u LEFT JOIN ice_clock c
+    on c.open_id = u.openId
+    WHERE c.run_data IS not NULL and TO_DAYS(c.create_time) = TO_DAYS(NOW())
+    ORDER BY c.run_data DESC
+  </select>
+  <select id="getYesterdayRankInfo" resultType="java.util.HashMap">
+     SELECT u.nickName,c.run_data,c.ice_data,u.avatarUrl,c.create_time,u.openId FROM nideshop_wechat_user u LEFT JOIN ice_clock c
+    on c.open_id = u.openId
+    WHERE c.run_data IS not NULL and TO_DAYS(c.create_time) = TO_DAYS(NOW())-1
+    ORDER BY c.run_data DESC
+  </select>
+  <select id="getAllRankInfo" resultType="java.util.HashMap">
+    SELECT u.nickName,u.countRunData run_data,u.iceData ice_data,u.avatarUrl,u.openId FROM nideshop_wechat_user u
+    WHERE u.countRunData IS not NULL
+    ORDER BY u.countRunData DESC
+  </select>
 </mapper>

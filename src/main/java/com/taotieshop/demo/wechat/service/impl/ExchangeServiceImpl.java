@@ -56,7 +56,7 @@ public class ExchangeServiceImpl implements ExchangeService{
         if(prize.getGoods_num() <= 0){//库存不足
             return ResultUtils.success(-1);
         }
-        if (wechatUsers.getIceData() > prize.getGoods_ice()){
+        if (wechatUsers.getIceData() >= prize.getGoods_ice()){
             exchange.setCreate_date(IFUtil.CurrentDate());
             //新增领奖记录
             intVal = exchangeMapper.insert(exchange);

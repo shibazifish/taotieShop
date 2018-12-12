@@ -66,8 +66,8 @@ public class UserServiceImpl implements UserService {
         if (wechatUser.getInviter()!=null && wechatUser.getInviter() !=""){//邀请人获得冰块
             ClockExample clockExample = new ClockExample();
             ClockExample.Criteria criteria1 = clockExample.createCriteria();
-            criteria.andOpenIdEqualTo(wechatUser.getInviter());
-            clockExample.setOrderByClause("clock_id ASC");
+            criteria1.andOpen_idEqualTo(wechatUser.getInviter());
+            clockExample.setOrderByClause("create_time ASC");
             List<Clock> clocks = clockMapper.selectByExample(clockExample);
             if (clocks.size()>1){//查询推荐人信息
                 clockMapper.updateInviterIce(clocks.get(0));

@@ -1,11 +1,9 @@
 package com.taotieshop.demo.wechat.service.impl;
 
 import com.taotieshop.demo.dao.ClockMapper;
+import com.taotieshop.demo.dao.SysParameterMapper;
 import com.taotieshop.demo.dao.WechatUserMapper;
-import com.taotieshop.demo.entity.Clock;
-import com.taotieshop.demo.entity.ClockExample;
-import com.taotieshop.demo.entity.Result;
-import com.taotieshop.demo.entity.WechatUser;
+import com.taotieshop.demo.entity.*;
 import com.taotieshop.demo.utils.IFUtil;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.utils.WechatUtil;
@@ -17,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +32,7 @@ public class ClockServiceImpl implements ClockService{
     @Resource
     private ClockMapper clockMapper;
     @Resource
-    private WechatUserMapper wechatUserMapper;
+    private SysParameterMapper sysParameterMapper;
     @Autowired
     private UserService userService;
 
@@ -87,6 +86,21 @@ public class ClockServiceImpl implements ClockService{
         //查询用户信息
         WechatUser wechatUser = userService.getUserInfo(open_id);
         resultMap.put("wechatUser",wechatUser);
+        //查询海报颜色
+        SysParameterExample sysParameterExample = new SysParameterExample();
+        SysParameterExample.Criteria sysCriteria1 = sysParameterExample.createCriteria();
+        List<String> strings = new ArrayList<>();
+        strings.add("POSTER_COLOR");
+        strings.add("POSTER_TIME_COLOR");
+        strings.add("POSTER_DATA_COLOR");
+        strings.add("POSTER_INFO_COLOR");
+        sysCriteria1.andPara_codeIn(strings);
+        List<SysParameter> posterColor = sysParameterMapper.selectByExample(sysParameterExample);
+        Map<String,Object> colorMap = new HashMap<>();
+        for (SysParameter sysPara:posterColor) {
+            colorMap.put(sysPara.getPara_code(), sysPara.getPara_value());
+        }
+        resultMap.put("colorMap",colorMap);
         return ResultUtils.success(resultMap);
     }
 }

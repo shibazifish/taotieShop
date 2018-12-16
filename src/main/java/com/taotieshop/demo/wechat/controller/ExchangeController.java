@@ -22,4 +22,8 @@ public class ExchangeController {
     public Result addEnterInfo(@RequestBody Exchange exchange){
         return exchangeService.addExchange(exchange);
     }
+    @GetMapping(value = "/get")
+    public Result getExchange(@RequestParam(name = "prizeId") String prizeId){
+        return exchangeService.getExchange(prizeId);
+    }
 }

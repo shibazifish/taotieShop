@@ -21,6 +21,16 @@ public class Prize {
 
     private Integer goods_num;//奖品数量
 
+    private Integer goods_order;//排序值
+
+    public Integer getGoods_order() {
+        return goods_order;
+    }
+
+    public void setGoods_order(Integer goods_order) {
+        this.goods_order = goods_order;
+    }
+
     public Integer getGoods_num() {
         return goods_num;
     }

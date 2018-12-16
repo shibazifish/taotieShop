@@ -3,6 +3,8 @@ package com.taotieshop.demo.dao;
 import com.taotieshop.demo.entity.Exchange;
 import com.taotieshop.demo.entity.ExchangeExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ExchangeMapper {
@@ -19,4 +21,6 @@ public interface ExchangeMapper {
     int updateByExampleSelective(@Param("record") Exchange record, @Param("example") ExchangeExample example);
 
     int updateByExample(@Param("record") Exchange record, @Param("example") ExchangeExample example);
+
+    List<Map<String,Object>> selectById(@Param("prizeId") String prizeId);
 }

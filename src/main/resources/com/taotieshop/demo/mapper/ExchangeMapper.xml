@@ -161,4 +161,24 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  <select id="selectById" parameterType="java.lang.String"  resultType="java.util.HashMap">
+    SELECT
+    t.record_id,
+    u.nickName,
+    u.avatarUrl,
+    u.openId,
+    t.create_date,
+    p.goods_name
+    FROM
+    ice_exchange t
+    LEFT JOIN nideshop_wechat_user u ON t.open_id = u.openId
+    LEFT JOIN ice_prize p ON t.goods_id = p.goods_id
+    WHERE
+    1 = 1
+    <if test="prizeId != null">
+      and p.goods_id = #{prizeId}
+    </if>
+    ORDER BY
+    t.create_date DESC
+  </select>
 </mapper>

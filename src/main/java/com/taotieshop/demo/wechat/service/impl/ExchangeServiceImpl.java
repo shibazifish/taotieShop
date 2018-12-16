@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 任务：
@@ -73,5 +74,16 @@ public class ExchangeServiceImpl implements ExchangeService{
             prizeMapper.updateGoodsNum(prize);
         }
         return ResultUtils.success(intVal);
+    }
+
+    /**
+     * 获取兑奖记录
+     * @param prizeId
+     * @return
+     */
+    @Override
+    public Result getExchange(String prizeId) {
+        List<Map<String,Object>> mapList = exchangeMapper.selectById(prizeId);
+        return ResultUtils.success(mapList);
     }
 }

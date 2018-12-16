@@ -5,4 +5,5 @@ import com.taotieshop.demo.entity.Result;
 
 public interface ExchangeService {
     Result addExchange(Exchange exchange);
+    Result getExchange(String prizeId);
 }

@@ -3,6 +3,8 @@ package com.taotieshop.demo.dao;
 import com.taotieshop.demo.entity.Prize;
 import com.taotieshop.demo.entity.PrizeExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface PrizeMapper {
@@ -25,4 +27,6 @@ public interface PrizeMapper {
     int updateByExample(@Param("record") Prize record, @Param("example") PrizeExample example);
 
     int updateGoodsNum(@Param("record") Prize record);
+
+    List<Map<String,Object>> selectById(@Param("prizeId") String prizeId);
 }

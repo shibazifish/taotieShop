@@ -29,7 +29,9 @@ public class PrizeServiceImpl implements PrizeService {
     */
     @Override
     public Result getPrizeInfo() {
-        List<Prize> activityList = prizeMapper.selectByExample(null);
+        PrizeExample prizeExample = new PrizeExample();
+        prizeExample.setOrderByClause("goods_order");
+        List<Prize> activityList = prizeMapper.selectByExample(prizeExample);
         return ResultUtils.success(activityList);
     }
 

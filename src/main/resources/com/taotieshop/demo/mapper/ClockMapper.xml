@@ -190,7 +190,8 @@
   </update>
   <update id="updateInviterIce" parameterType="com.taotieshop.demo.entity.Clock">
     update ice_clock
-    set ice_data = (SELECT ice_data + 2000 FROM  ice_clock WHERE open_id = #{open_id,jdbcType=VARCHAR} AND create_time = #{create_time,jdbcType=TIMESTAMP})
+    set ice_data = (SELECT max(a.ice_data) FROM (SELECT IFNULL(ice_data,0) + 1 ice_data FROM  ice_clock WHERE open_id = #{open_id,jdbcType=VARCHAR} AND create_time = #{create_time,jdbcType=TIMESTAMP})a),
+    run_data = 1000
     WHERE open_id = #{open_id,jdbcType=VARCHAR} AND create_time = #{create_time,jdbcType=TIMESTAMP}
   </update>
 </mapper>

@@ -37,7 +37,7 @@ public class PrizeServiceImpl implements PrizeService {
     public Result getPrizeInfo() {
         //查询奖品
         PrizeExample prizeExample = new PrizeExample();
-        prizeExample.setOrderByClause("goods_order");
+        prizeExample.setOrderByClause("goods_order desc");
         List<Prize> activityList = prizeMapper.selectByExample(prizeExample);
 
         //查询公告

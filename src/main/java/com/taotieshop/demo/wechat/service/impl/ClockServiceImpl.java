@@ -49,10 +49,16 @@ public class ClockServiceImpl implements ClockService{
         JSONObject resultJson = JSONObject.fromObject(result);
         List<Map<String,Object>> resultArr = (List<Map<String,Object>>)resultJson.get("stepInfoList");
         Map<String,Object> map = resultArr.get(resultArr.size()-1);
-        String step = map.getOrDefault("step","").toString();
+        String step = map.getOrDefault("step","").toString();//获取微信步数
+
+        int runData = Integer.parseInt(step);
+        int iceData = runData/1000;
+        if(iceData > 20){//如果步数大于20000，冰块按照20000计算
+            iceData = 20;
+        }
         Clock clock = new Clock();
-        clock.setRun_data(Integer.parseInt(step));
-        clock.setIce_data(Integer.parseInt(step)/1000);
+        clock.setRun_data(runData);
+        clock.setIce_data(iceData);
         clock.setCreate_time(IFUtil.CurrentDate());
         clock.setOpen_id(open_id);
 

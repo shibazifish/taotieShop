@@ -1,5 +1,6 @@
 package com.taotieshop.demo.wechat.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.taotieshop.demo.dao.ClockMapper;
 import com.taotieshop.demo.dao.WechatUserMapper;
 import com.taotieshop.demo.entity.*;
@@ -140,8 +141,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result getRankInfo() {
+        PageHelper.startPage(1,10);
         List<Map<String,Object>> nowRanks = wechatUserMapper.getNowRankInfo();
+        PageHelper.startPage(1,10);
         List<Map<String,Object>> yesterdayRanks = wechatUserMapper.getYesterdayRankInfo();
+        PageHelper.startPage(1,20);
         List<Map<String,Object>> allRanks = wechatUserMapper.getAllRankInfo();
         Map<String,Object> ranks = new HashMap<>();
         ranks.put("nowRanks",nowRanks);

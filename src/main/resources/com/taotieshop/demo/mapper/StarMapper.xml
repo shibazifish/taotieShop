@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taotieshop.demo.dao.StarMapper">
+  <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Star">
+    <result column="star_id" jdbcType="INTEGER" property="star_id" />
+    <result column="star_img" jdbcType="VARCHAR" property="star_img" />
+    <result column="img_width" jdbcType="DOUBLE" property="img_width" />
+    <result column="img_height" jdbcType="DOUBLE" property="img_height" />
+    <result column="star_name" jdbcType="VARCHAR" property="star_name" />
+    <result column="font_width" jdbcType="DOUBLE" property="font_width" />
+    <result column="font_height" jdbcType="DOUBLE" property="font_height" />
+    <result column="font_color" jdbcType="VARCHAR" property="font_color" />
+    <result column="font_angle" jdbcType="DOUBLE" property="font_angle" />
+    <result column="maxWidth" jdbcType="DOUBLE" property="maxWidth" />
+    <result column="maxHeight" jdbcType="DOUBLE" property="maxHeight" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    star_id, star_img, img_width, img_height, star_name, font_width, font_height, font_color, 
+    font_angle, maxWidth, maxHeight
+  </sql>
+  <select id="selectByExample" parameterType="com.taotieshop.demo.entity.StarExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ice_star
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.taotieshop.demo.entity.StarExample">
+    delete from ice_star
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.taotieshop.demo.entity.Star">
+    insert into ice_star (star_id, star_img, img_width, 
+      img_height, star_name, font_width, 
+      font_height, font_color, font_angle, 
+      maxWidth, maxHeight)
+    values (#{star_id,jdbcType=INTEGER}, #{star_img,jdbcType=VARCHAR}, #{img_width,jdbcType=DOUBLE}, 
+      #{img_height,jdbcType=DOUBLE}, #{star_name,jdbcType=VARCHAR}, #{font_width,jdbcType=DOUBLE}, 
+      #{font_height,jdbcType=DOUBLE}, #{font_color,jdbcType=VARCHAR}, #{font_angle,jdbcType=DOUBLE}, 
+      #{maxWidth,jdbcType=DOUBLE}, #{maxHeight,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Star">
+    insert into ice_star
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="star_id != null">
+        star_id,
+      </if>
+      <if test="star_img != null">
+        star_img,
+      </if>
+      <if test="img_width != null">
+        img_width,
+      </if>
+      <if test="img_height != null">
+        img_height,
+      </if>
+      <if test="star_name != null">
+        star_name,
+      </if>
+      <if test="font_width != null">
+        font_width,
+      </if>
+      <if test="font_height != null">
+        font_height,
+      </if>
+      <if test="font_color != null">
+        font_color,
+      </if>
+      <if test="font_angle != null">
+        font_angle,
+      </if>
+      <if test="maxWidth != null">
+        maxWidth,
+      </if>
+      <if test="maxHeight != null">
+        maxHeight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="star_id != null">
+        #{star_id,jdbcType=INTEGER},
+      </if>
+      <if test="star_img != null">
+        #{star_img,jdbcType=VARCHAR},
+      </if>
+      <if test="img_width != null">
+        #{img_width,jdbcType=DOUBLE},
+      </if>
+      <if test="img_height != null">
+        #{img_height,jdbcType=DOUBLE},
+      </if>
+      <if test="star_name != null">
+        #{star_name,jdbcType=VARCHAR},
+      </if>
+      <if test="font_width != null">
+        #{font_width,jdbcType=DOUBLE},
+      </if>
+      <if test="font_height != null">
+        #{font_height,jdbcType=DOUBLE},
+      </if>
+      <if test="font_color != null">
+        #{font_color,jdbcType=VARCHAR},
+      </if>
+      <if test="font_angle != null">
+        #{font_angle,jdbcType=DOUBLE},
+      </if>
+      <if test="maxWidth != null">
+        #{maxWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="maxHeight != null">
+        #{maxHeight,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.taotieshop.demo.entity.StarExample" resultType="java.lang.Long">
+    select count(*) from ice_star
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ice_star
+    <set>
+      <if test="record.star_id != null">
+        star_id = #{record.star_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.star_img != null">
+        star_img = #{record.star_img,jdbcType=VARCHAR},
+      </if>
+      <if test="record.img_width != null">
+        img_width = #{record.img_width,jdbcType=DOUBLE},
+      </if>
+      <if test="record.img_height != null">
+        img_height = #{record.img_height,jdbcType=DOUBLE},
+      </if>
+      <if test="record.star_name != null">
+        star_name = #{record.star_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.font_width != null">
+        font_width = #{record.font_width,jdbcType=DOUBLE},
+      </if>
+      <if test="record.font_height != null">
+        font_height = #{record.font_height,jdbcType=DOUBLE},
+      </if>
+      <if test="record.font_color != null">
+        font_color = #{record.font_color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.font_angle != null">
+        font_angle = #{record.font_angle,jdbcType=DOUBLE},
+      </if>
+      <if test="record.maxWidth != null">
+        maxWidth = #{record.maxWidth,jdbcType=DOUBLE},
+      </if>
+      <if test="record.maxHeight != null">
+        maxHeight = #{record.maxHeight,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ice_star
+    set star_id = #{record.star_id,jdbcType=INTEGER},
+      star_img = #{record.star_img,jdbcType=VARCHAR},
+      img_width = #{record.img_width,jdbcType=DOUBLE},
+      img_height = #{record.img_height,jdbcType=DOUBLE},
+      star_name = #{record.star_name,jdbcType=VARCHAR},
+      font_width = #{record.font_width,jdbcType=DOUBLE},
+      font_height = #{record.font_height,jdbcType=DOUBLE},
+      font_color = #{record.font_color,jdbcType=VARCHAR},
+      font_angle = #{record.font_angle,jdbcType=DOUBLE},
+      maxWidth = #{record.maxWidth,jdbcType=DOUBLE},
+      maxHeight = #{record.maxHeight,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

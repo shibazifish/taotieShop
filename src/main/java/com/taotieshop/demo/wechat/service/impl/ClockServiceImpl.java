@@ -100,6 +100,7 @@ public class ClockServiceImpl implements ClockService{
         strings.add("POSTER_TIME_COLOR");
         strings.add("POSTER_DATA_COLOR");
         strings.add("POSTER_INFO_COLOR");
+        strings.add("POSTER_TITLE");
         sysCriteria1.andPara_codeIn(strings);
         List<SysParameter> posterColor = sysParameterMapper.selectByExample(sysParameterExample);
         Map<String,Object> colorMap = new HashMap<>();

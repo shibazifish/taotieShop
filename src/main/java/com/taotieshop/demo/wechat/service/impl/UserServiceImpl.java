@@ -54,6 +54,12 @@ public class UserServiceImpl implements UserService {
         return echostr;
     }
 
+    /**
+     * 任务：
+     * 描述：新增用户
+     * 作者：李宇
+     * 时间：2018/12/24 9:16
+    */
     @Override
     @Transactional
     public Result addUser(WechatUser wechatUser) {
@@ -90,6 +96,12 @@ public class UserServiceImpl implements UserService {
         return ResultUtils.success(wechatUser);
     }
 
+    /**
+     * 任务：
+     * 描述：用户微信登录
+     * 作者：李宇
+     * 时间：2018/12/24 9:16
+    */
     @Override
     public Result userLogin(Map<String, String> requestMap) {
        String wx_url_1 = "https://api.weixin.qq.com/sns/jscode2session?appid=wx4375865120f60592&secret=bdf2056097e96b3124ac43399fa2fdd2&js_code=";
@@ -130,6 +142,12 @@ public class UserServiceImpl implements UserService {
         return intVal;
     }
 
+    /**
+     * 任务：
+     * 描述：通过openId获取用户信息
+     * 作者：李宇
+     * 时间：2018/12/24 9:16
+    */
     @Override
     public WechatUser getUserInfo(String opentId) {
         WechatUserExample wechatUserExample = new WechatUserExample();
@@ -139,6 +157,12 @@ public class UserServiceImpl implements UserService {
         return wechatUsers.get(0);
     }
 
+    /**
+     * 任务：
+     * 描述：查询排行信息
+     * 作者：李宇
+     * 时间：2018/12/24 9:15
+    */
     @Override
     public Result getRankInfo() {
         PageHelper.startPage(1,10);

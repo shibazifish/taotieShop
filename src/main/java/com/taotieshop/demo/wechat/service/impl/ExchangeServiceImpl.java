@@ -36,6 +36,12 @@ public class ExchangeServiceImpl implements ExchangeService{
     private ClockMapper clockMapper;
     @Autowired
     private UserService userService;
+    /**
+     * 任务：
+     * 描述：兑换奖品
+     * 作者：李宇
+     * 时间：2018/12/24 9:17
+    */
     @Override
     @Transactional
     public Result addExchange(Exchange exchange) {
@@ -55,7 +61,7 @@ public class ExchangeServiceImpl implements ExchangeService{
 
         int intVal = 0;
         if(prize.getGoods_num() <= 0){//库存不足
-            return ResultUtils.success(-1);
+            return ResultUtils.error(-1,"库存不足");
         }
         if (wechatUsers.getIceData() >= prize.getGoods_ice()){
             exchange.setCreate_date(IFUtil.CurrentDate());
@@ -72,8 +78,10 @@ public class ExchangeServiceImpl implements ExchangeService{
             //奖品数量减一
             prize.setGoods_num(prize.getGoods_num()-1);
             prizeMapper.updateGoodsNum(prize);
+            return ResultUtils.success("兑换成功！");
+        }else {
+            return ResultUtils.error(-2,"可用冰块不足！" );
         }
-        return ResultUtils.success(intVal);
     }
 
     /**

@@ -24,6 +24,8 @@ public interface WechatUserMapper {
 
     int updateRunData(WechatUser record);
 
+    int updateInviterData(@Param("openId")String openId);
+
     /**
      * 今日排行榜
      * @return

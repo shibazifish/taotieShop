@@ -59,26 +59,40 @@ public class ExchangeServiceImpl implements ExchangeService{
         prizeCriteria.andGoods_idEqualTo(exchange.getGoods_id());
         Prize prize = prizeMapper.selectByExample(prizeExample).get(0);
 
+        //查询邀请人数
+        WechatUserExample wechatUserExample1 = new WechatUserExample();
+        WechatUserExample.Criteria criteria1 = wechatUserExample1.createCriteria();
+        criteria1.andInviterEqualTo(exchange.getOpen_id());
+        List<WechatUser> inviterUsers = wechatUserMapper.selectByExample(wechatUserExample1);
+
+
         int intVal = 0;
         if(prize.getGoods_num() <= 0){//库存不足
             return ResultUtils.error(-1,"库存不足");
         }
         if (wechatUsers.getIceData() >= prize.getGoods_ice()){
-            exchange.setCreate_date(IFUtil.CurrentDate());
-            //新增领奖记录
-            intVal = exchangeMapper.insert(exchange);
-            //清空冰块
-            wechatUsers.setIceData(0);
-            wechatUserMapper.updateByExample(wechatUsers, wechatUserExample);//用户表冰块清空
-            //打卡表冰块清空
-            Clock clock = new Clock();
-            clock.setOpen_id(exchange.getOpen_id());
-            clock.setCreate_time(IFUtil.CurrentDate());
-            clockMapper.updateClearIce(clock);
-            //奖品数量减一
-            prize.setGoods_num(prize.getGoods_num()-1);
-            prizeMapper.updateGoodsNum(prize);
-            return ResultUtils.success("兑换成功！");
+            if(inviterUsers.size() >= prize.getGoods_price()){//邀请用户数量是否达标
+                exchange.setCreate_date(IFUtil.CurrentDate());
+                //新增领奖记录
+                intVal = exchangeMapper.insert(exchange);
+                //清空冰块
+                wechatUsers.setIceData(0);
+                wechatUserMapper.updateByExample(wechatUsers, wechatUserExample);//用户表冰块清空
+                //打卡表冰块清空
+                Clock clock = new Clock();
+                clock.setOpen_id(exchange.getOpen_id());
+                clock.setCreate_time(IFUtil.CurrentDate());
+                clockMapper.updateClearIce(clock);
+                //清空邀请数据
+                wechatUserMapper.updateInviterData(exchange.getOpen_id());
+                //奖品数量减一
+                prize.setGoods_num(prize.getGoods_num()-1);
+                prizeMapper.updateGoodsNum(prize);
+                return ResultUtils.success("兑换成功！");
+            }else{
+                long finalInt = prize.getGoods_price() - inviterUsers.size();
+                return ResultUtils.error(-3,"再邀请"+finalInt+"名好友即可解锁红包！" );
+            }
         }else {
             return ResultUtils.error(-2,"可用冰块不足！" );
         }

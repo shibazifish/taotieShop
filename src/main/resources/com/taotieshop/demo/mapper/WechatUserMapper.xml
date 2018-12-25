@@ -279,4 +279,7 @@
     WHERE u.countRunData IS not NULL
     ORDER BY u.countRunData DESC
   </select>
+  <update id="updateInviterData" parameterType="java.lang.String">
+    UPDATE nideshop_wechat_user u SET u.inviter = "" WHERE u.inviter = #{openId,jdbcType=VARCHAR}
+  </update>
 </mapper>

@@ -4,6 +4,7 @@ import com.taotieshop.demo.dao.ActivityMapper;
 import com.taotieshop.demo.entity.Activity;
 import com.taotieshop.demo.entity.ActivityExample;
 import com.taotieshop.demo.entity.Result;
+import com.taotieshop.demo.utils.IFUtil;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.wechat.service.ActivityService;
 import org.springframework.stereotype.Component;
@@ -30,6 +31,8 @@ public class ActivityServiceImpl implements ActivityService {
     */
     @Override
     public Result addActivity(Activity activity) {
+        activity.setCreate_time(IFUtil.CurrentDate());
+        activity.setActivity_status("待审核");
         int intVal = activityMapper.insert(activity);
         if(intVal>0){
             return ResultUtils.success("发布成功！");
@@ -46,7 +49,9 @@ public class ActivityServiceImpl implements ActivityService {
     */
     @Override
     public Result getActivity() {
-        List<Activity> activityList = activityMapper.selectByExample(null);
+        ActivityExample activityExample = new ActivityExample();
+        activityExample.setOrderByClause("create_time desc");
+        List<Activity> activityList = activityMapper.selectByExample(activityExample);
         return ResultUtils.success(activityList);
     }
 

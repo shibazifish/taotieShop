@@ -75,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     activity_id, activity_name, activity_info, activity_status, create_time, creator, 
-    create_name, start_time, end_time
+    create_name, start_time, end_time,activity_desc
   </sql>
   <sql id="Blob_Column_List">
     activity_desc

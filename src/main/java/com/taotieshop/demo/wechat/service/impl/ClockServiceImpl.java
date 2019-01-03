@@ -53,8 +53,8 @@ public class ClockServiceImpl implements ClockService{
 
         int runData = Integer.parseInt(step);
         int iceData = runData/1000;
-        if(iceData > 20){//如果步数大于20000，冰块按照20000计算
-            iceData = 20;
+        if(iceData > 10){//如果步数大于10000，冰块按照10000计算
+            iceData = 10;
         }
         Clock clock = new Clock();
         clock.setRun_data(runData);

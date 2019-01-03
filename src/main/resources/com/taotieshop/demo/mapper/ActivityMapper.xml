@@ -4,8 +4,13 @@
   <resultMap id="BaseResultMap" type="com.taotieshop.demo.entity.Activity">
     <result column="activity_id" jdbcType="INTEGER" property="activity_id" />
     <result column="activity_name" jdbcType="VARCHAR" property="activity_name" />
-    <result column="activity_prize" jdbcType="VARCHAR" property="activity_prize" />
+    <result column="activity_info" jdbcType="VARCHAR" property="activity_info" />
+    <result column="activity_status" jdbcType="VARCHAR" property="activity_status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="create_name" jdbcType="VARCHAR" property="create_name" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="start_time" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="end_time" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.taotieshop.demo.entity.Activity">
     <result column="activity_desc" jdbcType="LONGVARCHAR" property="activity_desc" />
@@ -69,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    activity_id, activity_name, activity_prize, create_time,activity_desc
+    activity_id, activity_name, activity_info, activity_status, create_time, creator, 
+    create_name, start_time, end_time
   </sql>
   <sql id="Blob_Column_List">
     activity_desc
@@ -82,7 +88,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from nideshop_activity
+    from ice_activity
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -96,7 +102,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from nideshop_activity
+    from ice_activity
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -105,19 +111,23 @@
     </if>
   </select>
   <delete id="deleteByExample" parameterType="com.taotieshop.demo.entity.ActivityExample">
-    delete from nideshop_activity
+    delete from ice_activity
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.taotieshop.demo.entity.Activity">
-    insert into nideshop_activity (activity_id, activity_name, activity_prize, 
-      create_time, activity_desc)
-    values (#{activity_id,jdbcType=INTEGER}, #{activity_name,jdbcType=VARCHAR}, #{activity_prize,jdbcType=VARCHAR}, 
-      #{create_time,jdbcType=TIMESTAMP}, #{activity_desc,jdbcType=LONGVARCHAR})
+    insert into ice_activity (activity_id, activity_name, activity_info, 
+      activity_status, create_time, creator, 
+      create_name, start_time, end_time, 
+      activity_desc)
+    values (#{activity_id,jdbcType=INTEGER}, #{activity_name,jdbcType=VARCHAR}, #{activity_info,jdbcType=VARCHAR}, 
+      #{activity_status,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{create_name,jdbcType=VARCHAR}, #{start_time,jdbcType=TIMESTAMP}, #{end_time,jdbcType=TIMESTAMP}, 
+      #{activity_desc,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Activity">
-    insert into nideshop_activity
+    insert into ice_activity
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="activity_id != null">
         activity_id,
@@ -125,11 +135,26 @@
       <if test="activity_name != null">
         activity_name,
       </if>
-      <if test="activity_prize != null">
-        activity_prize,
+      <if test="activity_info != null">
+        activity_info,
+      </if>
+      <if test="activity_status != null">
+        activity_status,
       </if>
       <if test="create_time != null">
         create_time,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="create_name != null">
+        create_name,
+      </if>
+      <if test="start_time != null">
+        start_time,
+      </if>
+      <if test="end_time != null">
+        end_time,
       </if>
       <if test="activity_desc != null">
         activity_desc,
@@ -142,11 +167,26 @@
       <if test="activity_name != null">
         #{activity_name,jdbcType=VARCHAR},
       </if>
-      <if test="activity_prize != null">
-        #{activity_prize,jdbcType=VARCHAR},
+      <if test="activity_info != null">
+        #{activity_info,jdbcType=VARCHAR},
+      </if>
+      <if test="activity_status != null">
+        #{activity_status,jdbcType=VARCHAR},
       </if>
       <if test="create_time != null">
         #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="create_name != null">
+        #{create_name,jdbcType=VARCHAR},
+      </if>
+      <if test="start_time != null">
+        #{start_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="end_time != null">
+        #{end_time,jdbcType=TIMESTAMP},
       </if>
       <if test="activity_desc != null">
         #{activity_desc,jdbcType=LONGVARCHAR},
@@ -154,13 +194,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.taotieshop.demo.entity.ActivityExample" resultType="java.lang.Long">
-    select count(*) from nideshop_activity
+    select count(*) from ice_activity
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update nideshop_activity
+    update ice_activity
     <set>
       <if test="record.activity_id != null">
         activity_id = #{record.activity_id,jdbcType=INTEGER},
@@ -168,11 +208,26 @@
       <if test="record.activity_name != null">
         activity_name = #{record.activity_name,jdbcType=VARCHAR},
       </if>
-      <if test="record.activity_prize != null">
-        activity_prize = #{record.activity_prize,jdbcType=VARCHAR},
+      <if test="record.activity_info != null">
+        activity_info = #{record.activity_info,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activity_status != null">
+        activity_status = #{record.activity_status,jdbcType=VARCHAR},
       </if>
       <if test="record.create_time != null">
         create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.create_name != null">
+        create_name = #{record.create_name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.start_time != null">
+        start_time = #{record.start_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.end_time != null">
+        end_time = #{record.end_time,jdbcType=TIMESTAMP},
       </if>
       <if test="record.activity_desc != null">
         activity_desc = #{record.activity_desc,jdbcType=LONGVARCHAR},
@@ -183,22 +238,32 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
-    update nideshop_activity
+    update ice_activity
     set activity_id = #{record.activity_id,jdbcType=INTEGER},
       activity_name = #{record.activity_name,jdbcType=VARCHAR},
-      activity_prize = #{record.activity_prize,jdbcType=VARCHAR},
+      activity_info = #{record.activity_info,jdbcType=VARCHAR},
+      activity_status = #{record.activity_status,jdbcType=VARCHAR},
       create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      create_name = #{record.create_name,jdbcType=VARCHAR},
+      start_time = #{record.start_time,jdbcType=TIMESTAMP},
+      end_time = #{record.end_time,jdbcType=TIMESTAMP},
       activity_desc = #{record.activity_desc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update nideshop_activity
+    update ice_activity
     set activity_id = #{record.activity_id,jdbcType=INTEGER},
       activity_name = #{record.activity_name,jdbcType=VARCHAR},
-      activity_prize = #{record.activity_prize,jdbcType=VARCHAR},
-      create_time = #{record.create_time,jdbcType=TIMESTAMP}
+      activity_info = #{record.activity_info,jdbcType=VARCHAR},
+      activity_status = #{record.activity_status,jdbcType=VARCHAR},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      create_name = #{record.create_name,jdbcType=VARCHAR},
+      start_time = #{record.start_time,jdbcType=TIMESTAMP},
+      end_time = #{record.end_time,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -50,7 +50,7 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public Result getActivity() {
         ActivityExample activityExample = new ActivityExample();
-        activityExample.setOrderByClause("create_time desc");
+        activityExample.setOrderByClause("is_top desc,create_time desc");
         List<Activity> activityList = activityMapper.selectByExample(activityExample);
         return ResultUtils.success(activityList);
     }

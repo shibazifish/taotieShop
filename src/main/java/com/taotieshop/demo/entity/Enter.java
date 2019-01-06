@@ -5,13 +5,21 @@ import java.util.Date;
 public class Enter {
     private Integer enter_id;
 
-    private String user_id;
-
-    private String user_name;
-
     private Integer activity_id;
 
-    private Date create_date;
+    private String wechat_number;
+
+    private String enter_desc;
+
+    private Date create_time;
+
+    private String create_name;
+
+    private String creator;
+
+    private String avatarUrl;
+
+    private String enter_status;
 
     public Integer getEnter_id() {
         return enter_id;
@@ -19,22 +27,6 @@ public class Enter {
 
     public void setEnter_id(Integer enter_id) {
         this.enter_id = enter_id;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
     }
 
     public Integer getActivity_id() {
@@ -45,11 +37,59 @@ public class Enter {
         this.activity_id = activity_id;
     }
 
-    public Date getCreate_date() {
-        return create_date;
+    public String getWechat_number() {
+        return wechat_number;
     }
 
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
+    public void setWechat_number(String wechat_number) {
+        this.wechat_number = wechat_number;
+    }
+
+    public String getEnter_desc() {
+        return enter_desc;
+    }
+
+    public void setEnter_desc(String enter_desc) {
+        this.enter_desc = enter_desc;
+    }
+
+    public Date getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
+    }
+
+    public String getCreate_name() {
+        return create_name;
+    }
+
+    public void setCreate_name(String create_name) {
+        this.create_name = create_name;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getEnter_status() {
+        return enter_status;
+    }
+
+    public void setEnter_status(String enter_status) {
+        this.enter_status = enter_status;
     }
 }

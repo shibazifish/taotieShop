@@ -19,4 +19,6 @@ public interface EnterMapper {
     int updateByExampleSelective(@Param("record") Enter record, @Param("example") EnterExample example);
 
     int updateByExample(@Param("record") Enter record, @Param("example") EnterExample example);
+
+    int updateStatusById(@Param("record") Enter record);
 }

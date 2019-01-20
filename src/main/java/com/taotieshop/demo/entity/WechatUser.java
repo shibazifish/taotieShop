@@ -1,5 +1,7 @@
 package com.taotieshop.demo.entity;
 
+import java.util.Date;
+
 public class WechatUser {
     private Integer userId;
 
@@ -24,6 +26,12 @@ public class WechatUser {
     private Integer iceData;
 
     private String inviter;
+
+    private Integer isBlackList;
+
+    private Integer power;
+
+    private Date create_time;
 
     public Integer getUserId() {
         return userId;
@@ -119,5 +127,29 @@ public class WechatUser {
 
     public void setInviter(String inviter) {
         this.inviter = inviter;
+    }
+
+    public Integer getIsBlackList() {
+        return isBlackList;
+    }
+
+    public void setIsBlackList(Integer isBlackList) {
+        this.isBlackList = isBlackList;
+    }
+
+    public Integer getPower() {
+        return power;
+    }
+
+    public void setPower(Integer power) {
+        this.power = power;
+    }
+
+    public Date getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
     }
 }

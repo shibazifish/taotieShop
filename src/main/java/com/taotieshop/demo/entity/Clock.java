@@ -13,6 +13,8 @@ public class Clock {
 
     private Date create_time;
 
+    private String form_id;
+
     public Integer getClock_id() {
         return clock_id;
     }
@@ -51,5 +53,13 @@ public class Clock {
 
     public void setCreate_time(Date create_time) {
         this.create_time = create_time;
+    }
+
+    public String getForm_id() {
+        return form_id;
+    }
+
+    public void setForm_id(String form_id) {
+        this.form_id = form_id;
     }
 }

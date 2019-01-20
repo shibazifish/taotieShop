@@ -43,6 +43,7 @@ public class ClockServiceImpl implements ClockService{
         String iv = requestMap.getOrDefault("iv","");
         String session_key = requestMap.getOrDefault("session_key","");
         String open_id = requestMap.getOrDefault("open_id","");
+        String form_id = requestMap.getOrDefault("form_id","");
 
         String result = WechatUtil.decryptData(encryptedData,session_key,iv);
         result.replace("\"","");
@@ -61,7 +62,7 @@ public class ClockServiceImpl implements ClockService{
         clock.setIce_data(iceData);
         clock.setCreate_time(IFUtil.CurrentDate());
         clock.setOpen_id(open_id);
-
+        clock.setForm_id(form_id);
 
         int intVal = clockMapper.countOneDayRecord(clock);
         if (intVal>0){

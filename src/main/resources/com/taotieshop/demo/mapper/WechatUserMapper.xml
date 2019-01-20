@@ -14,6 +14,9 @@
     <result column="countRunData" jdbcType="INTEGER" property="countRunData" />
     <result column="iceData" jdbcType="INTEGER" property="iceData" />
     <result column="inviter" jdbcType="VARCHAR" property="inviter" />
+    <result column="isBlackList" jdbcType="INTEGER" property="isBlackList" />
+    <result column="power" jdbcType="INTEGER" property="power" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List">
     userId, openId, nickName, gender, city, province, country, avatarUrl, unionId, countRunData, 
-    iceData, inviter
+    iceData, inviter, isBlackList, power, create_time
   </sql>
   <select id="selectByExample" parameterType="com.taotieshop.demo.entity.WechatUserExample" resultMap="BaseResultMap">
     select
@@ -101,12 +104,14 @@
     insert into nideshop_wechat_user (userId, openId, nickName, 
       gender, city, province, 
       country, avatarUrl, unionId, 
-      countRunData, iceData, inviter
+      countRunData, iceData, inviter, 
+      isBlackList, power, create_time
       )
     values (#{userId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
       #{gender,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
       #{country,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, #{unionId,jdbcType=VARCHAR}, 
-      #{countRunData,jdbcType=INTEGER}, #{iceData,jdbcType=INTEGER}, #{inviter,jdbcType=VARCHAR}
+      #{countRunData,jdbcType=INTEGER}, #{iceData,jdbcType=INTEGER}, #{inviter,jdbcType=VARCHAR}, 
+      #{isBlackList,jdbcType=INTEGER}, #{power,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.WechatUser">
@@ -148,6 +153,15 @@
       <if test="inviter != null">
         inviter,
       </if>
+      <if test="isBlackList != null">
+        isBlackList,
+      </if>
+      <if test="power != null">
+        power,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -185,6 +199,15 @@
       </if>
       <if test="inviter != null">
         #{inviter,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlackList != null">
+        #{isBlackList,jdbcType=INTEGER},
+      </if>
+      <if test="power != null">
+        #{power,jdbcType=INTEGER},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -233,6 +256,15 @@
       <if test="record.inviter != null">
         inviter = #{record.inviter,jdbcType=VARCHAR},
       </if>
+      <if test="record.isBlackList != null">
+        isBlackList = #{record.isBlackList,jdbcType=INTEGER},
+      </if>
+      <if test="record.power != null">
+        power = #{record.power,jdbcType=INTEGER},
+      </if>
+      <if test="record.create_time != null">
+        create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -251,7 +283,10 @@
       unionId = #{record.unionId,jdbcType=VARCHAR},
       countRunData = #{record.countRunData,jdbcType=INTEGER},
       iceData = #{record.iceData,jdbcType=INTEGER},
-      inviter = #{record.inviter,jdbcType=VARCHAR}
+      inviter = #{record.inviter,jdbcType=VARCHAR},
+      isBlackList = #{record.isBlackList,jdbcType=INTEGER},
+      power = #{record.power,jdbcType=INTEGER},
+      create_time = #{record.create_time,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

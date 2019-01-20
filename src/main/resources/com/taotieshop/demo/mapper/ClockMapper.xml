@@ -7,6 +7,7 @@
     <result column="run_data" jdbcType="INTEGER" property="run_data" />
     <result column="ice_data" jdbcType="INTEGER" property="ice_data" />
     <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="form_id" jdbcType="VARCHAR" property="form_id" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    clock_id, open_id, run_data, ice_data, create_time
+    clock_id, open_id, run_data, ice_data, create_time, form_id
   </sql>
   <select id="selectByExample" parameterType="com.taotieshop.demo.entity.ClockExample" resultMap="BaseResultMap">
     select
@@ -89,6 +90,14 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  <insert id="insert" parameterType="com.taotieshop.demo.entity.Clock">
+    insert into ice_clock (clock_id, open_id, run_data, 
+      ice_data, create_time, form_id
+      )
+    values (#{clock_id,jdbcType=INTEGER}, #{open_id,jdbcType=VARCHAR}, #{run_data,jdbcType=INTEGER}, 
+      #{ice_data,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, #{form_id,jdbcType=VARCHAR}
+      )
+  </insert>
   <insert id="insertSelective" parameterType="com.taotieshop.demo.entity.Clock">
     insert into ice_clock
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -107,6 +116,9 @@
       <if test="create_time != null">
         create_time,
       </if>
+      <if test="form_id != null">
+        form_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="clock_id != null">
@@ -123,6 +135,9 @@
       </if>
       <if test="create_time != null">
         #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="form_id != null">
+        #{form_id,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -150,6 +165,9 @@
       <if test="record.create_time != null">
         create_time = #{record.create_time,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.form_id != null">
+        form_id = #{record.form_id,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -161,7 +179,8 @@
       open_id = #{record.open_id,jdbcType=VARCHAR},
       run_data = #{record.run_data,jdbcType=INTEGER},
       ice_data = #{record.ice_data,jdbcType=INTEGER},
-      create_time = #{record.create_time,jdbcType=TIMESTAMP}
+      create_time = #{record.create_time,jdbcType=TIMESTAMP},
+      form_id = #{record.form_id,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -174,15 +193,10 @@
     update ice_clock
     set run_data = #{run_data,jdbcType=INTEGER},
     ice_data = #{ice_data,jdbcType=INTEGER},
-    create_time = #{create_time,jdbcType=TIMESTAMP}
+    create_time = #{create_time,jdbcType=TIMESTAMP},
+      form_id = #{form_id,jdbcType=VARCHAR}
     WHERE open_id = #{open_id,jdbcType=VARCHAR} AND to_days(create_time) = to_days(#{create_time,jdbcType=TIMESTAMP})
   </update>
-  <insert id="insert" parameterType="com.taotieshop.demo.entity.Clock">
-    insert into ice_clock (clock_id, open_id, run_data,
-    ice_data, create_time)
-    values (#{clock_id,jdbcType=INTEGER}, #{open_id,jdbcType=VARCHAR}, #{run_data,jdbcType=INTEGER},
-    #{ice_data,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP})
-  </insert>
   <update id="updateClearIce" parameterType="com.taotieshop.demo.entity.Clock">
     update ice_clock
     set ice_data = 0
@@ -194,4 +208,15 @@
     run_data = 1000
     WHERE open_id = #{open_id,jdbcType=VARCHAR} AND create_time = #{create_time,jdbcType=TIMESTAMP}
   </update>
+  <select id="queryScheduleInfo" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ice_clock ic where ic.open_id not in(
+    SELECT t.open_id FROM ice_clock t where TO_DAYS(t.create_time) = TO_DAYS(NOW())-1)
+    and TO_DAYS(ic.create_time) = TO_DAYS(NOW())-2
+    and ic.form_id is not NULL
+  </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.taotieshop.demo.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class WechatUserExample {
@@ -911,6 +912,186 @@ public class WechatUserExample {
 
         public Criteria andInviterNotBetween(String value1, String value2) {
             addCriterion("inviter not between", value1, value2, "inviter");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListIsNull() {
+            addCriterion("isBlackList is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListIsNotNull() {
+            addCriterion("isBlackList is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListEqualTo(Integer value) {
+            addCriterion("isBlackList =", value, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListNotEqualTo(Integer value) {
+            addCriterion("isBlackList <>", value, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListGreaterThan(Integer value) {
+            addCriterion("isBlackList >", value, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListGreaterThanOrEqualTo(Integer value) {
+            addCriterion("isBlackList >=", value, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListLessThan(Integer value) {
+            addCriterion("isBlackList <", value, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListLessThanOrEqualTo(Integer value) {
+            addCriterion("isBlackList <=", value, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListIn(List<Integer> values) {
+            addCriterion("isBlackList in", values, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListNotIn(List<Integer> values) {
+            addCriterion("isBlackList not in", values, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListBetween(Integer value1, Integer value2) {
+            addCriterion("isBlackList between", value1, value2, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsBlackListNotBetween(Integer value1, Integer value2) {
+            addCriterion("isBlackList not between", value1, value2, "isBlackList");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerIsNull() {
+            addCriterion("power is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerIsNotNull() {
+            addCriterion("power is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerEqualTo(Integer value) {
+            addCriterion("power =", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerNotEqualTo(Integer value) {
+            addCriterion("power <>", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerGreaterThan(Integer value) {
+            addCriterion("power >", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerGreaterThanOrEqualTo(Integer value) {
+            addCriterion("power >=", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerLessThan(Integer value) {
+            addCriterion("power <", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerLessThanOrEqualTo(Integer value) {
+            addCriterion("power <=", value, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerIn(List<Integer> values) {
+            addCriterion("power in", values, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerNotIn(List<Integer> values) {
+            addCriterion("power not in", values, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerBetween(Integer value1, Integer value2) {
+            addCriterion("power between", value1, value2, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andPowerNotBetween(Integer value1, Integer value2) {
+            addCriterion("power not between", value1, value2, "power");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeIsNull() {
+            addCriterion("create_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeIsNotNull() {
+            addCriterion("create_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeEqualTo(Date value) {
+            addCriterion("create_time =", value, "create_time");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeNotEqualTo(Date value) {
+            addCriterion("create_time <>", value, "create_time");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeGreaterThan(Date value) {
+            addCriterion("create_time >", value, "create_time");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_time >=", value, "create_time");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeLessThan(Date value) {
+            addCriterion("create_time <", value, "create_time");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeLessThanOrEqualTo(Date value) {
+            addCriterion("create_time <=", value, "create_time");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeIn(List<Date> values) {
+            addCriterion("create_time in", values, "create_time");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeNotIn(List<Date> values) {
+            addCriterion("create_time not in", values, "create_time");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeBetween(Date value1, Date value2) {
+            addCriterion("create_time between", value1, value2, "create_time");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreate_timeNotBetween(Date value1, Date value2) {
+            addCriterion("create_time not between", value1, value2, "create_time");
             return (Criteria) this;
         }
     }

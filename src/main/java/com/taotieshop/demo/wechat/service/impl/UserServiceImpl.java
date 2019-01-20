@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.taotieshop.demo.dao.ClockMapper;
 import com.taotieshop.demo.dao.WechatUserMapper;
 import com.taotieshop.demo.entity.*;
+import com.taotieshop.demo.utils.IFUtil;
 import com.taotieshop.demo.utils.ResultUtils;
 import com.taotieshop.demo.wechat.service.UserService;
 import net.sf.json.JSONObject;
@@ -63,6 +64,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public Result addUser(WechatUser wechatUser) {
+        wechatUser.setCreate_time(IFUtil.CurrentDate());
         WechatUserExample wechatUserExample = new WechatUserExample();
         WechatUserExample.Criteria criteria = wechatUserExample.createCriteria();
         criteria.andOpenIdEqualTo(wechatUser.getOpenId());

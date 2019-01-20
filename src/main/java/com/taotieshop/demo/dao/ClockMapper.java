@@ -27,5 +27,6 @@ public interface ClockMapper {
     int updateClearIce(Clock record);
     //打卡表清零
     int updateInviterIce(Clock record);
-
+    //查询需要提醒打卡的人员信息
+    List<Clock> queryScheduleInfo();
 }

@@ -7,9 +7,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@MapperScan("com.taotieshop.demo.dao")
+@MapperScan({"com.taotieshop.demo.dao","com.taotieshop.demo.baby.dao"})
 @EnableTransactionManagement //事务
-@EnableScheduling //定时器
 public class TaotieShopApplication {
 
 	public static void main(String[] args) {

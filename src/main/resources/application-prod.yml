@@ -5,5 +5,5 @@ server:
 spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/nideshop?serverTimezone=GMT%2B8&characterEncoding=UTF-8
-    username: root
-    password: X;%jepO.8faw
+    username: liyu
+    password: 623763070Ly;
